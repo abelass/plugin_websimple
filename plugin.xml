@@ -4,7 +4,7 @@
 	</multi></nom>
 	<auteur>[Web Simple->http://www.websimple.be]</auteur>
 	<licence>Creative Commons Attribution 2.5</licence>
-	<version>0.0.1</version>
+	<version>0.1.0</version>
 	<slogan>
 		<multi>
 		[fr]Th&egrave;e simple pour un site simple
@@ -27,4 +27,5 @@
 	<necessite id="edition_directe" version="[3.2.6;]" />
 	<necessite id="so" version="[1.0.0;]" />
 	<necessite id="sjcycle" version="[2.2.3;]" />
+	<necessite id="gma" version="[1.2.0;]" />
 </plugin>
