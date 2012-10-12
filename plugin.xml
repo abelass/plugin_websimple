@@ -1,0 +1,30 @@
+<plugin>
+	<nom><multi>
+		Web Simple
+	</multi></nom>
+	<auteur>[Web Simple->http://www.websimple.be]</auteur>
+	<licence>Creative Commons Attribution 2.5</licence>
+	<version>0.0.1</version>
+	<slogan>
+		<multi>
+		[fr]Th&egrave;e simple pour un site simple
+		</multi>
+	</slogan>
+	<description><multi>
+		[fr]Un th&#232;me simple.
+	</multi></description>
+	<icon>vignette.jpg</icon>
+	<etat>stable</etat>
+	<prefix>theme_websimple</prefix>
+	<categorie>theme</categorie>
+	<necessite id="SPIP" version="[3.0.4;3.0.99]" />
+	<necessite id="Z5" version="[2.0-dev;]" />
+	<necessite id="multilingue" version="[0.2.1;]" />
+	<necessite id="multilang" version="[0.7.0;]" />
+	<necessite id="corbeille" version="[3.0.1;]" />
+	<necessite id="crayons" version="[1.13.8;]" />
+	<necessite id="compositions" version="[3.3.0;]" />
+	<necessite id="edition_directe" version="[3.2.6;]" />
+	<necessite id="so" version="[1.0.0;]" />
+	<necessite id="sjcycle" version="[2.2.3;]" />
+</plugin>

@@ -1,0 +1,19 @@
+<body>
+<aside class="extra1 col" id="extra1">
+	<INCLURE{fond=extra1/#ENV{type-page},env} />
+</aside>
+	<section class="page[ (#ENV{class})]">
+
+		<header id="header"><INCLURE{fond=header/#ENV{type-page},env} /></header>
+		
+		<section class="container" id="container" role="main">
+			<section class="content" id="content"><INCLURE{fond=content/#ENV{type-page},env} /></section>
+			[(#ENV{composition}|=={home}|non)
+			<aside class="extra2 col" id="extra2"><INCLURE{fond=extra2/#ENV{type-page},env} /></aside>]
+		<footer id="footer">
+			<nav class="hornav clearfix" id="nav"><INCLURE{fond=inclure/nav,env} /></nav>
+		</footer>			
+			
+		</section>
+	</section>
+</body>
