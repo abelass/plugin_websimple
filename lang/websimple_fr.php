@@ -7,6 +7,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 	'compris_pack' => 'Compris dans le pack',
-
+	
+    // G
+    'graphisme' => 'Graphisme',    
+    
+    // P
+    'pack_base' => 'Pack de base',    
+    
+    // U
+    'utilise_par_pack' => 'Utilisé par le pack',        
 );
 ?>
