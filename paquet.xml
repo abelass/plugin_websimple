@@ -1,0 +1,29 @@
+<paquet
+	prefix="theme_websimple"
+	categorie="edition"
+	version="0.3.0"
+	etat="dev"
+	compatibilite="[3.0.5;3.0.*]"
+>
+	<nom>Web Simple</nom>
+
+	<auteur lien='http://websimple.be'>Web Simple</auteur>
+
+	<licence>GNU/GPL</licence>
+
+	<necessite nom="Z5" compatibilite="[	2.0.0;]" /> 
+	<necessite nom="multilingue" compatibilite="[0.2.1;]" /> 	
+	<necessite nom="multilang" compatibilite="[	0.7.0;]" />
+	<necessite nom="corbeille" compatibilite="[3.0.1;]" />		
+	<necessite nom="crayons" compatibilite="[1.13.9;]" />		
+	<necessite nom="compositions" compatibilite="[3.3.1;]" />	
+	<necessite nom="edition_directe" compatibilite="[3.2.6;]" />	
+	<necessite nom="selection_objet" compatibilite="[1.5.7;]" />	
+	<necessite nom="sjcycle" compatibilite="[2.2.4;]" />	
+	<necessite nom="gma" compatibilite="[1.2.0;]" />	
+	<necessite nom="shop" compatibilite="[1.2.0;]" />
+	<necessite nom="faq" compatibilite="[2.1.21;]" />
+	<necessite nom="menuder" compatibilite="[2.1.4;]" />	
+	
+	<pipeline nom="jqueryui_plugins" inclure="theme_websimple_pipelines.php" /> 			
+</paquet>
