@@ -8,6 +8,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	// A
 	'compris_pack' => 'Compris dans le pack',
 	
+    // C
+    'commande_enregistre' => 'Votre commande a été enregistré vous allez recevoir une confirmation par email',            
+	
+    // E
+    'envoi_commande' => 'Envoyez votre commande',        
+    
     // G
     'graphisme' => 'Graphisme',    
     

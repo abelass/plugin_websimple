@@ -40,10 +40,7 @@ function theme_websimple_formulaire_traiter($flux){
             $id_auteur=$flux['data']['id_auteur'];
             $auteur=sql_fetsel('*','spip_auteurs','id_auteur='.$id_auteur);
             auth_loger($auteur);
-        }
-            
-        echo serialize($flux['data']);
-        echo $id_auteur;    
+        }  
         // On cree la commande ici
         include_spip('inc/commandes');
         $id_commande = creer_commande_encours();
@@ -109,7 +106,7 @@ function theme_websimple_formulaire_traiter($flux){
         $panier();
         $flux['data']['id_commande']=$id_commande;
         $flux['data']['editable']=false;        
-        $flux['data']['message_ok']='ok';        
+        $flux['data']['message_ok']=_T('websimple:commande_enregistre');   
     }
     return($flux);
 }
@@ -118,8 +115,8 @@ function theme_websimple_recuperer_fond($flux){
     //insérer le ajaxreload dans le formualaire editer_client
     $fond=$flux['args']['fond'];
     if (($fond == 'formulaires/editer_client' OR $fond=='formulaires/inscription_client')){
-        $login = pipeline('social_login_links', '');
         $flux['data']['texte'] .= recuperer_fond('inclure/ajaxreload');
+
     }
     return $flux;
 }
@@ -127,7 +124,6 @@ function theme_websimple_recuperer_fond($flux){
 function theme_websimple_pre_insertion($flux){
     $table=$flux['args']['table'];
    if (($table=='spip_commandes') AND _request('page')=='selection'){
-       echo serialize($flux);
         //definir le statut
         $flux['data']['statut'] = 'attente';
         }
