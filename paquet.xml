@@ -25,5 +25,10 @@
 	<necessite nom="faq" compatibilite="[2.1.21;]" />
 	<necessite nom="menuder" compatibilite="[2.1.4;]" />	
 	
-	<pipeline nom="jqueryui_plugins" inclure="theme_websimple_pipelines.php" /> 			
+	<pipeline nom="jqueryui_plugins" inclure="theme_websimple_pipelines.php" /> 
+	<pipeline nom="formulaire_charger" inclure="theme_websimple_pipelines.php" /> 	
+	<pipeline nom="formulaire_traiter" inclure="theme_websimple_pipelines.php" /> 
+	<pipeline nom="recuperer_fond" inclure="theme_websimple_pipelines.php" /> 	
+	<pipeline nom="pre_insertion" inclure="theme_websimple_pipelines.php" /> 
+	<pipeline nom="post_insertion" inclure="theme_websimple_pipelines.php" /> 								
 </paquet>
