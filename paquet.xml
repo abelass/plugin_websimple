@@ -22,6 +22,8 @@
 	<necessite nom="sjcycle" compatibilite="[2.2.4;]" />	
 	<necessite nom="gma" compatibilite="[1.2.0;]" />	
 	<necessite nom="shop" compatibilite="[1.2.0;]" />
+	<necessite nom="shop_prix" compatibilite="[1.2.0;]" />	
+	<necessite nom="facteur" compatibilite="[2.3.1;]" />		
 	<necessite nom="faq" compatibilite="[2.1.21;]" />
 	<necessite nom="menuder" compatibilite="[2.1.4;]" />	
 	
