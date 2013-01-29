@@ -20,11 +20,14 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'envoi_commande' => 'Envoyez votre commande',        
     
     // G
-    'graphisme' => 'Graphisme',    
+    'graphisme' => 'Graphisme', 
+    
+    // H
+    'hebergement' => 'Hébergement',        
     
     // P
-    'pack_base' => 'Pack de base',    
-    
+    'pack_base' => 'Pack de base', 
+    'pack_compose_par' => 'Un pack contient :', 
     // U
     'utilise_par_pack' => 'Utilisé par le pack',        
 );
