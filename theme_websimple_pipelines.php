@@ -1,5 +1,4 @@
 <?php
-
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
 function theme_websimple_jqueryui_plugins($scripts){
@@ -35,41 +34,33 @@ function theme_websimple_formulaire_traiter($flux){
         // On recupere d'abord toutes les informations dont on va avoir besoin
         // Deje le visiteur connecte
         $id_auteur = session_get('id_auteur');
-        if(!$id_auteur){
-            include_spip('inc/auth');
-            $id_auteur=$flux['data']['id_auteur'];
-            $auteur=sql_fetsel('*','spip_auteurs','id_auteur='.$id_auteur);
-            auth_loger($auteur);
-        }  
+
         // On cree la commande ici
         include_spip('inc/commandes');
         $id_commande = creer_commande_encours();
         
-        // On cherche l'adresse principale du visiteur
-        $id_adresse = sql_getfetsel('id_adresse',  'spip_adresses_liens',
-                         array( 'objet = '.sql_quote('auteur'),
-                        'id_objet = '.intval($id_auteur),
-                        'type = '.sql_quote('principale') ) );
+                // Si inscription on rajoute l'id_auteur
+        if(!$id_auteur){
+            $id_auteur=$flux['data']['id_auteur'];
+           include_spip('action/editer_commande');
+           editer_commande_details($id_commande, array('id_auteur' => $id_auteur));
+            }  
         
-        $adresse = sql_fetsel('*', 'spip_adresses', 'id_adresse = '.$id_adresse);
-        unset($adresse['id_adresse']);
+        //On envoie la confirmation
+        include_spip('inc/config');
+        $config = lire_config('commandes');       
+         $notifications = charger_fonction('notifications', 'inc', true);
         
-        // On copie cette adresse comme celle de facturation
-        $id_adresse_facturation = sql_insertq('spip_adresses', $adresse);
-        sql_insertq( 'spip_adresses_liens',
-                        array( 'id_adresse' => $id_adresse_facturation,
-                                'objet' => 'commande',
-                                'id_objet' => $id_commande,
-                                'type' => 'facturation' ) );
-    
-        // On copie cette adresse comme celle de livraison
-        $id_adresse_livraison = sql_insertq('spip_adresses', $adresse);
-        sql_insertq( 'spip_adresses_liens',
-                        array( 'id_adresse' => $id_adresse_livraison,
-                                'objet' => 'commande',
-                                'id_objet' => $id_commande,
-                                'type' => 'livraison' ) );
-       
+        // Determiner l'expediteur
+        $options = array();
+        if( $config['expediteur'] != "facteur" )
+            $options['expediteur'] = $config['expediteur_'.$config['expediteur']];
+
+        // Envoyer au vendeur et au client
+        $notifications('commande_vendeur', $id_commande, $options);
+        if($config['client'])
+            $notifications('commande_client', $id_commande, $options);
+
        // On récupère le contenu du panier
         $panier = sql_allfetsel(
             '*',
@@ -106,7 +97,8 @@ function theme_websimple_formulaire_traiter($flux){
         $panier();
         $flux['data']['id_commande']=$id_commande;
         $flux['data']['editable']=false;        
-        $flux['data']['message_ok']=_T('websimple:commande_enregistre');   
+        $flux['data']['message_ok']=_T('websimple:commande_enregistre'); 
+        if($form='inscription_client') $flux['data']['retour_inscription']='ok';('websimple:commande_enregistre');          
     }
     return($flux);
 }
@@ -115,8 +107,8 @@ function theme_websimple_recuperer_fond($flux){
     //insérer le ajaxreload dans le formualaire editer_client
     $fond=$flux['args']['fond'];
     if (($fond == 'formulaires/editer_client' OR $fond=='formulaires/inscription_client')){
-        $flux['data']['texte'] .= recuperer_fond('inclure/ajaxreload');
-
+       $contexte=$flux['args']['contexte'];
+        $flux['data']['texte'] .= recuperer_fond('inclure/ajaxreload',$contexte);
     }
     return $flux;
 }
@@ -129,6 +121,4 @@ function theme_websimple_pre_insertion($flux){
         }
 return $flux;
 }
-
-
 ?>
