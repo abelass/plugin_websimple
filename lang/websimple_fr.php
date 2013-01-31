@@ -6,7 +6,8 @@ if (!defined('_ECRIRE_INC_VERSION')) return;
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
-	'compris_pack' => 'Compris dans le pack',
+
+	'action_ajouter' => 'Ajouter',	
 	
     // C
     'commande_enregistre' => '
@@ -14,7 +15,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     <br/> <br/>
     Nous vous contacterons le plus vite possible
     <br/><br/>
-    Merci pour votre confiance',            
+    Merci pour votre confiance',     
+    'compris_pack' => 'Compris dans le pack',       
 	
     // E
     'envoi_commande' => 'Envoyez votre commande',        
