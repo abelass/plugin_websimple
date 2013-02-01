@@ -1,6 +1,12 @@
 <?php
 if (!defined("_ECRIRE_INC_VERSION")) return;
 
+function theme_websimple_insert_head($flux){
+   //$flux .= '<script type="text/javascript"  src="'.find_in_path('websimple.js','javascript').'"></script>';
+    //$flux .= '<link type="text/css" href="'.find_in_path('habillage.css','css').'" rel="stylesheet"/>n';    
+    return $flux;
+}
+
 function theme_websimple_jqueryui_plugins($scripts){
    $scripts[] = 'jquery.ui.draggable';
    $scripts[] = "jquery.ui.widget";
