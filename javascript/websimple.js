@@ -54,11 +54,11 @@ $(document).ready(function(){
 //Ouvrir et fermer un objet bougeable
       
  $('dt a.closed').on('click', function(event) {
-     event.stopPropagation();
- 		var id=$(this).attr('id').split('_');   
-       var id_article=id[1];
-       var statut=$(this).attr('class')
-      if(statut=='closed'){
+    event.stopPropagation();
+ 	var id=$(this).attr('id').split('_');   
+    var id_article=id[1];
+    var statut=$(this).attr('class')
+    if(statut=='closed'){
         $('#article_'+id_article+' div.load').replaceWith(
         '<div class="floating_box" id="floating_box_'+id_article+'" style="display:none;"><div class="action_close" id="close_'+id_article+'">X</div><div class="floating_content"> </div></div>');
         $('#floating_box_'+id_article+' .floating_content').load(
@@ -68,12 +68,12 @@ $(document).ready(function(){
                 $('#link_'+id_article).removeClass("closed").addClass("open");
                 });
         }
-        else{      
+     else{      
 	       	$('#floating_box_'+id_article).hide(800);
 	       	$('#link_'+id_article+' span.close').replaceWith('<span class="open">+</span>');       
 	       	$('#link_'+id_article).removeClass("open").addClass("closed");
         }
-           return false;
+     return false;
     });
 });
 
