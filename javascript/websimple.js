@@ -2,7 +2,8 @@
 $(document).ready(function(){
 	var count=0;
 	//bouger le panier
-	  // does cookie exist?
+	 // does cookie exist?
+	  
 	  if ($.cookie('coords')) {
 		var coords = $.cookie('coords').split(',');
 	  } else {
@@ -27,6 +28,7 @@ $(document).ready(function(){
      $("dd.introduction" ).each(function(){          
         var id=$(this).attr('id').split('_');   
         var id_article=id[1];
+
 		count=count+1;
 
           // does cookie exist?
@@ -56,17 +58,21 @@ $(document).ready(function(){
 		e.stopPropagation();
 		if(statut=='closed'){
 			e.stopPropagation();
+			//préparer le cadre html
 	        $('#article_'+id_article+' div.load').replaceWith(
 	        '<div class="floating_box" id="floating_box_'+id_article+'" style="display:none;"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
+	        //charger le contenu
 	        $('#floating_box_'+id_article+' .floating_content').load(
 	            '/spip.php?action=charger_squelette&squelette=content/article-packs&id_article='+id_article+'&forum=non&id_article_base='+id_article_base+'&panier='+panier+'&faq='+faq,'',function(){
-	            	fenetreUp($('#article_'+id_article));  
+	            	//mettre la fenêtre en avant
+	            	fenetreUp($('#article_'+id_article));
+	            	//mettre la fenêtre en avant faire apparaite la fenêtre et daer le html  
 	                $('#floating_box_'+id_article).show(800);
 	                $('#link_'+id_article+'_'+id_article_base+' span.close').replaceWith('<span class="open">-</span>');
 	                $('#link_'+id_article+'_'+id_article_base).removeClass("closed").addClass("open");
-	                $(function() {
+					//rendre a fenêre resizable
 				    $( ".floating_box" ).resizable({ animateEasing: "easeOutBounce" });
-				  		});
+		
 	               // Fermer une fenetre via le x
 			        $('.action_close').click(function(){
 			        	$('.options').off("click", ".options","chargerFenetre");
@@ -78,11 +84,7 @@ $(document).ready(function(){
 				           $('#link_'+id_article+'_'+id_article_base).removeClass("open").addClass("closed");
 				        });
 				        
-	               // mettre la fenêtre active en avant
-			        $('.ui-draggable').click(function(){
-			        	fenetreUp($(this)); 
-				        });
-				        				        
+				    //fonction acorrdeion pour faq - si menu dans une sous fenêtre    		        
 				   	$('dl.faq > dt').addClass("close").click(function(){
 				   		e.stopPropagation();
 						$(this).toggleClass("close").next().toggle('fast');
