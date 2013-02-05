@@ -12,6 +12,7 @@ function theme_websimple_jqueryui_plugins($scripts){
    $scripts[] = "jquery.ui.widget";
    $scripts[] = "jquery.ui.mouse";
    $scripts[] = "jquery.ui.sortable";
+   $scripts[] = "jquery.ui.resizable";   
    return $scripts;
 }
 
