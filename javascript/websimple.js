@@ -63,7 +63,6 @@ $(".options").on("chargerFenetre", function(e,id_article,id_article_base,statut,
                 $('#link_'+id_article+'_'+id_article_base).removeClass("closed").addClass("open");
                
                // Fermer une fenetre via le x
-
 		        $('.action_close').click(function(){
 		        	$('.options').off("click", ".options","chargerFenetre");
 		        	e.stopPropagation();
@@ -91,7 +90,8 @@ $(".options").on("chargerFenetre", function(e,id_article,id_article_base,statut,
 //Ouvre la fenêtre
 
       
-$("dt a.closed").on("click",function () {
+$("dt").on("click","a.closed",function (e) {
+	e.stopPropagation();
 	var id=$(this).attr('id').split('_');   
     var id_article=id[1];
     var id_article_base=id[2];
