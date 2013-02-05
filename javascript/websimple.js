@@ -60,10 +60,10 @@ $(document).ready(function(){
 	        '<div class="floating_box" id="floating_box_'+id_article+'" style="display:none;"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
 	        $('#floating_box_'+id_article+' .floating_content').load(
 	            '/spip.php?action=charger_squelette&squelette=content/article-packs&id_article='+id_article+'&forum=non&id_article_base='+id_article_base+'&panier='+panier+'&faq='+faq,'',function(){
+	            	fenetreUp($('#article_'+id_article));  
 	                $('#floating_box_'+id_article).show(800);
 	                $('#link_'+id_article+'_'+id_article_base+' span.close').replaceWith('<span class="open">-</span>');
 	                $('#link_'+id_article+'_'+id_article_base).removeClass("closed").addClass("open");
-	                fenetreUp($(this)); 
 	                $(function() {
 				    $( ".floating_box" ).resizable({ animateEasing: "easeOutBounce" });
 				  		});
