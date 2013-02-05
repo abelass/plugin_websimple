@@ -32,7 +32,7 @@ $(document).ready(function(){
           if ($.cookie('article_'+id_article)) {
                 var coords = $.cookie('article_'+id_article).split(',');
           } else {
-                var coords = [0,count+'%',1,count]; // default top and left
+                var coords = [count*2+'%',0]; // default top and left
           }
           $('#article_'+id_article).css({top:coords[0],left:coords[1],position:'absolute'});
 
@@ -89,10 +89,9 @@ $(document).ready(function(){
 	        }
 	});
 
-	//Ouvre la fenêtre
-	
+	//Ouvrir et fermer la fenêtre
 	      
-	$("dt").on("click","a.closed",function (e) {
+	$("dt").on("click","a",function (e) {
 		e.stopPropagation();
 		var id=$(this).attr('id').split('_');   
 	    var id_article=id[1];
@@ -103,8 +102,6 @@ $(document).ready(function(){
 	   $(".options").trigger("chargerFenetre",[id_article,id_article_base,statut,panier,faq]);  
 	   
 	   return false;
-	   
-	   $("p").on("click", {foo: "bar"}, myHandler)
 	});
 	
       
