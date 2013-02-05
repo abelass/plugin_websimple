@@ -22,6 +22,7 @@ $(document).ready(function(){
         );
       });
 	
+	
 	//les objets bougables
      $("dd.introduction" ).each(function(){          
         var id=$(this).attr('id').split('_');   
@@ -41,7 +42,8 @@ $(document).ready(function(){
             {
             containment:'html', 
             opacity: 0.35, 
-            cursor: 'move',    
+            cursor: 'move',
+            start: function( event, ui ) {fenetreUp($(this));},    
             stop: function() {
                     $.cookie('article_'+id_article,$('#article_'+id_article).css('top')+','+$('#article_'+id_article).css('left'), { expires: 365 , path: '/' });
                   }
@@ -61,6 +63,7 @@ $(document).ready(function(){
 	                $('#floating_box_'+id_article).show(800);
 	                $('#link_'+id_article+'_'+id_article_base+' span.close').replaceWith('<span class="open">-</span>');
 	                $('#link_'+id_article+'_'+id_article_base).removeClass("closed").addClass("open");
+	                fenetreUp($(this)); 
 	                $(function() {
 				    $( ".floating_box" ).resizable({ animateEasing: "easeOutBounce" });
 				  		});
@@ -74,6 +77,12 @@ $(document).ready(function(){
 				           $('#link_'+id_article+'_'+id_article_base+' span.open').replaceWith('<span class="close">+</span>');       
 				           $('#link_'+id_article+'_'+id_article_base).removeClass("open").addClass("closed");
 				        });
+				        
+	               // mettre la fenêtre active en avant
+			        $('.ui-draggable').click(function(){
+			        	fenetreUp($(this)); 
+				        });
+				        				        
 				   	$('dl.faq > dt').addClass("close").click(function(){
 				   		e.stopPropagation();
 						$(this).toggleClass("close").next().toggle('fast');
@@ -104,15 +113,11 @@ $(document).ready(function(){
 	   return false;
 	});
 	
-      
+ function fenetreUp(elem) {
+	$('dl dd').css({'z-index':1000})
+	elem.css({'z-index':10001});
+    };     
 });
-
-//Ouvrir et fermer un objet bougeable
-
-
-
-
-
 
 
 
