@@ -84,7 +84,11 @@ $(document).ready(function(){
 				           $('#link_'+id_article+'_'+id_article_base).removeClass("open").addClass("closed");
 				        });
 				        
-				    //fonction acorrdeion pour faq - si menu dans une sous fenêtre    		        
+	               // mettre la fenêtre active en avant
+			        $('.ui-draggable').click(function(){
+			        	fenetreUp($(this)); 
+				        });
+				      //acordeon  				        
 				   	$('dl.faq > dt').addClass("close").click(function(){
 				   		e.stopPropagation();
 						$(this).toggleClass("close").next().toggle('fast');
