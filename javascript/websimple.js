@@ -9,23 +9,20 @@ $(document).ready(function(){
 	$("section.page").trigger("chargerPanel"); 	
 	
 	//le statut par défaut
-	if ($('.ui-draggable')!=0){
-		 if ($.cookie('move')) {
-		 	var statut=$.cookie('move');
-		 }
-		
-		 else{
-		 	var statut='on';
-		 	}
- 		$('aside.control_box .move').addClass(statut);
-		 if(statut=="off"){
-		 	moveOff();
-		 }
-		 else{
-		 	moveOn();
-		 }
-
-		}
+	 if ($.cookie('move')) {
+	 	var statut=$.cookie('move');
+	 	}
+	 else{
+	 	var statut='on';
+	 	}
+	 	
+	$('aside.control_box .move').addClass(statut);
+	 if(statut=="off"){
+	 	moveOff();
+	 }
+	 else{
+	 	moveOn();
+	 }
 
 	//Désactiver le draggable
 	$('.control_box').on('click','.off',function(){
@@ -37,61 +34,6 @@ $(document).ready(function(){
 		moveOn();
 	});
 
-	//les objets bougables
-	//le panier
-
-	  if ($.cookie('#mon_panier')) {
-		var coords = $.cookie('#mon_panier').split(',');
-	  		} 
-	  else {
-	        var coords = [50,50]; // default top and left
-	  	}
-	 if(statut=='on') {
-	 	$('#mon_panier').css({top:coords[0],left:coords[1]});
-	 	}
-	    $(function() {
-	        $( "#mon_panier" ).draggable({
-	            containment:'html', 
-	            cursor: 'move',    
-	            stop: function() {
-	               $.cookie(
-	               	'#mon_panier',
-	               	$('#mon_panier').css('top')+','+$('#mon_panier').css('left'),
-	               	{ expires: 365 , path: '/' });
-                  }
-            });
-      });
-	
-	//les, objets
-     $("dd.introduction" ).each(function(){          
-        var id=$(this).attr('id').split('_');   
-        var id_article=id[1];
-		count=count+1;
-          // does cookie exist?
-          if ($.cookie('#article_'+id_article)) {
-                var coords = $.cookie('#article_'+id_article).split(',');
-          } else {
-                var coords = [count*2+'%',0]; // default top and left
-          }
-     	 if(statut=='on') {
-          $('#article_'+id_article).css({top:coords[0],left:coords[1],position:'absolute'});
-          }
-
-	    $(function() {
-	        $("#article_"+id_article).draggable(
-	            {
-	            containment:'html', 
-	            opacity: 0.35, 
-	            cursor: 'move',
-	            start: function( event, ui ) {fenetreUp($(this));},    
-	            stop: function() {
-	                    $.cookie('#article_'+id_article,$('#article_'+id_article).css('top')+','+$('#article_'+id_article).css('left'), { expires: 365 , path: '/' });
-	                  }
-	             }
-	        );
-	      });
-      });
-      
 	$(".options").on("chargerFenetre", function(e,id_article,id_article_base,statut,panier,faq){
 		e.stopPropagation();
 		if(statut=='closed'){
@@ -189,6 +131,19 @@ $(document).ready(function(){
 		 $(selector).css({top:count*2+'%',left:0,opacity:1,position:'absolute'}); 		
  	}
  	else{
+		 $(function() {
+		        $(selector).draggable(
+		            {
+		            containment:'html', 
+		            opacity: 0.35, 
+		            cursor: 'move',
+		            start: function( event, ui ) {fenetreUp($(this));},    
+		            stop: function() {
+		                    $.cookie(selector,$(selector).css('top')+','+$(selector).css('left'), { expires: 365 , path: '/' });
+		                  }
+		             }
+		        );
+		      });
 		$(selector).draggable( "enable" );
 		if ($.cookie(selector)) {
           var coords = $.cookie(selector).split(',');
