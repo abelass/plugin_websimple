@@ -1,57 +1,95 @@
 
 $(document).ready(function(){
 	var count=0;
-	//bouger le panier
-	 // does cookie exist?
-	  
-	  if ($.cookie('coords')) {
-		var coords = $.cookie('coords').split(',');
-	  } else {
-	        var coords = [50,50]; // default top and left
-	  }
-	  $('#mon_panier').css({top:coords[0],left:coords[1]});
 
-    $(function() {
-        $( "#mon_panier" ).draggable(
-            {
-            containment:'html', 
-            cursor: 'move',    
-            stop: function() {
-                    $.cookie('coords',$('#mon_panier').css('top')+','+$('#mon_panier').css('left'), { expires: 365 , path: '/' });
+	//Mettre en pace les controles
+	$("section.page").on("chargerPanel", function(){
+		$(this).prepend('<aside class="control_box"><div class="move"></div></aside>');
+	});
+	$("section.page").trigger("chargerPanel"); 	
+	
+	//le statut par défaut
+	if ($('.ui-draggable')!=0){
+		 if ($.cookie('move')) {
+		 	var statut=$.cookie('move');
+		 }
+		
+		 else{
+		 	var statut='on';
+		 	}
+ 		$('aside.control_box .move').addClass(statut);
+		 if(statut=="off"){
+		 	moveOff();
+		 }
+		 else{
+		 	moveOn();
+		 }
+
+		}
+
+	//Désactiver le draggable
+	$('.control_box').on('click','.off',function(){
+		moveOff();
+		});
+		
+	//Activer le draggable
+	$('.control_box').on('click','.on',function(){
+		moveOn();
+	});
+
+	//les objets bougables
+	//le panier
+
+	  if ($.cookie('#mon_panier')) {
+		var coords = $.cookie('#mon_panier').split(',');
+	  		} 
+	  else {
+	        var coords = [50,50]; // default top and left
+	  	}
+	 if(statut=='on') {
+	 	$('#mon_panier').css({top:coords[0],left:coords[1]});
+	 	}
+	    $(function() {
+	        $( "#mon_panier" ).draggable({
+	            containment:'html', 
+	            cursor: 'move',    
+	            stop: function() {
+	               $.cookie(
+	               	'#mon_panier',
+	               	$('#mon_panier').css('top')+','+$('#mon_panier').css('left'),
+	               	{ expires: 365 , path: '/' });
                   }
-             }
-        );
+            });
       });
 	
-	
-	//les objets bougables
+	//les, objets
      $("dd.introduction" ).each(function(){          
         var id=$(this).attr('id').split('_');   
         var id_article=id[1];
-
 		count=count+1;
-
           // does cookie exist?
-          if ($.cookie('article_'+id_article)) {
-                var coords = $.cookie('article_'+id_article).split(',');
+          if ($.cookie('#article_'+id_article)) {
+                var coords = $.cookie('#article_'+id_article).split(',');
           } else {
                 var coords = [count*2+'%',0]; // default top and left
           }
+     	 if(statut=='on') {
           $('#article_'+id_article).css({top:coords[0],left:coords[1],position:'absolute'});
+          }
 
-    $(function() {
-        $("#article_"+id_article).draggable(
-            {
-            containment:'html', 
-            opacity: 0.35, 
-            cursor: 'move',
-            start: function( event, ui ) {fenetreUp($(this));},    
-            stop: function() {
-                    $.cookie('article_'+id_article,$('#article_'+id_article).css('top')+','+$('#article_'+id_article).css('left'), { expires: 365 , path: '/' });
-                  }
-             }
-        );
-      });
+	    $(function() {
+	        $("#article_"+id_article).draggable(
+	            {
+	            containment:'html', 
+	            opacity: 0.35, 
+	            cursor: 'move',
+	            start: function( event, ui ) {fenetreUp($(this));},    
+	            stop: function() {
+	                    $.cookie('#article_'+id_article,$('#article_'+id_article).css('top')+','+$('#article_'+id_article).css('left'), { expires: 365 , path: '/' });
+	                  }
+	             }
+	        );
+	      });
       });
       
 	$(".options").on("chargerFenetre", function(e,id_article,id_article_base,statut,panier,faq){
@@ -118,12 +156,53 @@ $(document).ready(function(){
 	   
 	   return false;
 	});
-	
+//Enlever l'effet move	
+ function moveOff() {
+	var count=0;
+	$("dd.introduction").each(function(){   
+		var id=$(this).attr('id').split('_');   
+    	var id_article=id[1];
+    	count=count+1;
+		fenetreControle('off','#article_'+id_article,count);
+		});
+		fenetreControle('off','#mon_panier');			
+	 $('aside.control_box .move').removeClass('off').addClass('on');
+	 $.cookie('move','off', { expires: 365 , path: '/' });
+	};
+//Activer l'effet move		     	
+ function moveOn() {
+ 	var count=0;
+	 $("dd.introduction").each(function(){   
+	 	var id=$(this).attr('id').split('_');   
+   		var id_article=id[1];
+   		count=count+1;
+	 	fenetreControle('on','#article_'+id_article,count);
+	 });
+	 fenetreControle('on','#mon_panier');		
+	 $('aside.control_box .move').removeClass('on').addClass('off');
+	 $.cookie('move','on', { expires: 365 , path: '/' });
+	 }; 	
+// contrôle des fenêtres	
+ function fenetreControle(statut,selector,count) {
+ 	if(statut=='off'){
+		 $(selector).draggable( "disable" );
+		 $(selector).css({top:count*2+'%',left:0,opacity:1,position:'absolute'}); 		
+ 	}
+ 	else{
+		$(selector).draggable( "enable" );
+		if ($.cookie(selector)) {
+          var coords = $.cookie(selector).split(',');
+          } 
+        else {
+         var coords = [count*2+'%',0]; // default top and left
+          }
+          $(selector).css({top:coords[0],left:coords[1],position:'absolute'}); 		
+ 	}
+
+    }; 
+
  function fenetreUp(elem) {
 	$('dl dd').css({'z-index':1000})
 	elem.css({'z-index':10001});
     };     
 });
-
-
-
