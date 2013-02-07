@@ -52,7 +52,7 @@ $(document).ready(function(){
 });
 
 $(function() { 
-	//Ouvrir et fermer la fenêtre
+	//Ouvrir et fermer la fenêtre depuis le lien
 	$('a[data-target="'+data_target+'"]').click(function() {
 		var id=$(this).attr('id').split('_');   
 	    var id_article=id[1];
@@ -61,8 +61,10 @@ $(function() {
 	    var panier=$(this).attr('data-panier');   
 	    var faq=$(this).attr('data-faq'); 
 	    var fenetre=$(this).attr('data-fenetre'); 
-	    var statut_fenetre=$(this).attr('data-statut'); 	     
+	    var statut_fenetre=$(this).attr('data-statut'); 
+	    	     
 	    chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre);
+	    
 	   return false;
 	}); 	
  });
@@ -155,7 +157,9 @@ $(function() {
  function chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre) {
 	if(statut=='closed'){	
 		if(statut_fenetre=='actif'){
-			$('#'+objet_id+'_'+id_article).show(fast);
+			$('#'+objet_id+'_'+id_article).show(300);
+			 $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
+	         $('#link_'+id_article).removeClass("closed").addClass("open");
 		}
 		else{   
 			//préparer le cadre html
@@ -170,8 +174,8 @@ $(function() {
 	            	fenetreUp($('#'+objet_id+'_'+id_article));
 	            	//mettre la fenêtre en avant faire apparaite la fenêtre et daer le html  
 	                $('#'+objet_id+'_'+id_article).show(800);
-	                $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>').attr('data-statut','actif');
-	                $('#link_'+id_article).removeClass("closed").addClass("open");
+	                $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
+	                $('#link_'+id_article).removeClass("closed").addClass("open").attr('data-statut','actif');
 					//rendre a fenêre resizable
 				    $( "objet_flotable" ).resizable({ animateEasing: "easeOutBounce" });
 	               // Fermer une fenetre via le x
