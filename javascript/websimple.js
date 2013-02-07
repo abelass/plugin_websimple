@@ -3,7 +3,8 @@
 	var objet_flotable='floating_box';
 	var objet_id='floating-box';
 	var container_flotable=".flottable";
-	var data_target="float";		
+	var data_target="float";
+	var dock=".fenetre";				
 	//le statut par défaut
 	 if ($.cookie('move')) {
 	 	var statut=$.cookie('move');
@@ -14,14 +15,31 @@
 
 $(document).ready(function(){
 	//Mis en plus de la structure de fenêtres flottables
-	$(".flottable").each(function(){   
+	$(container_flotable).each(function(){   
    		count=count+1;
-   		$('aside.fenetres').append('<div class="fenetre_container" id="fenetre_'+count+'" data-fenetre="'+count+'"></div>');
+   		$('aside.fenetres').append('<div class="fenetre_container"><div class="fenetre" id="fenetre_'+count+'" data-fenetre="'+count+'"><div class="panneau">texte</div></div></div>');
    		//donner l'attribut de la fenetre
    		$(this).find( 'a.closed').each(function(){ 
    			$(this).attr('data-fenetre',count);
    		});
 	 });
+	 
+	 //les docks pour les fenetres flottantes
+	 $(dock).each(function(){ 
+	 	var id=$(this).attr('id'); 
+	 	var selector='#'+id;
+   		count=count+1;
+   		if ($.cookie(selector)) {
+          var coords = $.cookie(selector).split(',');
+          } 
+        else {
+        	var coords = ['20px',count*25+'px']; // default top and left
+          }
+		fenetreControle('on',selector,count,coords);
+		$(this).css({'z-index':500});
+		$(selector).css({top:coords[0],left:coords[1],position:'absolute'}); 
+	 });
+	 
 	//Mettre en pace les controles
 	$("section.page").on("chargerPanel", function(){
 		$(this).prepend('<aside class="control_box"><div class="move"></div></aside>');
@@ -72,13 +90,27 @@ $(function() {
 //Enlever l'effet move	
  function moveOff() {
 	var count=0;
+	//Les docks
+	var dock_top=[];	
+	var dock_left=[];	
+	$(dock).each(function(){   
+	 	var id=$(this).attr('id'); 
+	 	var selector='#'+id;
+    	count=count+1;
+    	dock_top.push([count]+':20px');
+       	dock_left.push([count]+':'+(count-1)*20+'%'); 		 	
+        var coords = [dock_top[count],dock_left[count]]; // default top and left  	
+		fenetreControle('off',selector,count,coords,doc_top,dock_left);
+		});	
+	//Les fenêtres		
 	$('.'+objet_flotable).each(function(){   
 		var id=$(this).attr('id').split('_');   
     	var id_article=id[1];
     	count=count+1;
-		fenetreControle('off','#'+objet_id+'_'+id_article,count);
+		fenetreControle('off','#'+objet_id+'_'+id_article,count,'',doc_top,dock_left);
 		});
-		fenetreControle('off','#mon_panier');			
+	 //Le panier		
+		fenetreControle('off','#mon_panier');					
 	 $('aside.control_box .move').removeClass('off').addClass('on');
 	 $.cookie('move','off', { expires: 365 , path: '/' });
 	};
@@ -86,25 +118,48 @@ $(function() {
 //Activer l'effet move		     	
  function moveOn() {
  	var count=0;
+ 	//Les docs
+	var dock_left=[];
+	var dock_top=[]; 	
+	$(dock).each(function(){   
+	 	var id=$(this).attr('id'); 
+	 	var selector='#'+id;
+    	count=count+1;
+   		if ($.cookie(selector)) {
+        	var coords = $.cookie(selector).split(',');
+        	dock_top.push([count]+':'+coords[0]);
+       	 	dock_left.push([count]+':'+coords[1]);
+         } 
+        else {
+        	dock_top.push([count]+':20px');
+        	dock_left.push([count]+':'+(count-1)*20+'%');
+        	var coords = [dock_top[count],dock_left[count]]; // default top and left
+          }    	
+		fenetreControle('on',selector,count,coords,dock_top,dock_left);
+		$(this).css({'z-index':500});
+		});	 
+ 	//Les fenêtres			
 	 $('.'+objet_flotable).each(function(){   
 	 	var id=$(this).attr('id').split('_');   
    		var id_article=id[1];
    		count=count+1;
-	 	fenetreControle('on','#'+objet_id+'_'+id_article,count);
+	 	fenetreControle('on','#'+objet_id+'_'+id_article,count,'',dock_top,dock_left);
 	 });
-	 fenetreControle('on','#mon_panier');		
+	 //Le panier	 
+	 fenetreControle('on','#mon_panier'); 		
 	 $('aside.control_box .move').removeClass('on').addClass('off');
 	 $.cookie('move','on', { expires: 365 , path: '/' });
 	 }; 
 	 	
 // contrôle des fenêtres	
- function fenetreControle(statut,selector,count) {
+ function fenetreControle(statut,selector,count,coords,dock_top,dock_left) {
 
  	if(statut=='off'){
 		 $(selector).draggable( "disable" );
 		 $(selector).css({top:count*20+'px',left:0,opacity:1,position:'absolute'}); 		
  	}
  	else{
+ 		//initialiser le draggable
         $(selector).draggable(
             {
             containment:'html', 
@@ -116,15 +171,20 @@ $(function() {
                   }
              }
         );
+        //activé si au cas ou il a été désactivé
 		$(selector).draggable( "enable" );
-		if ($.cookie(selector)) {
-          var coords = $.cookie(selector).split(',');
-          } 
-        else {
-        	if(count){
-        		var coords = [count*20+'px',0]; // default top and left
-        	}
-          }
+		
+        //la position de l'objet	
+		if(!coords){
+			if ($.cookie(selector)) {
+	          var coords = $.cookie(selector).split(',');
+	          } 
+	        else {
+	        	if(count){
+	        		var coords = [count*20+'px',0]; // default top and left
+	        	}
+	          }			
+			}
         if(coords){
           	$(selector).css({top:coords[0],left:coords[1],position:'absolute'}); 
           }
@@ -149,9 +209,11 @@ $(function() {
     }; 
 
 //Mettre la fenêtre en avant
- function fenetreUp(elem) {
-	$('.'+objet_flotable).css({'z-index':1000})
-	elem.css({'z-index':10001});
+ function fenetreUp(elem,index_top,index_bottom) {
+ 	if(!index_top)var index_top=1001;
+ 	if(!index_bottom)var index_bottom=1000; 	
+	$('.'+objet_flotable).css({'z-index':index_bottom});
+	elem.css({'z-index':index_top});
     };  
     
  function chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre) {

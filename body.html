@@ -1,7 +1,13 @@
-<body>  
+<body> 
+<aside class="fenetres">
+   [<div id="mon_panier" class="fenetre_container">
+       (#INCLURE{fond=inclure/mon_panier,env,ajax=mon_panier}) 
+    </div>]   
+</aside>     
 <aside class="extra1 col" id="extra1">
 	<INCLURE{fond=extra1/#ENV{type-page},env} />
 </aside>
+
 	<section class="page[ (#ENV{class})]">
 		<header id="header"><INCLURE{fond=header/#ENV{type-page},env} /></header>	
 		<section class="container" id="container" role="main">
@@ -13,8 +19,5 @@
 			         <INCLURE{fond=extra2/#ENV{type-page},env} />
 			    </aside>]<!-- aside -->
 	   </section>		
-	</section>
-    <aside class="fenetres">
-       [<div id="mon_panier" class="fenetre_container">(#INCLURE{fond=inclure/mon_panier,env,ajax=mon_panier})</div]   
-    </aside>	
+	</section>	
 </body>
