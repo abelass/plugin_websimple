@@ -100,14 +100,14 @@ $(function() {
     	dock_top.push([count]+':20px');
        	dock_left.push([count]+':'+(count-1)*20+'%'); 		 	
         var coords = [dock_top[count],dock_left[count]]; // default top and left  	
-		fenetreControle('off',selector,count,coords,doc_top,dock_left);
+		fenetreControle('off',selector,count,coords,dock_top,dock_left);
 		});	
 	//Les fenêtres		
 	$('.'+objet_flotable).each(function(){   
 		var id=$(this).attr('id').split('_');   
     	var id_article=id[1];
     	count=count+1;
-		fenetreControle('off','#'+objet_id+'_'+id_article,count,'',doc_top,dock_left);
+		fenetreControle('off','#'+objet_id+'_'+id_article,count,'',dock_top,dock_left);
 		});
 	 //Le panier		
 		fenetreControle('off','#mon_panier');					
