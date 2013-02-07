@@ -1,3 +1,4 @@
+//Les variables
 	var count=0;
 	var objet_flotable='floating_box';
 	var objet_id='floating-box';
@@ -10,11 +11,8 @@
 	 else{
 	 	var statut='on';
 	 	}	
-	
-
 
 $(document).ready(function(){
-
 	//Mis en plus de la structure de fenêtres flottables
 	$(".flottable").each(function(){   
    		count=count+1;
@@ -54,9 +52,7 @@ $(document).ready(function(){
 });
 
 $(function() { 
-
 	//Ouvrir et fermer la fenêtre
-	      
 	$('a[data-target="'+data_target+'"]').click(function() {
 		var id=$(this).attr('id').split('_');   
 	    var id_article=id[1];
@@ -64,8 +60,9 @@ $(function() {
 	    var statut=$(this).attr('class');
 	    var panier=$(this).attr('data-panier');   
 	    var faq=$(this).attr('data-faq'); 
-	    var fenetre=$(this).attr('data-fenetre');  
-	    chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre);
+	    var fenetre=$(this).attr('data-fenetre'); 
+	    var statut_fenetre=$(this).attr('data-statut'); 	     
+	    chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre);
 	   return false;
 	}); 	
  });
@@ -83,6 +80,7 @@ $(function() {
 	 $('aside.control_box .move').removeClass('off').addClass('on');
 	 $.cookie('move','off', { expires: 365 , path: '/' });
 	};
+	
 //Activer l'effet move		     	
  function moveOn() {
  	var count=0;
@@ -95,7 +93,8 @@ $(function() {
 	 fenetreControle('on','#mon_panier');		
 	 $('aside.control_box .move').removeClass('on').addClass('off');
 	 $.cookie('move','on', { expires: 365 , path: '/' });
-	 }; 	
+	 }; 
+	 	
 // contrôle des fenêtres	
  function fenetreControle(statut,selector,count) {
 
@@ -147,50 +146,56 @@ $(function() {
 	
     }; 
 
+//Mettre la fenêtre en avant
  function fenetreUp(elem) {
 	$('.'+objet_flotable).css({'z-index':1000})
 	elem.css({'z-index':10001});
     };  
     
- function chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre) {
-	if(statut=='closed'){	    
-		//préparer le cadre html
-        $('#fenetre_'+fenetre).append(
-        '<div class="floating_box" id="'+objet_id+'_'+id_article+'" style="display:none;"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
-        //charger le contenu
-        $('#'+objet_id+'_'+id_article+' .floating_content').load(
-            '/spip.php?action=charger_squelette&squelette=content/article-packs&id_article='+id_article+'&forum=non&id_article_base='+id_article_base+'&panier='+panier+'&faq='+faq,'',function(){
-            	//le rendre draggable
-            	fenetreControle('on','#'+objet_id+'_'+id_article);
-            	//mettre la fenêtre en avant
-            	fenetreUp($('#'+objet_id+'_'+id_article));
-            	//mettre la fenêtre en avant faire apparaite la fenêtre et daer le html  
-                $('#'+objet_id+'_'+id_article).show(800);
-                $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
-                $('#link_'+id_article).removeClass("closed").addClass("open");
-				//rendre a fenêre resizable
-			    $( "objet_flotable" ).resizable({ animateEasing: "easeOutBounce" });
-               // Fermer une fenetre via le x
-		        $('.action_close').click(function(){
-			            var id=$(this).attr('id').split('_');   
-			            var id_article=id[1];
-			           $('#'+objet_id+'_'+id_article).hide(800);
-			           $('#link_'+id_article+' span.open').replaceWith('<span class="close">+</span>');       
-			           $('#link_'+id_article).removeClass("open").addClass("closed");
-			        });
-			        
-               // mettre la fenêtre active en avant
-		        $('.ui-draggable').click(function(){
-		        	fenetreUp($(this)); 
-			        });
-			      //acordeon  				        
-			   	$('dl.faq > dt').addClass("close").click(function(){
-					$(this).toggleClass("close").next().toggle('fast');
-					return false;
-					}).next().hide();    
-             	}
-             	
-             );
+ function chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre) {
+	if(statut=='closed'){	
+		if(statut_fenetre=='actif'){
+			$('#'+objet_id+'_'+id_article).show(fast);
+		}
+		else{   
+			//préparer le cadre html
+	        $('#fenetre_'+fenetre).append(
+	        '<div class="floating_box" id="'+objet_id+'_'+id_article+'" style="display:none;"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
+	        //charger le contenu
+	        $('#'+objet_id+'_'+id_article+' .floating_content').load(
+	            '/spip.php?action=charger_squelette&squelette=content/article-packs&id_article='+id_article+'&forum=non&id_article_base='+id_article_base+'&panier='+panier+'&faq='+faq,'',function(){
+	            	//le rendre draggable
+	            	fenetreControle('on','#'+objet_id+'_'+id_article);
+	            	//mettre la fenêtre en avant
+	            	fenetreUp($('#'+objet_id+'_'+id_article));
+	            	//mettre la fenêtre en avant faire apparaite la fenêtre et daer le html  
+	                $('#'+objet_id+'_'+id_article).show(800);
+	                $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>').attr('data-statut','actif');
+	                $('#link_'+id_article).removeClass("closed").addClass("open");
+					//rendre a fenêre resizable
+				    $( "objet_flotable" ).resizable({ animateEasing: "easeOutBounce" });
+	               // Fermer une fenetre via le x
+			        $('.action_close').click(function(){
+				            var id=$(this).attr('id').split('_');   
+				            var id_article=id[1];
+				           $('#'+objet_id+'_'+id_article).hide(800);
+				           $('#link_'+id_article+' span.open').replaceWith('<span class="close">+</span>');       
+				           $('#link_'+id_article).removeClass("open").addClass("closed");
+				        });
+				        
+	               // mettre la fenêtre active en avant
+			        $('.ui-draggable').click(function(){
+			        	fenetreUp($(this)); 
+				        });
+				      //acordeon  				        
+				   	$('dl.faq > dt').addClass("close").click(function(){
+						$(this).toggleClass("close").next().toggle('fast');
+						return false;
+						}).next().hide();    
+	             	}
+	             	
+	             );
+            }
         }
      else{      
 	       	$('#'+objet_id+'_'+id_article).hide(800);
