@@ -4,7 +4,8 @@
 	var objet_id='floating-box';
 	var container_flotable=".flottable";
 	var data_target="float";
-	var dock=".fenetre";				
+	var dock=".fenetre";
+	var dock_id="fenetre";					
 	//le statut par défaut
 	 if ($.cookie('move')) {
 	 	var statut=$.cookie('move');
@@ -24,21 +25,7 @@ $(document).ready(function(){
    		});
 	 });
 	 
-	 //les docks pour les fenetres flottantes
-	 $(dock).each(function(){ 
-	 	var id=$(this).attr('id'); 
-	 	var selector='#'+id;
-   		count=count+1;
-   		if ($.cookie(selector)) {
-          var coords = $.cookie(selector).split(',');
-          } 
-        else {
-        	var coords = ['20px',count*25+'px']; // default top and left
-          }
-		fenetreControle('on',selector,count,coords);
-		$(this).css({'z-index':500});
-		$(selector).css({top:coords[0],left:coords[1],position:'absolute'}); 
-	 });
+
 	 
 	//Mettre en pace les controles
 	$("section.page").on("chargerPanel", function(){
@@ -80,9 +67,8 @@ $(function() {
 	    var faq=$(this).attr('data-faq'); 
 	    var fenetre=$(this).attr('data-fenetre'); 
 	    var statut_fenetre=$(this).attr('data-statut'); 
-	    	     
-	    chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre);
-	    
+   
+	    chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre);  
 	   return false;
 	}); 	
  });
@@ -97,17 +83,15 @@ $(function() {
 	 	var id=$(this).attr('id'); 
 	 	var selector='#'+id;
     	count=count+1;
-    	dock_top.push([count]+':20px');
-       	dock_left.push([count]+':'+(count-1)*20+'%'); 		 	
-        var coords = [dock_top[count],dock_left[count]]; // default top and left  	
-		fenetreControle('off',selector,count,coords,dock_top,dock_left);
+        var coords = [0,(count-1)*20+'%']; // default top and left  	
+		fenetreControle('off',selector,count,coords);
 		});	
 	//Les fenêtres		
 	$('.'+objet_flotable).each(function(){   
 		var id=$(this).attr('id').split('_');   
     	var id_article=id[1];
     	count=count+1;
-		fenetreControle('off','#'+objet_id+'_'+id_article,count,'',dock_top,dock_left);
+		fenetreControle('off','#'+objet_id+'_'+id_article,count);
 		});
 	 //Le panier		
 		fenetreControle('off','#mon_panier');					
@@ -127,15 +111,11 @@ $(function() {
     	count=count+1;
    		if ($.cookie(selector)) {
         	var coords = $.cookie(selector).split(',');
-        	dock_top.push([count]+':'+coords[0]);
-       	 	dock_left.push([count]+':'+coords[1]);
          } 
         else {
-        	dock_top.push([count]+':20px');
-        	dock_left.push([count]+':'+(count-1)*20+'%');
-        	var coords = [dock_top[count],dock_left[count]]; // default top and left
+        	var coords = [0,(count-1)*20+'%']; // default top and left
           }    	
-		fenetreControle('on',selector,count,coords,dock_top,dock_left);
+		fenetreControle('on',selector,count,coords);
 		$(this).css({'z-index':500});
 		});	 
  	//Les fenêtres			
@@ -143,7 +123,7 @@ $(function() {
 	 	var id=$(this).attr('id').split('_');   
    		var id_article=id[1];
    		count=count+1;
-	 	fenetreControle('on','#'+objet_id+'_'+id_article,count,'',dock_top,dock_left);
+	 	fenetreControle('on','#'+objet_id+'_'+id_article,count);
 	 });
 	 //Le panier	 
 	 fenetreControle('on','#mon_panier'); 		
@@ -152,7 +132,7 @@ $(function() {
 	 }; 
 	 	
 // contrôle des fenêtres	
- function fenetreControle(statut,selector,count,coords,dock_top,dock_left) {
+ function fenetreControle(statut,selector,count,coords,fenetre) {
 
  	if(statut=='off'){
 		 $(selector).draggable( "disable" );
@@ -190,7 +170,8 @@ $(function() {
           }
         else{
         	var count=0;
-			$('.'+objet_flotable).each(function(){   
+        	alert('#'+dock_id+'_'+fenetre+'.'+objet_flotable);
+			$('#'+dock_id+'_'+fenetre+'.'+objet_flotable).each(function(){   
 				var id=$(this).attr('id').split('_');   
 		    	var id_article=id[1];
 		    	var selector='#'+objet_id+'_'+id_article;
@@ -216,7 +197,7 @@ $(function() {
 	elem.css({'z-index':index_top});
     };  
     
- function chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre) {
+ function chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre) {	  
 	if(statut=='closed'){	
 		if(statut_fenetre=='actif'){
 			$('#'+objet_id+'_'+id_article).show(300);
@@ -231,7 +212,7 @@ $(function() {
 	        $('#'+objet_id+'_'+id_article+' .floating_content').load(
 	            '/spip.php?action=charger_squelette&squelette=content/article-packs&id_article='+id_article+'&forum=non&id_article_base='+id_article_base+'&panier='+panier+'&faq='+faq,'',function(){
 	            	//le rendre draggable
-	            	fenetreControle('on','#'+objet_id+'_'+id_article);
+	            	fenetreControle('on','#'+objet_id+'_'+id_article,'','',fenetre);
 	            	//mettre la fenêtre en avant
 	            	fenetreUp($('#'+objet_id+'_'+id_article));
 	            	//mettre la fenêtre en avant faire apparaite la fenêtre et daer le html  
