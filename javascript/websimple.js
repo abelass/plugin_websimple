@@ -203,6 +203,7 @@ $(function() {
 			$('#'+objet_id+'_'+id_article).show(300);
 			 $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
 	         $('#link_'+id_article).removeClass("closed").addClass("open");
+	         fenetreUp($('#'+objet_id+'_'+id_article));
 		}
 		else{   
 			//préparer le cadre html
