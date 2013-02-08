@@ -19,9 +19,11 @@ $(document).ready(function(){
 	$(container_flotable).each(function(){   
    		count=count+1;
    		$('aside.fenetres').append('<div class="fenetre_container"><div class="fenetre" id="fenetre_'+count+'" data-fenetre="'+count+'"><div class="panneau">texte</div></div></div>');
+   		 $('#fenetre_'+count).resizable({ animateEasing: "easeOutBounce" });
    		//donner l'attribut de la fenetre
    		$(this).find( 'a.closed').each(function(){ 
    			$(this).attr('data-fenetre',count);
+
    		});
 	 });
 	 
@@ -221,7 +223,7 @@ $(function() {
 	                $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
 	                $('#link_'+id_article).removeClass("closed").addClass("open").attr('data-statut','actif');
 					//rendre a fenêre resizable
-				    $( "objet_flotable" ).resizable({ animateEasing: "easeOutBounce" });
+				    $('.'+objet_flotable).resizable({ animateEasing: "easeOutBounce" });
 	               // Fermer une fenetre via le x
 			        $('.action_close').click(function(){
 				            var id=$(this).attr('id').split('_');   
