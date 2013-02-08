@@ -170,8 +170,8 @@ $(function() {
           }
         else{
         	var count=0;
-        	alert('#'+dock_id+'_'+fenetre+'.'+objet_flotable);
-			$('#'+dock_id+'_'+fenetre+'.'+objet_flotable).each(function(){   
+        	
+			$('#'+dock_id+'_'+fenetre+' > div.'+objet_flotable).each(function(){   
 				var id=$(this).attr('id').split('_');   
 		    	var id_article=id[1];
 		    	var selector='#'+objet_id+'_'+id_article;
@@ -207,7 +207,7 @@ $(function() {
 		else{   
 			//préparer le cadre html
 	        $('#fenetre_'+fenetre).append(
-	        '<div class="floating_box" id="'+objet_id+'_'+id_article+'" style="display:none;"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
+	        '<div class="floating_box" id="'+objet_id+'_'+id_article+'" data-fenetre="'+fenetre+'"style="display:none;"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
 	        //charger le contenu
 	        $('#'+objet_id+'_'+id_article+' .floating_content').load(
 	            '/spip.php?action=charger_squelette&squelette=content/article-packs&id_article='+id_article+'&forum=non&id_article_base='+id_article_base+'&panier='+panier+'&faq='+faq,'',function(){
@@ -231,7 +231,7 @@ $(function() {
 				        });
 				        
 	               // mettre la fenêtre active en avant
-			        $('.ui-draggable').click(function(){
+			        $(dock+' .ui-draggable').click(function(){
 			        	fenetreUp($(this)); 
 				        });
 				      //acordeon  				        
