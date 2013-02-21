@@ -201,9 +201,11 @@ $(function() {
     
 //Cacher une fenêtre
 function fenetreHide(id_article,fenetre){
-       	$('#'+objet_id+'_'+id_article).hide(800, function() {dockHide(fenetre);});
-       	$('#link_'+id_article+' span.open').replaceWith('<span class="close">+</span>');       
-       	$('#link_'+id_article).removeClass("open").addClass("closed");
+   	$('#'+objet_id+'_'+id_article).hide(800, function() {
+   		dockHide(fenetre);
+   		});
+   		$('#link_'+id_article+' span.open').replaceWith('<span class="close">+</span>');
+   		$('#link_'+id_article).removeClass("open").addClass("closed");    		
 	};      
     
 //Cacher le dock si pas de contenu
