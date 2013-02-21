@@ -26,7 +26,7 @@ $(document).ready(function(){
 
    		});
 	 });
-	 
+	$(dock).hide('fast');
 
 	 
 	//Mettre en pace les controles
@@ -199,6 +199,14 @@ $(function() {
 	elem.css({'z-index':index_top});
     };  
     
+//Cacher le dock si pas de contenu
+
+function dockHide(fenetre){
+	var d='#'+dock_id+'_'+fenetre;
+	alert(d);
+	if(!$('#'+dock_id+'_'+fenetre).parents(d).length == 1) $(d).hide('slow'); 
+};
+   
  function chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre) {	  
 	if(statut=='closed'){	
 		if(statut_fenetre=='actif'){
@@ -206,8 +214,11 @@ $(function() {
 			 $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
 	         $('#link_'+id_article).removeClass("closed").addClass("open");
 	         fenetreUp($('#'+objet_id+'_'+id_article));
+	         
 		}
-		else{   
+		else{
+			//Faire apparare le doc
+			$('#'+dock_id+'_'+fenetre).show('fast');   
 			//préparer le cadre html
 	        $('#fenetre_'+fenetre).append(
 	        '<div class="floating_box" id="'+objet_id+'_'+id_article+'" data-fenetre="'+fenetre+'"style="display:none;"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
@@ -231,6 +242,7 @@ $(function() {
 				           $('#'+objet_id+'_'+id_article).hide(800);
 				           $('#link_'+id_article+' span.open').replaceWith('<span class="close">+</span>');       
 				           $('#link_'+id_article).removeClass("open").addClass("closed");
+				           dockHide(fenetre);
 				        });
 				        
 	               // mettre la fenêtre active en avant
@@ -247,7 +259,8 @@ $(function() {
 	             );
             }
         }
-     else{      
+     else{  
+     		dockHide(fenetre);    
 	       	$('#'+objet_id+'_'+id_article).hide(800);
 	       	$('#link_'+id_article+' span.open').replaceWith('<span class="close">+</span>');       
 	       	$('#link_'+id_article).removeClass("open").addClass("closed");
