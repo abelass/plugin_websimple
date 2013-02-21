@@ -197,18 +197,28 @@ $(function() {
  	if(!index_bottom)var index_bottom=1000; 	
 	$('.'+objet_flotable).css({'z-index':index_bottom});
 	elem.css({'z-index':index_top});
-    };  
+    };
+    
+//Cacher une fenêtre
+function fenetreHide(id_article,fenetre){
+       	$('#'+objet_id+'_'+id_article).hide(800, function() {dockHide(fenetre);});
+       	$('#link_'+id_article+' span.open').replaceWith('<span class="close">+</span>');       
+       	$('#link_'+id_article).removeClass("open").addClass("closed");
+	};      
     
 //Cacher le dock si pas de contenu
-
 function dockHide(fenetre){
 	var d='#'+dock_id+'_'+fenetre;
-	alert(d);
-	if(!$('#'+dock_id+'_'+fenetre).parents(d).length == 1) $(d).hide('slow'); 
+	if($(d+' > div.'+objet_flotable+':visible').length == 0 ) {$(d).hide('fast'); }
+
 };
+
+
    
  function chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre) {	  
-	if(statut=='closed'){	
+	if(statut=='closed'){
+		//Faire apparare le doc
+		$('#'+dock_id+'_'+fenetre).show('fast');  	
 		if(statut_fenetre=='actif'){
 			$('#'+objet_id+'_'+id_article).show(300);
 			 $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
@@ -216,9 +226,7 @@ function dockHide(fenetre){
 	         fenetreUp($('#'+objet_id+'_'+id_article));
 	         
 		}
-		else{
-			//Faire apparare le doc
-			$('#'+dock_id+'_'+fenetre).show('fast');   
+		else{ 
 			//préparer le cadre html
 	        $('#fenetre_'+fenetre).append(
 	        '<div class="floating_box" id="'+objet_id+'_'+id_article+'" data-fenetre="'+fenetre+'"style="display:none;"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
@@ -237,12 +245,9 @@ function dockHide(fenetre){
 				    $('.'+objet_flotable).resizable({ animateEasing: "easeOutBounce" });
 	               // Fermer une fenetre via le x
 			        $('.action_close').click(function(){
-				            var id=$(this).attr('id').split('_');   
-				            var id_article=id[1];
-				           $('#'+objet_id+'_'+id_article).hide(800);
-				           $('#link_'+id_article+' span.open').replaceWith('<span class="close">+</span>');       
-				           $('#link_'+id_article).removeClass("open").addClass("closed");
-				           dockHide(fenetre);
+				    	var id=$(this).attr('id').split('_');   
+				        var id_article=id[1];
+				        fenetreHide(id_article,fenetre);	 
 				        });
 				        
 	               // mettre la fenêtre active en avant
@@ -260,10 +265,7 @@ function dockHide(fenetre){
             }
         }
      else{  
-     		dockHide(fenetre);    
-	       	$('#'+objet_id+'_'+id_article).hide(800);
-	       	$('#link_'+id_article+' span.open').replaceWith('<span class="close">+</span>');       
-	       	$('#link_'+id_article).removeClass("open").addClass("closed");
+     		fenetreHide(id_article,fenetre);	       	 
         }
     };  
         	
