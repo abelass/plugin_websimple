@@ -18,7 +18,7 @@ $(document).ready(function(){
 	//Mis en plus de la structure de fenêtres flottables
 	$(container_flotable).each(function(){   
    		count=count+1;
-   		$('aside.fenetres').append('<div class="fenetre_container"><div class="fenetre" id="fenetre_'+count+'" data-fenetre="'+count+'"><div class="panneau">texte</div></div></div>');
+   		$('aside.fenetres').append('<div class="fenetre_container"><div class="fenetre" id="fenetre_'+count+'" data-fenetre="'+count+'" style="z-index:500;"><div class="panneau">texte</div></div></div>');
    		 $('#fenetre_'+count).resizable({ animateEasing: "easeOutBounce" });
    		//donner l'attribut de la fenetre
    		$(this).find( 'a.closed').each(function(){ 
@@ -87,14 +87,17 @@ $(function() {
     	count=count+1;
         var coords = [0,(count-1)*20+'%']; // default top and left  	
 		fenetreControle('off',selector,count,coords);
+	
+		//Les fenêtres	
+		var count2=0;	
+		$(selector+' .'+objet_flotable+':visible').each(function(){   
+			var id=$(this).attr('id').split('_');   
+	    	var id_article=id[1];
+	    	count2=count2+1;
+			fenetreControle('off','#'+objet_id+'_'+id_article,count2);
+			});
 		});	
-	//Les fenêtres		
-	$('.'+objet_flotable+':visible').each(function(){   
-		var id=$(this).attr('id').split('_');   
-    	var id_article=id[1];
-    	count=count+1;
-		fenetreControle('off','#'+objet_id+'_'+id_article,count);
-		});
+
 	 //Le panier		
 		fenetreControle('off','#mon_panier');					
 	 $('aside.control_box .move').removeClass('off').addClass('on');
@@ -119,14 +122,16 @@ $(function() {
           }    	
 		fenetreControle('on',selector,count,coords);
 		$(this).css({'z-index':500});
+		//Les fenêtres
+		var count2=0;				
+		 $(selector+' .'+objet_flotable).each(function(){   
+		 	var id=$(this).attr('id').split('_');   
+	   		var id_article=id[1];
+	   		count2=count2+1;
+		 	fenetreControle('on','#'+objet_id+'_'+id_article,count2);
+		 });
 		});	 
- 	//Les fenêtres			
-	 $('.'+objet_flotable).each(function(){   
-	 	var id=$(this).attr('id').split('_');   
-   		var id_article=id[1];
-   		count=count+1;
-	 	fenetreControle('on','#'+objet_id+'_'+id_article,count);
-	 });
+
 	 //Le panier	 
 	 fenetreControle('on','#mon_panier'); 		
 	 $('aside.control_box .move').removeClass('on').addClass('off');
@@ -135,10 +140,17 @@ $(function() {
 	 	
 // contrôle des fenêtres	
  function fenetreControle(statut,selector,count,coords,fenetre) {
-
+	var coords_def=[count*20+'px',0];
  	if(statut=='off'){
 		 $(selector).draggable( "disable" );
-		 $(selector).css({top:count*20+'px',left:0,opacity:1,position:'absolute'}); 		
+		 if(count){
+	        		if(!coords)var coords = coords_def; // default top and left
+	        		$(selector).css({top:coords[0],left:coords[1],opacity:1,position:'absolute'}); 
+	        	}
+	     else{
+	     	fenetresRanger(fenetre,statut);
+	     }
+				
  	}
  	else{
  		//initialiser le draggable
@@ -163,7 +175,7 @@ $(function() {
 	          } 
 	        else {
 	        	if(count){
-	        		var coords = [count*20+'px',0]; // default top and left
+	        		var coords = coords_def; // default top and left
 	        	}
 	          }			
 			}
@@ -196,7 +208,7 @@ function fenetreHide(id_article,fenetre){
 	};      
     
 //Ranger les fenêtres
-function fenetresRanger(fenetre){
+function fenetresRanger(fenetre,statut){
         	var count=0;
         	
 			$('#'+dock_id+'_'+fenetre+' > div.'+objet_flotable+':visible').each(function(){ 
@@ -206,7 +218,7 @@ function fenetresRanger(fenetre){
 		    	var selector='#'+objet_id+'_'+id_article;
 		    	count=count+1;
 		    	
-		    if ($.cookie(selector)) {
+		    if (!statut & $.cookie(selector)) {
           			var coords = $.cookie(selector).split(',');
           		} 
 	        else {
@@ -226,8 +238,8 @@ function dockHide(fenetre){
 
 
    
- function chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre) {	  
-	if(statut=='closed'){
+ function chargerFenetre(id_article,id_article_base,statut_link,panier,faq,fenetre,statut_fenetre) {	  
+	if(statut_link=='closed'){
 		//Faire apparare le doc
 		$('#'+dock_id+'_'+fenetre).show('fast');  	
 		if(statut_fenetre=='actif'){
@@ -236,23 +248,24 @@ function dockHide(fenetre){
 			});
 			 $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
 	         $('#link_'+id_article).removeClass("closed").addClass("open");
-	         /*fenetreUp($('#'+objet_id+'_'+id_article));*/
+	         fenetreUp($('#'+objet_id+'_'+id_article));
 	         
 		}
 		else{ 
 			//préparer le cadre html
+			var selector=objet_id+'_'+id_article;
 	        $('#fenetre_'+fenetre).append(
-	        '<div class="floating_box" id="'+objet_id+'_'+id_article+'" data-fenetre="'+fenetre+'"style="display:none;position:absolute"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
+	        '<div class="floating_box" id="'+selector+'" data-fenetre="'+fenetre+'"style="position:absolute"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
 	        //charger le contenu
 	        $('#'+objet_id+'_'+id_article+' .floating_content').load(
 	            '/spip.php?action=charger_squelette&squelette=content/article-packs&id_article='+id_article+'&forum=non&id_article_base='+id_article_base+'&panier='+panier+'&faq='+faq,'',function(){
-	            
+	            $('#'+selector+' h1').appendTo('#'+selector+' .panneau');
 	            	//mettre la fenêtre en avant
 	            	fenetreUp($('#'+objet_id+'_'+id_article));
 	            	//mettre la fenêtre en avant faire apparaite la fenêtre et modifier le html  
 	                $('#'+objet_id+'_'+id_article).show(800,function(){
 		                //le rendre draggable
-		            	fenetreControle('on','#'+objet_id+'_'+id_article,'','',fenetre);
+		            	fenetreControle(statut,'#'+objet_id+'_'+id_article,'','',fenetre);
 		            	}
 		            );
 	                $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
