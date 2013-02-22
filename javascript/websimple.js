@@ -89,7 +89,7 @@ $(function() {
 		fenetreControle('off',selector,count,coords);
 		});	
 	//Les fenêtres		
-	$('.'+objet_flotable).each(function(){   
+	$('.'+objet_flotable+':visible').each(function(){   
 		var id=$(this).attr('id').split('_');   
     	var id_article=id[1];
     	count=count+1;
@@ -167,25 +167,11 @@ $(function() {
 	        	}
 	          }			
 			}
-        if(coords){
+        if(coords){+':visible'
           	$(selector).css({top:coords[0],left:coords[1],position:'absolute'}); 
           }
         else{
-        	var count=0;
-        	
-			$('#'+dock_id+'_'+fenetre+' > div.'+objet_flotable).each(function(){   
-				var id=$(this).attr('id').split('_');   
-		    	var id_article=id[1];
-		    	var selector='#'+objet_id+'_'+id_article;
-		    	count=count+1;
-		    if ($.cookie(selector)) {
-          			var coords = $.cookie(selector).split(',');
-          		} 
-	        else {
-					var coords = [count*20+'px',0]; // default top and left
-				}
-				$(selector).css({top:coords[0],left:coords[1],position:'absolute'}); 
-			});
+        	fenetresRanger(fenetre);
           }		
 		}
 	
@@ -202,12 +188,35 @@ $(function() {
 //Cacher une fenêtre
 function fenetreHide(id_article,fenetre){
    	$('#'+objet_id+'_'+id_article).hide(800, function() {
+   		fenetresRanger(fenetre);
    		dockHide(fenetre);
    		});
    		$('#link_'+id_article+' span.open').replaceWith('<span class="close">+</span>');
    		$('#link_'+id_article).removeClass("open").addClass("closed");    		
 	};      
     
+//Ranger les fenêtres
+function fenetresRanger(fenetre){
+        	var count=0;
+        	
+			$('#'+dock_id+'_'+fenetre+' > div.'+objet_flotable+':visible').each(function(){ 
+				
+				var id=$(this).attr('id').split('_');   
+		    	var id_article=id[1];
+		    	var selector='#'+objet_id+'_'+id_article;
+		    	count=count+1;
+		    	
+		    if ($.cookie(selector)) {
+          			var coords = $.cookie(selector).split(',');
+          		} 
+	        else {
+					var coords = [count*20+'px',0]; // default top and left
+				}
+				
+				$(selector).css({top:coords[0],left:coords[1],position:'absolute'}); 
+			});
+	};
+
 //Cacher le dock si pas de contenu
 function dockHide(fenetre){
 	var d='#'+dock_id+'_'+fenetre;
@@ -222,25 +231,30 @@ function dockHide(fenetre){
 		//Faire apparare le doc
 		$('#'+dock_id+'_'+fenetre).show('fast');  	
 		if(statut_fenetre=='actif'){
-			$('#'+objet_id+'_'+id_article).show(300);
+			$('#'+objet_id+'_'+id_article).show(300,function(){
+				fenetresRanger(fenetre);
+			});
 			 $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
 	         $('#link_'+id_article).removeClass("closed").addClass("open");
-	         fenetreUp($('#'+objet_id+'_'+id_article));
+	         /*fenetreUp($('#'+objet_id+'_'+id_article));*/
 	         
 		}
 		else{ 
 			//préparer le cadre html
 	        $('#fenetre_'+fenetre).append(
-	        '<div class="floating_box" id="'+objet_id+'_'+id_article+'" data-fenetre="'+fenetre+'"style="display:none;"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
+	        '<div class="floating_box" id="'+objet_id+'_'+id_article+'" data-fenetre="'+fenetre+'"style="display:none;position:absolute"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
 	        //charger le contenu
 	        $('#'+objet_id+'_'+id_article+' .floating_content').load(
 	            '/spip.php?action=charger_squelette&squelette=content/article-packs&id_article='+id_article+'&forum=non&id_article_base='+id_article_base+'&panier='+panier+'&faq='+faq,'',function(){
-	            	//le rendre draggable
-	            	fenetreControle('on','#'+objet_id+'_'+id_article,'','',fenetre);
+	            
 	            	//mettre la fenêtre en avant
 	            	fenetreUp($('#'+objet_id+'_'+id_article));
-	            	//mettre la fenêtre en avant faire apparaite la fenêtre et daer le html  
-	                $('#'+objet_id+'_'+id_article).show(800);
+	            	//mettre la fenêtre en avant faire apparaite la fenêtre et modifier le html  
+	                $('#'+objet_id+'_'+id_article).show(800,function(){
+		                //le rendre draggable
+		            	fenetreControle('on','#'+objet_id+'_'+id_article,'','',fenetre);
+		            	}
+		            );
 	                $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
 	                $('#link_'+id_article).removeClass("closed").addClass("open").attr('data-statut','actif');
 					//rendre a fenêre resizable
