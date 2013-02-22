@@ -284,7 +284,7 @@ function dockHide(fenetre){
 			        	fenetreUp($(this)); 
 				        });
 				      //acordeon  				        
-				   	$('dl.faq > dt').addClass("close").click(function(){
+				   	$('#'+selector+' dl.faq > dt').addClass("close").click(function(){
 						$(this).toggleClass("close").next().toggle('fast');
 						return false;
 						}).next().hide();    
