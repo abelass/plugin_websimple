@@ -246,13 +246,19 @@ function dockHide(fenetre){
 		//Faire apparare le doc
 		$('#'+dock_id+'_'+fenetre).show('fast');  	
 		if(statut_fenetre=='actif'){
+			if(statut=='on'){
 			$('#'+objet_id+'_'+id_article).show(300,function(){
 				fenetresRanger(fenetre);
 			});
 			 $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
 	         $('#link_'+id_article).removeClass("closed").addClass("open");
 	         fenetreUp($('#'+objet_id+'_'+id_article));
-	         
+	        }
+	        else{
+	        	 $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
+	         $('#link_'+id_article).removeClass("closed").addClass("open");
+	        }
+	    
 		}
 		else{ 
 			//préparer le cadre html
