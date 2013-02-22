@@ -200,9 +200,9 @@ $(function() {
     };
     
 //Cacher une fenêtre
-function fenetreHide(id_article,fenetre){
+function fenetreHide(id_article,fenetre,container){
 
-   	$('#'+objet_id+'_'+id_article).hide(800, function() {
+   	$(container).hide(800, function() {
    		fenetresRanger(fenetre);
    		dockHide(fenetre);
    		});
@@ -255,8 +255,9 @@ function dockHide(fenetre){
 	         fenetreUp($('#'+objet_id+'_'+id_article));
 	        }
 	        else{
-	        	 $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
+	       	$('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
 	         $('#link_'+id_article).removeClass("closed").addClass("open");
+	         $('dd#article_'+id_article).show('fast');
 	        }
 	    
 		}
@@ -321,7 +322,10 @@ function dockHide(fenetre){
             }
         }
      else{  
-     		fenetreHide(id_article,fenetre);	       	 
+     		if(statut=="on")fenetreHide(id_article,fenetre,'#'+objet_id+'_'+id_article);
+     		else fenetreHide(id_article,fenetre,'dd#article_'+id_article);
+     		
+     				       	 
         }
     };  
         	
