@@ -1,4 +1,4 @@
-<body> 
+<body  data-type="#ENV{type-page}" data-id="#ENV{id}"> 
 <aside class="fenetres">
    [<div id="mon_panier" class="fenetre_container">
        (#INCLURE{fond=inclure/mon_panier,env,ajax=mon_panier}) 
@@ -7,7 +7,6 @@
 <aside class="extra1 col" id="extra1">
 	<INCLURE{fond=extra1/#ENV{type-page},env} />
 </aside>
-
 	<section class="page[ (#ENV{class})]">
 		<header id="header"><INCLURE{fond=header/#ENV{type-page},env} /></header>	
 		<section class="container" id="container" role="main">
