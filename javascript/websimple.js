@@ -21,12 +21,11 @@ $(document).ready(function(){
 		$(this).prepend('<aside class="control_box"><div class="move"></div></aside>');
 	});
 	$("section.page").trigger("chargerPanel"); 	
-	
 
-	 	
 	$('aside.control_box .move').addClass(statut);
 	 if(statut=="off"){
 	 	moveOff();
+	 	
 	 }
 	 else{
 		preparerFlottables();
@@ -43,7 +42,23 @@ $(document).ready(function(){
 			   	$('dl.faq > dt').addClass("close").click(function(){
 					$(this).toggleClass("close").next().toggle('fast');
 					return false;
-					}).next().hide();    
+					}).next().hide();
+				
+				//Ouvrir et fermer la fenêtre depuis le lien
+				$('a[data-target="'+data_target+'"]').click(function() {
+					var id=$(this).attr('id').split('_');   
+				    var id_article=id[1];
+				    var id_article_base=$(this).attr('data-base');
+				    var statut=$(this).attr('class');
+				    var panier=$(this).attr('data-panier');   
+				    var faq=$(this).attr('data-faq'); 
+				    var fenetre=$(this).attr('data-fenetre'); 
+				    var statut_fenetre=$(this).attr('data-statut'); 
+			   
+				    chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre);  
+				   return false;
+				}); 	
+	    
              	}
              	
              );	
@@ -55,7 +70,7 @@ $(document).ready(function(){
 		var id_article= $('body.article').attr('data-id');
 		var comp= $('body.article').attr('data-comp');
 		if(id_article) $('section#content').load(
-            '/spip.php?action=charger_squelette&squelette=content/article&id_article='+id_article+'&composition='+comp,'',function(){
+            '/spip.php?action=charger_squelette&squelette=content/article&faq=flottable&id_article='+id_article+'&composition='+comp,'',function(){
 			    preparerFlottables();
 
 				//Ouvrir et fermer la fenêtre depuis le lien
@@ -82,8 +97,6 @@ $(document).ready(function(){
 	 
 
 });
-
-
 
 $(function() { 
 	//Ouvrir et fermer la fenêtre depuis le lien
@@ -165,8 +178,9 @@ function preparerFlottables(){
 	 }; 	 	
 	 	
 // contrôle des fenêtres	
- function fenetreControle(statut,selector,count,coords,fenetre) {
-	var coords_def=[count*20+'px',0];
+ function fenetreControle(statut_opt,selector,count,coords,fenetre) {
+	var coords_def=[count*20+'px',0];	
+	if(statut_opt!='undefined')var statut=statut_opt;
  	if(statut=='off'){
 		 $(selector).draggable( "disable" );
 		 if(count){
@@ -180,6 +194,7 @@ function preparerFlottables(){
  	}
  	else{
  		//initialiser le draggable
+ 		
         $(selector).draggable(
             {
             containment:'html', 
@@ -291,7 +306,7 @@ function dockHide(fenetre){
 	            	//mettre la fenêtre en avant faire apparaite la fenêtre et modifier le html  
 	                $('#'+objet_id+'_'+id_article).show(800,function(){
 		                //le rendre draggable
-		            	fenetreControle(statut,'#'+objet_id+'_'+id_article,'','',fenetre);
+		            	fenetreControle('on','#'+objet_id+'_'+id_article,'','',fenetre);
 		            	}
 		            );
 	                $('#link_'+id_article+' span.close').replaceWith('<span class="open">-</span>');
