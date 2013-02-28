@@ -11,7 +11,7 @@
 	 	var statut=$.cookie('move');
 	 	}
 	 else{
-	 	var statut='on';
+	 	var statut='off';
 	 	}	
 
 $(document).ready(function(){
