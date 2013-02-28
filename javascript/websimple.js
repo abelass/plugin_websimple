@@ -15,20 +15,7 @@
 	 	}	
 
 $(document).ready(function(){
-	//Mis en plus de la structure de fenêtres flottables
-	$(container_flotable).each(function(){   
-   		count=count+1;
-   		$('aside.fenetres').append('<div class="fenetre_container"><div class="fenetre" id="fenetre_'+count+'" data-fenetre="'+count+'" style="z-index:500;"><div class="panneau">texte</div></div></div>');
-   		 $('#fenetre_'+count).resizable({ animateEasing: "easeOutBounce" });
-   		//donner l'attribut de la fenetre
-   		$(this).find( 'a.closed').each(function(){ 
-   			$(this).attr('data-fenetre',count);
 
-   		});
-	 });
-	$(dock).hide('fast');
-
-	 
 	//Mettre en pace les controles
 	$("section.page").on("chargerPanel", function(){
 		$(this).prepend('<aside class="control_box"><div class="move"></div></aside>');
@@ -42,21 +29,61 @@ $(document).ready(function(){
 	 	moveOff();
 	 }
 	 else{
-	 	moveOn();
+		preparerFlottables();
+		moveOn();
 	 }
 	 
-	//Désactiver le draggable
+	//Désactiver l'interface move
 	$('.control_box').on('click','.off',function(){
+		var id_article= $('body.article').attr('data-id');
+		var comp= $('body.article').attr('data-comp');	
+		if(id_article) $('section#content').load(
+            '/spip.php?action=charger_squelette&squelette=content/article&faq=faq&id_article='+id_article+'&composition='+comp,'',function(){
+			     //acordeon  				        
+			   	$('dl.faq > dt').addClass("close").click(function(){
+					$(this).toggleClass("close").next().toggle('fast');
+					return false;
+					}).next().hide();    
+             	}
+             	
+             );	
 		moveOff();
 		});
 		
 	//Activer le draggable
 	$('.control_box').on('click','.on',function(){
+		var id_article= $('body.article').attr('data-id');
+		var comp= $('body.article').attr('data-comp');
+		if(id_article) $('section#content').load(
+            '/spip.php?action=charger_squelette&squelette=content/article&id_article='+id_article+'&composition='+comp,'',function(){
+			    preparerFlottables();
+
+				//Ouvrir et fermer la fenêtre depuis le lien
+				$('a[data-target="'+data_target+'"]').click(function() {
+					var id=$(this).attr('id').split('_');   
+				    var id_article=id[1];
+				    var id_article_base=$(this).attr('data-base');
+				    var statut=$(this).attr('class');
+				    var panier=$(this).attr('data-panier');   
+				    var faq=$(this).attr('data-faq'); 
+				    var fenetre=$(this).attr('data-fenetre'); 
+				    var statut_fenetre=$(this).attr('data-statut'); 
+			   
+				    chargerFenetre(id_article,id_article_base,statut,panier,faq,fenetre,statut_fenetre);  
+				   return false;
+				}); 	
+
+             	}
+             	
+             );				
+		
 		moveOn();
 	});
 	 
 
 });
+
+
 
 $(function() { 
 	//Ouvrir et fermer la fenêtre depuis le lien
@@ -75,41 +102,40 @@ $(function() {
 	}); 	
  });
 
+function preparerFlottables(){
+	//Mis en plus de la structure de fenêtres flottables
+	$(container_flotable).each(function(){   
+   		count=count+1;
+   		$('aside.fenetres').append('<div class="fenetre_container fenetre_option" id="objet_'+count+'"><div class="fenetre" id="fenetre_'+count+'" data-fenetre="'+count+'" style="z-index:500;"><div class="panneau">texte</div></div></div>');
+   		 $('#fenetre_'+count).resizable({ animateEasing: "easeOutBounce" });
+   		//donner l'attribut de la fenetre
+   		$(this).find( 'a.closed').each(function(){ 
+   			$(this).attr('data-fenetre',count);
+
+   		});
+	 });
+	$(dock).hide('fast');
+	
+}
+
 //Enlever l'effet move	
  function moveOff() {
-	var count=0;
-	//Les docks
-	var dock_top=[];	
-	var dock_left=[];	
-	$(dock).each(function(){   
-	 	var id=$(this).attr('id'); 
-	 	var selector='#'+id;
-    	count=count+1;
-        var coords = [0,(count-1)*20+'%']; // default top and left  	
-		fenetreControle('off',selector,count,coords);
-	
-		//Les fenêtres	
-		var count2=0;	
-		$(selector+' .'+objet_flotable+':visible').each(function(){   
-			var id=$(this).attr('id').split('_');   
-	    	var id_article=id[1];
-	    	count2=count2+1;
-			fenetreControle('off','#'+objet_id+'_'+id_article,count2);
-			});
-		});	
-
-	 //Le panier		
-		fenetreControle('off','#mon_panier');					
+ 	$('aside.fenetres .fenetre_option').remove();
 	 $('aside.control_box .move').removeClass('off').addClass('on');
 	 $.cookie('move','off', { expires: 365 , path: '/' });
 	};
 	
-//Activer l'effet move		     	
+
+	
+//Moveon selon cookies	     	
  function moveOn() {
+
  	var count=0;
  	//Les docs
 	var dock_left=[];
-	var dock_top=[]; 	
+	var dock_top=[]; 
+
+		
 	$(dock).each(function(){   
 	 	var id=$(this).attr('id'); 
 	 	var selector='#'+id;
@@ -136,7 +162,7 @@ $(function() {
 	 fenetreControle('on','#mon_panier'); 		
 	 $('aside.control_box .move').removeClass('on').addClass('off');
 	 $.cookie('move','on', { expires: 365 , path: '/' });
-	 }; 
+	 }; 	 	
 	 	
 // contrôle des fenêtres	
  function fenetreControle(statut,selector,count,coords,fenetre) {
