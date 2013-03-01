@@ -34,10 +34,11 @@ $(document).ready(function(){
 	 
 	//Désactiver l'interface move
 	$('.control_box').on('click','.off',function(){
-		var id_article= $('body.article').attr('data-id');
-		var comp= $('body.article').attr('data-comp');	
-		if(id_article) $('section#content').load(
-            '/spip.php?action=charger_squelette&squelette=content/article&faq=faq&id_article='+id_article+'&composition='+comp,'',function(){
+		var id= $('body').attr('data-id');
+		var comp= $('body').attr('data-comp');	
+		var type= $('body').attr('class');	
+		if(id && type) $('section#content').load(
+            '/spip.php?action=charger_squelette&squelette=content/'+type+'&faq=faq&id_'+type+'='+id+'&composition='+comp,'',function(){
 			     //acordeon  				        
 			   	$('dl.faq > dt').addClass("close").click(function(){
 					$(this).toggleClass("close").next().toggle('fast');
@@ -67,10 +68,11 @@ $(document).ready(function(){
 		
 	//Activer le draggable
 	$('.control_box').on('click','.on',function(){
-		var id_article= $('body.article').attr('data-id');
-		var comp= $('body.article').attr('data-comp');
-		if(id_article) $('section#content').load(
-            '/spip.php?action=charger_squelette&squelette=content/article&faq=flottable&id_article='+id_article+'&composition='+comp,'',function(){
+		var id= $('body').attr('data-id');
+		var comp= $('body').attr('data-comp');
+		var type= $('body').attr('class');		
+		if(id && type) $('section#content').load(
+            '/spip.php?action=charger_squelette&squelette=content/'+type+'&faq=flottable&id_'+type+'='+id+'&composition='+comp,'',function(){
 			    preparerFlottables();
 
 				//Ouvrir et fermer la fenêtre depuis le lien
@@ -298,8 +300,11 @@ function dockHide(fenetre){
 	        $('#fenetre_'+fenetre).append(
 	        '<div class="floating_box" id="'+selector+'" data-fenetre="'+fenetre+'"style="position:absolute"><div class="panneau"><div class="action_close" id="close_'+id_article+'">X</div></div><div class="floating_content"> </div></div>');
 	        //charger le contenu
-	        $('#'+objet_id+'_'+id_article+' .floating_content').load(
-	            '/spip.php?action=charger_squelette&squelette=content/article-packs&id_article='+id_article+'&forum=non&id_article_base='+id_article_base+'&panier='+panier+'&faq='+faq,'',function(){
+
+		var comp= $('body').attr('data-comp');
+		var type= $('body').attr('class');		
+		if(type)$('#'+objet_id+'_'+id_article+' .floating_content').load(
+	            '/spip.php?action=charger_squelette&squelette=content/article&id_article='+id_article+'&forum=non&id_article_base='+id_article_base+'&panier='+panier+'&faq='+faq+'composition='+comp,'',function(){
 	            $('#'+selector+' h1').appendTo('#'+selector+' .panneau');
 	            	//mettre la fenêtre en avant
 	            	fenetreUp($('#'+objet_id+'_'+id_article));
