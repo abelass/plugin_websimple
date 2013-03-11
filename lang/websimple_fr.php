@@ -7,7 +7,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 
-	'action_ajouter' => 'Ajouter',	
+	'action_ajouter' => 'Ajouter',
+	'ajouter_fonctionnalites' => 'Fonctionnalités supplémentaires',		
 	
     // C
     'commande_enregistre' => '
