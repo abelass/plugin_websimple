@@ -31,10 +31,15 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     // P
     'pack_base' => 'Pack de base', 
     'pack_compose_par' => 'Un pack contient :', 
-    'plus_fonctionnalites_pack_base' => '+ les fonctionnalités copris dans :',     
+    'plus_fonctionnalites_pack_base' => 'Les fonctionnalités compris dans :', 
+    
+    //S
+    'site_utilise' => 'Site utilise :',       
+        
     // U
     'utilise_par_pack' => 'Utilisé par le pack',        
-    'utilise_par_site' => 'Utilisé par le Site',          
+    'utilise_par_site' => 'Utilisé par le Site',  
+    'utilise_par_sites' => 'Utilisé par les Sites :',             
 );
 
 ?>
