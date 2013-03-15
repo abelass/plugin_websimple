@@ -34,7 +34,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'plus_fonctionnalites_pack_base' => 'Les fonctionnalités compris dans :', 
     
     //S
-    'site_utilise' => 'Site utilise :',       
+    'site_utilise' => 'Ce site utilise :',       
         
     // U
     'utilise_par_pack' => 'Utilisé par le pack',        
