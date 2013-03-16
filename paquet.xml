@@ -19,7 +19,7 @@
 	<necessite nom="compositions" compatibilite="[3.3.1;]" />	
 	<necessite nom="edition_directe" compatibilite="[3.2.6;]" />	
 	<necessite nom="selection_objet" compatibilite="[1.5.7;]" />	
-	<necessite nom="sjcycle" compatibilite="[2.2.4;]" />	" />	
+	<necessite nom="sjcycle" compatibilite="[2.2.4;]" />	
 	<necessite nom="shop" compatibilite="[1.2.0;]" />
 	<necessite nom="shop_prix" compatibilite="[1.2.0;]" />	
 	<necessite nom="facteur" compatibilite="[2.3.1;]" />		
