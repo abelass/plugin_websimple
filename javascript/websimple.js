@@ -31,7 +31,8 @@ $(document).ready(function(){
 		preparerFlottables();
 		moveOn();
 	 }
-	 
+	//le panier est toujors mouvable	
+	fenetreControle('on','#mon_panier'); 
 	//Désactiver l'interface move
 	$('.control_box').on('click','.off',function(){
 		var id= $('body').attr('data-id');
@@ -137,7 +138,7 @@ function preparerFlottables(){
  function moveOff() {
  	$('aside.fenetres .fenetre_option').remove();
 	 $('aside.control_box .move').removeClass('off').addClass('on');
-	 $.cookie('move','off', { expires: 365 , path: '/' });
+	 $.cookie('move','off', { expires: 7 , path: '/' });
 	};
 	
 
@@ -176,7 +177,7 @@ function preparerFlottables(){
 	 //Le panier	 
 	 fenetreControle('on','#mon_panier'); 		
 	 $('aside.control_box .move').removeClass('on').addClass('off');
-	 $.cookie('move','on', { expires: 365 , path: '/' });
+	 $.cookie('move','on', { expires: 7 , path: '/' });
 	 }; 	 	
 	 	
 // contrôle des fenêtres	
@@ -204,7 +205,7 @@ function preparerFlottables(){
             cursor: 'move',
             start: function( event, ui ) {fenetreUp($(this));},    
             stop: function() {
-                    $.cookie(selector,$(selector).css('top')+','+$(selector).css('left'), { expires: 365 , path: '/' });
+                    $.cookie(selector,$(selector).css('top')+','+$(selector).css('left'), { expires: 7 , path: '/' });
                   }
              }
         );
