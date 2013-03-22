@@ -3,12 +3,16 @@
 // Fichier source, a modifier dans svn://zone.spip.org/spip-zone/_plugins_/selection_d_objets/trunk/lang/
 if (!defined('_ECRIRE_INC_VERSION')) return;
 
+
 $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	// A
 
 	'action_ajouter' => 'Ajouter',
+	'actualites' => 'Actualités',     
 	'ajouter_fonctionnalites' => 'Fonctionnalités supplémentaires',		
+	'articles_rubrique' => 'Les articles de la rubrique',
+	
 	
     // C
     'commande_enregistre' => '
@@ -17,7 +21,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     Nous vous contacterons le plus vite possible
     <br/><br/>
     Merci pour votre confiance',     
-    'compris_pack' => 'Compris dans le pack',       
+    'compris_pack' => 'Compris dans le pack',      
+    
+    //D
+    'descriptif' =>'Descriptif',
 	
     // E
     'envoi_commande' => 'Envoyez votre commande',        
@@ -26,7 +33,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'graphisme' => 'Graphisme', 
     
     // H
-    'hebergement' => 'Hébergement',        
+    'hebergement' => 'Hébergement', 
+    
+    // L
+    'logo' => 'Logo',            
     
     // P
     'pack_base' => 'Pack de base', 
@@ -34,6 +44,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'plus_fonctionnalites_pack_base' => 'Les fonctionnalités compris dans :', 
     
     //S
+    'site_slider' => 'Slider Sites',       
     'site_utilise' => 'Ce site utilise :',       
         
     // U
