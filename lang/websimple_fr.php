@@ -10,7 +10,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	'action_ajouter' => 'Ajouter',
 	'actualites' => 'Actualités',     
-	'ajouter_fonctionnalites' => 'Fonctionnalités supplémentaires',		
+	'ajouter_fonctionnalites' => 'Ajoutez des fonctionnalités',		
 	'articles_rubrique' => 'Les articles de la rubrique',
 	
 	
