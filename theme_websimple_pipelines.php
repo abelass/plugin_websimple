@@ -7,14 +7,14 @@ function theme_websimple_insert_head($flux){
     return $flux;
 }
 
-function theme_websimple_jqueryui_plugins($scripts){
+/*function theme_websimple_jqueryui_plugins($scripts){
    $scripts[] = 'jquery.ui.draggable';
    $scripts[] = "jquery.ui.widget";
    $scripts[] = "jquery.ui.mouse";
    $scripts[] = "jquery.ui.sortable";
    $scripts[] = "jquery.ui.resizable";   
    return $scripts;
-}
+}*/
 
 function theme_websimple_formulaire_charger($flux){
  $form=$flux['args']['form'];
