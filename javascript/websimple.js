@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 	//Mettre en pace les controles
 	$("section.page").on("chargerPanel", function(){
-		$(this).prepend('<aside class="control_box"><div class="move"></div></aside>');
+		//$(this).prepend('<aside class="control_box"><div class="move"></div></aside>');
 	});
 	$("section.page").trigger("chargerPanel"); 	
 
