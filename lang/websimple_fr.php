@@ -40,8 +40,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     
     // P
     'pack_base' => 'Pack de base', 
-    'pack_compose_par' => 'Un pack contient :', 
-    'plus_fonctionnalites_pack_base' => 'Les fonctionnalités compris dans :', 
+    'pack_compose_par' => 'Ce pack contient :', 
+    'plus_fonctionnalites_pack_base' => '+ les fonctionnalités compris dans :', 
     
     //S
     'site_slider' => 'Slider Sites',       
@@ -53,8 +53,8 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
         
     // U
     'utilise_par_pack' => 'Utilisé par le pack',        
-    'utilise_par_site' => 'Utilisé par le Site',  
-    'utilise_par_sites' => 'Utilisé par les Sites :',             
+    'utilise_par_site' => 'Exemple',  
+    'utilise_par_sites' => 'Quelques exemples',             
 );
 
 ?>
