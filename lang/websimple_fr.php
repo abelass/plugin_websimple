@@ -47,6 +47,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'site_slider' => 'Slider Sites',       
     'site_utilise' => 'Ce site utilise :',       
         
+    // R
+    'realisations_developpements' => 'Développements',   
+    'realisations_sites' => 'Sites',           
+        
     // U
     'utilise_par_pack' => 'Utilisé par le pack',        
     'utilise_par_site' => 'Utilisé par le Site',  
