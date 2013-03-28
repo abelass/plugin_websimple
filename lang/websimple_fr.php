@@ -48,7 +48,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'site_utilise' => 'Ce site utilise :',       
         
     // R
-    'realisations_developpements' => 'Développements',   
+    'realisations_developpements' => 'Nos développements',   
     'realisations_sites' => 'Sites',           
         
     // U
