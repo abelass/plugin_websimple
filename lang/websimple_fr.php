@@ -12,6 +12,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	'actualites' => 'Actualités',     
 	'ajouter_fonctionnalites' => 'Ajoutez des fonctionnalités',		
 	'articles_rubrique' => 'Les articles de la rubrique',
+	'articles_site' => 'Articles publiés sur ce site',	
 	
 	
     // C
@@ -46,6 +47,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     //S
     'site_slider' => 'Slider Sites',       
     'site_utilise' => 'Ce site utilise :',       
+    
+    
+    // T
+    'temoignage' => 'Témoignage',       
         
     // R
     'realisations_developpements' => 'Nos développements',   
