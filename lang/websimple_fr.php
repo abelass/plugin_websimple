@@ -28,8 +28,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'descriptif' =>'Descriptif',
 	
     // E
-    'envoi_commande' => 'Envoyez votre commande',        
-    
+    'envoi_commande' => 'Envoyez votre commande',
+    'explication_commande_court' => 'Cette commande ne vous engage nullement !',  
+      
     // G
     'graphisme' => 'Graphisme', 
     
