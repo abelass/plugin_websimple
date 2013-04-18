@@ -71,7 +71,7 @@ function theme_websimple_formulaire_traiter($flux){
                 $panier[$cle]['taxe'] = round(($panier[$cle]['prix'] - $panier[$cle]['prix_ht']) / $panier[$cle]['prix_ht'], 3);
                 $panier[$cle]['descriptif'] = supprimer_numero(generer_info_entite($emplette['id_objet'], $emplette['objet'], 'titre', '*'));              
                 
-                /*sql_insertq(
+                sql_insertq(
                     'spip_commandes_details',
                     array(
                         'id_commande' => $id_commande,
@@ -79,10 +79,10 @@ function theme_websimple_formulaire_traiter($flux){
                         'id_objet' => $emplette['id_objet'],
                         'descriptif' => generer_info_entite($emplette['id_objet'], $emplette['objet'], 'titre', '*'),
                         'quantite' => $emplette['quantite'],
-                        'prix_unitaire_ht' => $prix_ht,
-                        'taxe' => $taxe
+                        'prix_unitaire_ht' => $panier[$cle]['prix_ht'],
+                        'taxe' => $panier[$cle]['taxe']
                     )
-                );*/
+                );
             }
         }
          //On envoie la confirmation
