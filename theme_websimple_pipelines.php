@@ -53,13 +53,45 @@ function theme_websimple_formulaire_traiter($flux){
            editer_commande_details($id_commande, array('id_auteur' => $id_auteur));
             }  
         
-        //On envoie la confirmation
+        // On récupère le contenu du panier
+        $panier = sql_allfetsel(
+            '*',
+            'spip_paniers_liens',
+            'id_panier = '.$id_panier
+        );
+        
+        // Pour chaque élément du panier, on va remplir la commande
+        if ($panier and is_array($panier)){
+            include_spip('spip_bonux_fonctions');
+            $fonction_prix = charger_fonction('prix', 'inc/');
+            $fonction_prix_ht = charger_fonction('ht', 'inc/prix');
+            foreach($panier as $cle=>$emplette){
+                $panier[$cle]['prix_ht'] = $fonction_prix_ht($emplette['objet'], $emplette['id_objet']);
+                $panier[$cle]['prix'] = $fonction_prix($emplette['objet'], $emplette['id_objet']);
+                $panier[$cle]['taxe'] = round(($panier[$cle]['prix'] - $panier[$cle]['prix_ht']) / $panier[$cle]['prix_ht'], 3);
+                $panier[$cle]['descriptif'] = supprimer_numero(generer_info_entite($emplette['id_objet'], $emplette['objet'], 'titre', '*'));              
+                
+                /*sql_insertq(
+                    'spip_commandes_details',
+                    array(
+                        'id_commande' => $id_commande,
+                        'objet' => $emplette['objet'],
+                        'id_objet' => $emplette['id_objet'],
+                        'descriptif' => generer_info_entite($emplette['id_objet'], $emplette['objet'], 'titre', '*'),
+                        'quantite' => $emplette['quantite'],
+                        'prix_unitaire_ht' => $prix_ht,
+                        'taxe' => $taxe
+                    )
+                );*/
+            }
+        }
+         //On envoie la confirmation
         include_spip('inc/config');
         $config = lire_config('commandes');       
          $notifications = charger_fonction('notifications', 'inc', true);
         
         // Determiner l'expediteur
-        $options = array();
+        $options = array('commande'=>$panier);
         if( $config['expediteur'] != "facteur" )
             $options['expediteur'] = $config['expediteur_'.$config['expediteur']];
 
@@ -73,32 +105,7 @@ function theme_websimple_formulaire_traiter($flux){
             '*',
             'spip_paniers_liens',
             'id_panier = '.$id_panier
-        );
-        
-        // Pour chaque élément du panier, on va remplir la commande
-        if ($panier and is_array($panier)){
-            include_spip('spip_bonux_fonctions');
-            $fonction_prix = charger_fonction('prix', 'inc/');
-            $fonction_prix_ht = charger_fonction('ht', 'inc/prix');
-            foreach($panier as $emplette){
-                $prix_ht = $fonction_prix_ht($emplette['objet'], $emplette['id_objet']);
-                $prix = $fonction_prix($emplette['objet'], $emplette['id_objet']);
-                $taxe = round(($prix - $prix_ht) / $prix_ht, 3);
-                sql_insertq(
-                    'spip_commandes_details',
-                    array(
-                        'id_commande' => $id_commande,
-                        'objet' => $emplette['objet'],
-                        'id_objet' => $emplette['id_objet'],
-                        'descriptif' => generer_info_entite($emplette['id_objet'], $emplette['objet'], 'titre', '*'),
-                        'quantite' => $emplette['quantite'],
-                        'prix_unitaire_ht' => $prix_ht,
-                        'taxe' => $taxe
-                    )
-                );
-            }
-        }
-                                
+        );                               
          //Supprimer le panier en cours
         $panier=charger_fonction('supprimer_panier_encours','action/');
         $panier();
