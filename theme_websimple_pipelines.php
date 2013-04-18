@@ -33,7 +33,7 @@ function theme_websimple_formulaire_charger($flux){
 function theme_websimple_formulaire_traiter($flux){
     // Si on est sur le formulaire client qui est sur la page identification
     $form=$flux['args']['form'];
-    if(($form == 'editer_client' OR $form='inscription_client')
+    if(($form == 'editer_client' OR $form=='inscription_client')
          and _request('page') == 'selection'
          and include_spip('inc/paniers')
          and $id_panier=paniers_id_panier_encours()
