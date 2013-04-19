@@ -33,7 +33,7 @@ function theme_websimple_formulaire_charger($flux){
 function theme_websimple_formulaire_traiter($flux){
     // Si on est sur le formulaire client qui est sur la page identification
     $form=$flux['args']['form'];
-    if(($form == 'editer_client' OR $form=='inscription_client')
+    if(($form == 'editer_client' OR $form =='inscription_client')
          and _request('page') == 'selection'
          and include_spip('inc/paniers')
          and $id_panier=paniers_id_panier_encours()
@@ -63,6 +63,7 @@ function theme_websimple_formulaire_traiter($flux){
         // Pour chaque élément du panier, on va remplir la commande
         if ($panier and is_array($panier)){
             include_spip('spip_bonux_fonctions');
+            include_spip('inc/filtres');
             $fonction_prix = charger_fonction('prix', 'inc/');
             $fonction_prix_ht = charger_fonction('ht', 'inc/prix');
             foreach($panier as $cle=>$emplette){
@@ -89,23 +90,17 @@ function theme_websimple_formulaire_traiter($flux){
         include_spip('inc/config');
         $config = lire_config('commandes');       
          $notifications = charger_fonction('notifications', 'inc', true);
-        
+
         // Determiner l'expediteur
         $options = array('commande'=>$panier);
-        if( $config['expediteur'] != "facteur" )
+        if($config['expediteur'] != "facteur")
             $options['expediteur'] = $config['expediteur_'.$config['expediteur']];
 
         // Envoyer au vendeur et au client
         $notifications('commande_vendeur', $id_commande, $options);
         if($config['client'])
             $notifications('commande_client', $id_commande, $options);
-
-       // On récupère le contenu du panier
-        $panier = sql_allfetsel(
-            '*',
-            'spip_paniers_liens',
-            'id_panier = '.$id_panier
-        );                               
+                          
          //Supprimer le panier en cours
         $panier=charger_fonction('supprimer_panier_encours','action/');
         $panier();
