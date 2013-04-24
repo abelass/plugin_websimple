@@ -27,7 +27,9 @@
 	<necessite nom="menuder" compatibilite="[2.1.4;]" />
 	<necessite nom="accesrestreint" compatibilite="[3.8.4;]" />		
 	<necessite nom="seo" compatibilite="[1.8.1;]" />
+	<necessite nom="mailcrypt" compatibilite="[2.4.0;]" />		
 	<utilise nom="clients" compatibilite="[0.5.5;]" />
+
 	
 	<pipeline nom="jqueryui_plugins" inclure="theme_websimple_pipelines.php" /> 
 	<pipeline nom="formulaire_charger" inclure="theme_websimple_pipelines.php" /> 	
