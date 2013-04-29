@@ -45,6 +45,9 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'pack_compose_par' => 'Ce pack contient :', 
     'plus_fonctionnalites_pack_base' => '+ les fonctionnalités compris dans :', 
     
+    //Q
+    'qui_sommes_nous'=>'Mais enfin, qui sommes nous?',
+    
     //S
     'site_slider' => 'Slider Sites',       
     'site_utilise' => 'Ce site utilise :',       
