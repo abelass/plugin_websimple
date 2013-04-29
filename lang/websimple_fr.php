@@ -57,8 +57,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'temoignage' => 'Témoignage',       
         
     // R
-    'realisations_developpements' => 'Nos développements',   
-    'realisations_sites' => 'Sites',           
+    'realisations_developpements' => 'Nos développements', 
+    'realisations_developpements_descriptif' => 'Les développements réalisés par nous',       
+    'realisations_sites' => 'Sites', 
+    'realisations_sites_descriptif' => 'Les sites web réalisé par nous',               
         
     // U
     'utilise_par_pack' => 'Utilisé par le pack',        
