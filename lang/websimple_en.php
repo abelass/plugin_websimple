@@ -46,7 +46,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'plus_fonctionnalites_pack_base' => '+ the features included in:', 
     
     //Q
-    'qui_sommes_nous'=>'But who are we at least?',
+    'qui_sommes_nous'=>'But - who are we?',
     
     //S
     'site_slider' => 'Site Slider ',       
