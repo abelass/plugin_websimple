@@ -17,11 +17,11 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 	
     // C
     'commande_enregistre' => '
-    Votre commande a été enregistré vous allez recevoir une confirmation par email
+    Votre commande a été enregistré vous allez recevoir une confirmation par email !
     <br/> <br/>
-    Nous vous contacterons le plus vite possible
+    Nous vous contacterons le plus vite possible.
     <br/><br/>
-    Merci pour votre confiance',     
+    Merci pour votre confiance.',     
     'compris_pack' => 'Compris dans le pack',      
     
     //D
@@ -41,12 +41,12 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'logo' => 'Logo',            
     
     // P
-    'pack_base' => 'Pack de base', 
+    'pack_base' => 'Pack Start', 
     'pack_compose_par' => 'Ce pack contient :', 
     'plus_fonctionnalites_pack_base' => '+ les fonctionnalités compris dans :', 
     
     //Q
-    'qui_sommes_nous'=>'Mais enfin, qui sommes nous?',
+    'qui_sommes_nous'=>'Mais enfin, qui sommes nous ?',
     
     //S
     'site_slider' => 'Slider Sites',       
