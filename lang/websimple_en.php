@@ -38,7 +38,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'hebergement' => 'Hosting', 
     
     // L
-    'logo' => 'Logo',            
+    'logo' => 'Logo',     
+    
+    // N
+    'notre_contribution' => 'Intervention Websimple',
     
     // P
     'pack_base' => 'Starter Pack', 
