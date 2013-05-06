@@ -65,7 +65,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     // U
     'utilise_par_pack' => 'Used by the pack',        
     'utilise_par_site' => 'Example',  
-    'utilise_par_sites' => 'Some examples',             
+    'utilise_par_sites' => 'Some examples',   
+
+    //V
+    'voir_article_origine' => 'View the original artical',   
 );
 
 ?>

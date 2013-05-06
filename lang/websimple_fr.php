@@ -10,7 +10,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 
 	'action_ajouter' => 'Ajouter',
 	'actualites' => 'Actualités',     
-	'ajouter_fonctionnalites' => 'Ajoutez des fonctionnalités',		
+	'ajouter_fonctionnalites' => 'Ajoutez des fonctionnalités',	
 	'articles_rubrique' => 'Les articles de la rubrique',
 	'articles_site' => 'Articles publiés sur ce site',	
 	
@@ -65,7 +65,10 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     // U
     'utilise_par_pack' => 'Utilisé par le pack',        
     'utilise_par_site' => 'Exemple',  
-    'utilise_par_sites' => 'Quelques exemples',             
+    'utilise_par_sites' => 'Quelques exemples',    
+    
+    //V
+    'voir_article_origine' => 'Voir l\'article origiale',                
 );
 
 ?>
