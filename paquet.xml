@@ -28,6 +28,7 @@
 	<necessite nom="accesrestreint" compatibilite="[3.8.4;]" />		
 	<necessite nom="seo" compatibilite="[1.8.1;]" />
 	<necessite nom="mailcrypt" compatibilite="[2.4.0;]" />		
+	<necessite nom="emailtospip" compatibilite="[1.1.0;]" />		
 	<utilise nom="clients" compatibilite="[0.5.5;]" />
 
 	
