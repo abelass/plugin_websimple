@@ -68,7 +68,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'utilise_par_sites' => 'Some examples',   
 
     //V
-    'voir_article_origine' => 'View the original artical',   
+    'voir_article_origine' => 'View the original articcle',   
 );
 
 ?>
