@@ -41,7 +41,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
     'logo' => 'Logo', 
     
     // N
-    'notre_contribution' => 'Intervention Websimple',                
+    'notre_contribution' => 'Intervention Web Simple',                
     
     // P
     'pack_base' => 'Pack Start', 
