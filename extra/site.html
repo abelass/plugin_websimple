@@ -1,0 +1,9 @@
+<INCLURE{fond=inclure/menu_packs,id_rubrique,id_trad=3,lang}/>
+<BOUCLE_content(SITES){id_syndic}>
+<div class="logo_site">
+[<a href="#URL_SITE">(#LOGO_SITE|image_reduire{245,*}|inserer_attribut{alt,#NOM_SITE})</a>]
+</div>
+</BOUCLE_content>
+<br class="nettoyeur"/>
+
+<INCLURE{fond=inclure/menus_sites,id_rubrique}/>

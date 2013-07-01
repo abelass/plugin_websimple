@@ -1,0 +1,9 @@
+<BOUCLE_prix(PRIX_OBJETS){id_prix_objet=#ENV{id_objet}}>
+     <BOUCLE_article(ARTICLES){id_article=#ID_OBJET}>
+          <BOUCLE_trad(ARTICLES){traduction}{lang=#ENV{lang}}>
+            #TITRE
+        </BOUCLE_trad>
+         #TITRE 
+        <//B_trad> 
+    </BOUCLE_article>
+</BOUCLE_prix>

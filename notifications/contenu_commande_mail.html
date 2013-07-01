@@ -1,0 +1,34 @@
+[(#REM)
+
+  Squelette
+  (c) 2009 SPIP
+  Distribue sous licence GPL
+
+][(#HTTP_HEADER{Content-type: text/#ENV{format_envoi}[; charset=(#CHARSET)]})]#CACHE{0}
+<BOUCLE_art(COMMANDES){id_commande}{statut?}{tout}>
+
+<BOUCLE_contact(CONTACTS){id_auteur}>#SET{nom_client,#CIVILITE #NOM #PRENOM}</BOUCLE_contact>
+
+[(#ENV{qui}|=={client}|oui)
+<p><:commandes:bonjour:> #GET{nom_client}</p>
+<p><:commandes:merci_de_votre_commande:></p>]
+[(#ENV{qui}|=={client}|non)
+<p><:commandes:une_commande_de:>#GET{nom_client}</p>]
+
+<h3><:commandes:recapitulatif:></h3>
+
+<p><:commandes:commande_numero:>#REFERENCE</p>
+<p><:commandes:commande_date:> : #DATE</p>
+<p><:commandes:modifier_commande_statut:> [(#STATUT|commandes_lister_statuts)]</p>
+<p><:commandes:details_commande:></p>
+[(#ENV**{options}|table_valeur{commande}|non)#SET{id_commande,#ID_COMMANDE}]
+<INCLURE{fond=inclure/commande,commande=#ARRAY{details,#ENV**{options}|table_valeur{commande}},statut=#STATUT,format_envoi=#ENV{format_envoi},id_commande=#GET{id_commande}}>
+
+<hr />
+
+<p><a href="#URL_SITE_SPIP">#URL_SITE_SPIP</a></p>
+</BOUCLE_art>
+[(#ENV{format_envoi}|=={plain}|oui)
+	#FILTRE{supprimer_tags|filtrer_entites|trim}]
+[(#ENV{format_envoi}|=={plain}|non)
+	#FILTRE{filtrer_entites|trim}]

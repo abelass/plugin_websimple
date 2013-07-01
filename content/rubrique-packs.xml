@@ -1,0 +1,6 @@
+<composition>
+        <nom>Rubrique Packs</nom>
+
+        <description>Rubrique Packs</description>
+        <branche type="article" composition="packs" />
+</composition>

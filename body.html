@@ -1,0 +1,33 @@
+<body class="#ENV{type-page}" data-id="#ENV{id}" data-comp='#COMPOSITION'> 
+    <div class="page">
+<aside class="fenetres">
+  
+</aside> 
+<aside class="tools">
+    <INCLURE{fond=inclure/menu_langues,env,ajax=langues}/>
+    <div class="login">
+        [<span class="sep">
+        (#SESSION{id_auteur}|oui)</span><a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>][<span class="sep">
+        (#SESSION{id_auteur}|non)</span><a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]"
+    rel="nofollow" target="_blank"
+    onclick="if (jQuery.modalbox) {jQuery.modalbox('[(#URL_PAGE{login}|parametre_url{url,#SELF}|parametre_url{var_zajax,content})]');return false;}" ><:lien_connecter:></a>][<span class="sep">
+        (#AUTORISER{ecrire})</span><a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>]
+    </div>    
+</aside>    
+<aside class="extra1 col" id="extra1">
+	<INCLURE{fond=aside/#ENV{type-page},env} />
+</aside>
+	<section class="page[ (#ENV{class})]">
+		<header id="header"><INCLURE{fond=header/#ENV{type-page},env} /></header>	
+		<section class="container" id="container" role="main">
+			<section class="content" id="content">
+			    <INCLURE{fond=content/#ENV{type-page},env,ajax=content} />	
+			</section>
+			    [(#ENV{composition}|=={home}|non)
+			     <aside class="extra2 col" id="extra2">
+			         <INCLURE{fond=extra/#ENV{type-page},env} />
+			    </aside>]<!-- aside -->
+	   </section>		
+	</section>	
+	</div>
+</body>

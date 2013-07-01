@@ -1,0 +1,5 @@
+<composition>
+        <nom>Rubrique Fonctionnalités</nom>
+        <description>Rubrique Fonctionalités</description>
+        <branche type="article" composition="fonctionnalites" />
+</composition>

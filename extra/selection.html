@@ -1,0 +1,9 @@
+<INCLURE{fond=inclure/menu_packs,id_rubrique,id_trad=3,lang}/>
+<INCLURE{fond=extra2/mon_panier,ajax=mon_panier}/>
+
+[(#SESSION{id_auteur}|non)
+    [<div id="abonne_login" [class="(#ENV{mail}|=={oui}|oui)mailshow"]>
+        <h3><:shop:deja_client:></h3>
+        (#FORMULAIRE_LOGIN{[(#URL_PAGE{selection}|parametre_url{id_auteur,#SESSION{id_auteur}})]})
+    </div>]
+]

@@ -1,0 +1,18 @@
+<BOUCLE_rub(RUBRIQUES){id_trad}{lang}>
+    <B_articles_rubrique>
+     <ul class="menu-items menu-liste box_menu">
+        <li class="item articles_rubrique menu-entree">
+            <div class="titre">
+              <a href="#URL_RUBRIQUE" title="#TITRE">[(#TITRE|couper{50})]</a>
+            </div>
+              <ul>
+                <BOUCLE_articles_rubrique(ARTICLES){id_rubrique} {par titre} {lang}>
+                <li class="row_#COMPTEUR_BOUCLE [ (#EXPOSE)]">
+                <a href="#URL_ARTICLE" title="#TITRE">[(#TITRE|couper{45})]</a>
+            </li>
+                </BOUCLE_articles_rubrique>
+            </ul>
+        </li>  
+    </ul>
+    </B_articles_rubrique>
+</BOUCLE_rub>

@@ -1,0 +1,76 @@
+<BOUCLE_trad(ARTICLES){id_article}{lang}>
+ <article class="content-principal">
+    <section class="body_content">
+        [<aside class="right">
+        [(#REM)Les prix]
+        <INCLURE{fond=inclure/prix,ajax=prix,env}/>
+        [(#REM)Les Contenus liés]
+            (#INCLURE{fond=inclure/contenu_lie,env})
+        </aside>]        
+        [<section class="#EDIT{chapo} chapo surlignable">(#CHAPO|image_reduire{400,0})</section>]
+        [<section class="#EDIT{texte} texte surlignable">
+                (#TEXTE|image_reduire{400,0})
+                <br class="nettoyeur"/>
+        </section>
+            ]
+        [<section class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></section>]
+        [<section class="#EDIT{ps} ps surlignable"><h2><:info_ps:></h2>(#PS|image_reduire{400,0})</section>]
+    
+        [(#REM) Gestion du portfolio et des documents ]
+        [(#INCLURE{fond=inclure/documents,id_article})]
+        
+        <footer>
+            [<aside class="notes"><h2><:info_notes:></h2>(#NOTES)</aside>]
+            [(#REM) inclure de partage RS ]
+            [(#REM) bloc precedent/suivant en guise de <nav></nav> ]
+        </footer>
+        
+    </section>
+    
+    <footer>
+        [<aside class="notes"><h2><:info_notes:></h2>(#NOTES)</aside>]
+        [(#REM) inclure de partage RS ]
+        [(#REM) bloc precedent/suivant en guise de <nav></nav> ]
+    </footer>
+    </div>
+</article>
+</BOUCLE_trad>
+    <BOUCLE_or(ARTICLES){id_article=#ENV{id_article_base}}>
+     <article class="content-principal">
+        <section class="body_content">
+            [<aside class="right">
+            [(#REM)Les prix]
+            <INCLURE{fond=inclure/prix,ajax=prix,env}/>
+            [(#REM)Les Contenus liés]
+                (#INCLURE{fond=inclure/contenu_lie,env})
+            </aside>]        
+            [<section class="#EDIT{chapo} chapo surlignable">(#CHAPO|image_reduire{400,0})</section>]
+            [<section class="#EDIT{texte} texte surlignable">
+                    (#TEXTE|image_reduire{400,0})
+                    <br class="nettoyeur"/>
+            </section>
+                ]
+            [<section class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></section>]
+            [<section class="#EDIT{ps} ps surlignable"><h2><:info_ps:></h2>(#PS|image_reduire{400,0})</section>]
+        
+            [(#REM) Gestion du portfolio et des documents ]
+            [(#INCLURE{fond=inclure/documents,id_article})]
+            
+            <footer>
+                [<aside class="notes"><h2><:info_notes:></h2>(#NOTES)</aside>]
+                [(#REM) inclure de partage RS ]
+                [(#REM) bloc precedent/suivant en guise de <nav></nav> ]
+            </footer>
+            
+        </section>
+        
+        <footer>
+            [<aside class="notes"><h2><:info_notes:></h2>(#NOTES)</aside>]
+            [(#REM) inclure de partage RS ]
+            [(#REM) bloc precedent/suivant en guise de <nav></nav> ]
+        </footer>
+        </div>
+    </article>
+    </BOUCLE_or>
+<//B_trad>
+ <br class="nettoyeur"/>

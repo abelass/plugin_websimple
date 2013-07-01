@@ -1,0 +1,25 @@
+[(#REM) Sites de la rubrique ]
+<B_sel>
+<section class="menu-items menu_sites">
+[<p class="pagination">(#PAGINATION)</p>]
+	<ul>
+	    <BOUCLE_sel(SELECTION_OBJETS){objet_dest=rubrique}{id_objet_dest=#ID_RUBRIQUE}{par ordre}{pagination}>
+		<BOUCLE_sites(SITES) {id_syndic=#ID_OBJET}>
+		<li class="item hentry">
+		    <article>
+			<h3><a href="[(#ID_SYNDIC|generer_url_entite{site,'','',#CONNECT}|parametre_url{lang,#LANG})]">#NOM_SITE</a></h3>
+            <div class="introduction entry-content">  
+                            <div class="thumbnails">
+                <a href="[(#ID_SYNDIC||generer_url_entite{site,'','',#CONNECT}|entites_html|parametre_url{lang,#LANG})]">[(#LOGO_SITE|image_passe_partout{120,80}|image_recadre{120,80}|inserer_attribut{alt,#TITRE})]</a>
+            </div>                                  
+                 [<div class="#EDIT{introduction} descriptif">(#DESCRIPTIF|couper{250})</div>]
+              </div>
+			</article>
+		</li>										
+		</BOUCLE_sites>
+</BOUCLE_sel>
+	</ul>
+[<br class="nettoyeur"/>
+<p class="pagination">(#PAGINATION)</p>]	
+</section>
+</B_sel>

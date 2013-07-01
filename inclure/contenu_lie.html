@@ -1,0 +1,17 @@
+<B_sites_lies>
+<section class="contenu_lie[ (#ENV{class})]">
+
+    #SET{pluriel,websimple:(#TYPE_LIEN|concat{s})}
+
+    [<h2>(#GRAND_TOTAL|>{1}|?{
+        [(#VAL{[websimple:(#TYPE_LIEN|concat{s})]}|_T)],
+        [(#TYPE_LIEN|nom_type{#OBJET_DEST})]
+        })</h2>]
+    <ul>
+        
+    <BOUCLE_sites_lies(SELECTION_OBJETS){objet_dest}{id_objet_dest}{type_lien ?}{par ordre}{0,5}>
+    [<li>(#ID_OBJET|generer_modele{#OBJET,modeles_so/contenu_lie,#ARRAY{url,#URL}})</li>]
+    </BOUCLE_sites_lies>
+    </ul>
+</section>
+</B_sites_lies>

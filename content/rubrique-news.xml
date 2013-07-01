@@ -1,0 +1,6 @@
+<composition>
+        <nom>Rubrique News</nom>
+
+        <description>Rubrique News</description>
+        <branche type="article" composition="news" />
+</composition>

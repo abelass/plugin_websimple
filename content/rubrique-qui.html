@@ -1,0 +1,56 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}{tout}>
+    <article class="content-principal">
+    [(#REM)Le panier]
+     #INCLURE{fond=inclure/mon_panier,env,objet=article,id_objet=#GET{id_article},env,ajax=mon_panier}               
+        <header class="cartouche">
+            <h1 class="h1 #EDIT{titre}">#TITRE</h1>
+        </header>
+        <section class="#EDIT{texte} chapo">
+            #TEXTE
+            
+#SET{largeur,105}
+#SET{hauteur,162}
+#SET{rotation,0}
+    <h2><:websimple:qui_sommes_nous:></h2>
+    <section class="portraits">[(#REM) microformat vcard]
+    <B_auteur>
+    
+    <BOUCLE_auteur(AUTEURS){id_auteur IN 5,1}{tout}{par hasard}{0,2}>
+       #SET{compteur,#COMPTEUR_BOUCLE}
+       <B_portraits>
+         <div class="wrapper wrapper[_(#GET{compteur}) ]vcard">
+             <div class="details">
+                 <h3 class="#EDIT{qui} fn">#NOM</h3>
+                 <div class="#EDIT{bio} texte bio">
+                     #BIO
+                 </div>
+             </div>
+            <div class="image">
+            <BOUCLE_portraits(DOCUMENTS documents_liens){id_auteur}{tout}{par hasard}{0,1}>
+                [(#GET{compteur}|=={2}|?{
+                    [(#FICHIER
+                    |image_passe_partout{#GET{largeur},#GET{hauteur}}
+                    |image_recadre{#GET{largeur},#GET{hauteur}}
+                    |inserer_attribut{alt,#NOM}
+                    |inserer_attribut{title,#NOM}            
+                    |inserer_attribut{class,desaturate}            
+                    )],
+                    [(#FICHIER
+                    |image_flip_vertical            
+                    |image_passe_partout{#GET{largeur},#GET{hauteur}}
+                    |image_recadre{#GET{largeur},#GET{hauteur}}
+                    |inserer_attribut{alt,#NOM}
+                    |inserer_attribut{title,#NOM}                
+                    |inserer_attribut{class,desaturate}   
+                    )]            
+                    
+                    
+                })]
+            </BOUCLE_portraits>
+            </div>
+        </div>
+        </B_portraits>
+    </BOUCLE_auteur>
+    </section>[(#REM) / vcard]        
+</article>
+</BOUCLE_content>

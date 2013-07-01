@@ -1,0 +1,33 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}{tout}>
+<article class="content-principal">
+     [(#REM)Le panier]
+     #INCLURE{fond=inclure/mon_panier,env,objet=article,id_objet=#GET{id_article},env,ajax=mon_panier}
+	<header class="cartouche">
+		<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+	</header>
+        [<section class="#EDIT{texte} chapo">
+            (#TEXTE)
+         </section>]
+</article>
+
+
+[(#REM) Gestion du portfolio et des documents ]
+[(#INCLURE{fond=inclure/documents,id_rubrique})]
+
+<B_articles>
+<nav class="menu-items menu articles menu_sites">
+    #ANCRE_PAGINATION
+    <ul>
+        <BOUCLE_articles(ARTICLES){id_rubrique} {lang} {!par date} {pagination 5}>
+        <INCLURE{fond=inclure/prix,objet=article,id_objet=#ID_ARTICLE}/>
+        #INCLURE{fond=inclure/article-resume,id_article}
+        </BOUCLE_articles>
+    </ul>
+    [<p class="pagination">(#PAGINATION)</p>]
+</nav>
+</B_articles>
+
+[<section class="notes"><hr />(#NOTES)</section>]
+
+</BOUCLE_content>
+<br class="nettoyeur"/>

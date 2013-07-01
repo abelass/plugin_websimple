@@ -1,0 +1,27 @@
+[(#REM) Puis on les affiche]
+#SET{id_rubrique,#ARRAY}
+<BOUCLE_trad_rubs(RUBRIQUES){id_trad}>
+    #SET{id_rubrique,#GET{id_rubrique}|push{#ID_RUBRIQUE}}
+</BOUCLE_trad_rubs>
+
+<B_articles>
+    [(#TOTAL_BOUCLE|>{1}|oui)
+        #SET{liste,oui}
+    <nav class="menu-items menu_fonctionnalites">
+        <ul>]
+        <BOUCLE_articles(ARTICLES) {id_rubrique IN #GET{id_rubrique}}{origine_traduction}{par num titre,titre}>
+             #SET{id_article,#ID_ARTICLE}
+            [(#ID_TRAD|>{0}|oui)#SET{id_article,#ID_TRAD}]
+            [(#TOTAL_BOUCLE|>{1}|oui)
+            <li class="item hentry">
+                <INCLURE{fond=inclure/inc-fonctionnalites_liste,id_article,id_article_origine=#GET{id_article}}/>
+            </li>]
+            [(#TOTAL_BOUCLE|>{1}|non)
+                <INCLURE{fond=inclure/inc-fonctionnalites_details,env,id_objet_dest=#GET{id_article},id_objet=#GET{id_article},objet_dest=article,type_lien=utilise_par_site,id_article_base=#GET{id_article},objet=article}/>
+             ]                                                           
+        </BOUCLE_articles>
+        [(#GET{liste}|oui)
+        </ul>
+    </nav>
+    ]
+</B_articles>

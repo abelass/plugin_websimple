@@ -1,0 +1,66 @@
+<BOUCLE_content(ARTICLES){id_article} {si #ENV{reload}|non}>
+ #SET{id_article,#ID_ARTICLE}
+    [(#ID_TRAD|>{0}|oui)#SET{id_article,#ID_TRAD}]
+<article class="content-principal">
+    [(#REM)Le panier]
+    [(#ENV{panier}|!={non}|oui)
+     <INCLURE{fond=inclure/mon_panier,env,objet=article,id_objet=#GET{id_article},id_article_base=#GET{id_article},env,ajax=mon_panier}/>
+     ]
+	<header class="cartouche">
+		[<p class="#EDIT{surtitre} surtitre">(#SURTITRE)</p>]
+		[(#ENV{titre}|!={non}|oui)<h1 class="h1 #EDIT{titre}">#TITRE</h1>]
+		[<p class="#EDIT{soustitre} soustitre">(#SOUSTITRE)</p>]
+	</header>
+	<section class="body_content">
+    	    [<aside class="right">
+    	    [(#REM)Les prix]
+    	    <INCLURE{fond=inclure/prix,id_objet=#GET{id_article},objet=article,id_article_base=#GET{id_article},ajax=prix}/>
+            [(#REM)Les Contenus liés]
+                (#INCLURE{fond=inclure/contenu_lie,objet_dest=article,id_objet_dest=#GET{id_article},type_lien=utilise_par_site,env})
+            </aside>]
+        	[<section class="#EDIT{chapo} chapo surlignable">(#CHAPO|image_reduire{400,0})</section>]
+        	[<section class="#EDIT{texte} texte surlignable">
+        			[(#LOGO_ARTICLE|image_reduire{200,200})]
+        			(#TEXTE|image_reduire{400,0})</section>
+        		]
+        	[<section class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></section>]
+        	[<section class="#EDIT{ps} ps surlignable"><h2><:info_ps:></h2>(#PS|image_reduire{400,0})</section>]
+    
+            <section class="options_packs">
+                <INCLURE{fond=inclure/options,id_objet_dest=#GET{id_article},objet_dest=article,url=#URL_ARTICLE,env,ajax,id_article_base=#GET{id_article}}/>
+            </section>
+        	[(#REM) Gestion du portfolio et des documents ]
+        	[(#INCLURE{fond=inclure/documents,id_article})]
+        	
+        	<footer>
+        		[<aside class="notes"><h3><:info_notes:></h3>(#NOTES)</aside>]
+        		[(#REM) inclure de partage RS ]
+        		[(#REM) bloc precedent/suivant en guise de <nav></nav> ]
+    	   </footer>
+	</section>
+	<aside class="more">       
+         <BOUCLE_fonctionnalits(RUBRIQUES){id_rubrique!=#ID_RUBRIQUE}{id_trad=7}{lang}>
+            <a class="h2" href="#URL_RUBRIQUE" title="#TITRE"><:websimple:ajouter_fonctionnalites:></a>
+         </BOUCLE_fonctionnalits>
+    </aside>       
+</article>
+
+[(#REM) Petition :
+La petition ayant une PAGINATION il faut absolument {env}
+et pourquoi pas ajax
+][(#PETITION|oui)<INCLURE{fond=inclure/petition,id_article,env,ajax} />]
+
+
+[(#ENV{faq}|ou{#ENV{titre}}|non)
+[(#REM) Forum de l'article
+NB : pour desactiver les forums de l'article, supprimez simplement la ligne ci-dessous ]
+[(#ENV{forum}|=={non}|non)
+    #SET{retour,#PARAMETRES_FORUM|url_reponse_forum}
+    <INCLURE{fond=inclure/forum,id_article,repondre_url=#GET{retour},repondre_titre=<:repondre_article:>} />
+    ]
+]
+</BOUCLE_content>
+[(#ENV{reload}|oui)
+ <INCLURE{fond=content/#ENV{type-page},env} /> 
+]
+</BOUCLE_content>

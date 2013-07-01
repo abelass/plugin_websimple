@@ -1,0 +1,22 @@
+<BOUCLE_content(AUTEURS){id_auteur}>
+<article class="content-principal">
+   [(#REM)Le panier]
+   #INCLURE{fond=inclure/mon_panier,env,objet=article,id_objet=#GET{id_article},env,ajax=mon_panier}      
+	<section class="vcard">[(#REM) microformat vcard]	    
+		<header class="cartouche">
+			[(#LOGO_AUTEUR|image_reduire{200,200})]
+			<h1 class="h1 #EDIT{qui} fn">#NOM</h1>
+		</header>
+		[<div class="#EDIT{bio} texte bio">(#BIO)</div>]
+		[<p class="#EDIT{hyperlien} hyperlien"><:voir_en_ligne:> : <a href="(#URL_SITE)" class="url spip_out">[(#NOM_SITE|sinon{[(#URL_SITE|couper{80})]})]</a></p>]
+	</section>[(#REM) / vcard]
+
+
+
+</article>
+
+[<section class="notes"><hr />(#NOTES)</section>]
+
+#FORMULAIRE_ECRIRE_AUTEUR
+
+</BOUCLE_content>

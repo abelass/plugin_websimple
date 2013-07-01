@@ -1,0 +1,14 @@
+#CACHE{3600}[(#REM)l'image background]
+<BOUCLE_auteur(AUTEURS){statut=0minirezo}{tout}{par hasard}{0,0}><BOUCLE_portraits(DOCUMENTS documents_liens){id_auteur}{tout}{par hasard}{0,1}>#SET{image,(#FICHIER|image_reduire{300,900}|lien_absolue|extraire_attribut{src})}</BOUCLE_portraits></BOUCLE_auteur>
+#HTTP_HEADER{'Content-Type: text/css'}
+.extra1 {
+    background-image : url(#GET{image}) ;
+    background-repeat:no-repeat;
+    background-position: left top;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.#GET{image}', sizingMethod='scale');
+   -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#GET{image}', sizingMethod='scale')";
+}

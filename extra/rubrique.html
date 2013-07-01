@@ -1,0 +1,25 @@
+<BOUCLE_racine(RUBRIQUES){id_rubrique}{tout}>#SET{id_racine,#ID_RUBRIQUE}#SET{id_secteur,#ID_SECTEUR}
+	<BOUCLE_parent(RUBRIQUES){id_enfant}{id_rubrique!=#ENV{id_secteur,#GET{id_secteur}}}{tout}>
+		#SET{id_racine,#ID_RUBRIQUE}
+		<BOUCLE_parent2(RUBRIQUES){id_enfant}{id_rubrique!=#ENV{id_secteur,#GET{id_secteur}}}{tout}>
+			#SET{id_racine,#ID_RUBRIQUE}
+			<BOUCLE_rec(BOUCLE_parent2)></BOUCLE_rec>
+		</BOUCLE_parent2>
+	</BOUCLE_parent>
+</BOUCLE_racine>
+
+
+<INCLURE{fond=inclure/menu_packs,id_rubrique,id_trad=3,lang,id_article}/>
+
+<BOUCLE_content(ARTICLES){id_article}>
+<div class="logo_site">
+[<a class="mediabox" href="[(#LOGO_ARTICLE|extraire_attribut{src})]">(#LOGO_ARTICLE|image_reduire{245,*}|inserer_attribut{alt,#TITRE})</a>]
+</div>
+</BOUCLE_content>
+<br class="nettoyeur"/>
+</B_content>
+<INCLURE{fond=inclure/submenu,id_parent=#GET{id_racine},lang,env,ajax}/>
+
+
+[(#ENV{id_trad}|=={2}|oui)
+<INCLURE{fond=inclure/menus_sites,id_rubrique,env,ajax}/>]

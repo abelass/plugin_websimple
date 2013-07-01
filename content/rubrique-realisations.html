@@ -1,0 +1,22 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}{tout}>
+ #SET{id_rubrique,#ID_TRAD}
+    [(#ID_TRAD|>{0}|oui)#SET{id_rubrique,#ID_TRAD}]
+    <article class="content-principal">
+    [(#REM)Le panier]
+     #INCLURE{fond=inclure/mon_panier,env,objet=article,id_objet=#GET{id_article},env,ajax=mon_panier}             
+        <header class="cartouche">
+            <h1 class="h1 #EDIT{titre}">#TITRE</h1>
+        </header>  
+        [<section class="#EDIT{texte} chapo">
+            (#TEXTE)
+         </section>]
+    </article>
+           
+            <BOUCLE_groupes(MOTS){id_groupe}>
+                [(#REM) Sites de la rubrique ]
+                <INCLURE{fond=inclure/inc-realisations_articles}{env}{id_mot}/>
+            </BOUCLE_groupes>
+            </B_groupes>
+                <INCLURE{fond=inclure/inc-sites,id_rubrique=#GET{id_rubrique},env}>
+            <//B_groupes>
+</BOUCLE_content>

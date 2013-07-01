@@ -1,0 +1,16 @@
+<BOUCLE_content(RUBRIQUES){id_rubrique}{tout}>
+    <article class="content-principal">
+    [(#REM)Le panier]
+     #INCLURE{fond=inclure/mon_panier,env,objet=article,id_objet=#GET{id_article},env,ajax=mon_panier}               
+        <header class="cartouche">
+            <h1 class="h1 #EDIT{titre}">#TITRE</h1>
+        </header>
+        [<section class="#EDIT{texte} chapo">
+            (#TEXTE)
+         </section>]
+        <BOUCLE_auteur(AUTEURS){id_auteur=50}{tout}{0,1}>
+            #FORMULAIRE_ECRIRE_AUTEUR
+        </BOUCLE_auteur>
+        
+            </article>
+</BOUCLE_content>

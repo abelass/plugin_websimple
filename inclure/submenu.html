@@ -1,0 +1,45 @@
+<B_rubriques>
+    <ul class="menu-items submenu">
+    <BOUCLE_rubriques(RUBRIQUES){id_parent}{id_trad!=24}{tout}{par num titre,titre}>
+        <li class="item sub_item[ (#EXPOSE)][(#COMPTEUR_BOUCLE|=={1}|oui) first][(#COMPTEUR_BOUCLE|=={#TOTAL_BOUCLE}|oui) last]">
+            <a class="mouseover ajax" href="[(#URL_RUBRIQUE|parametre_url{id_rubrique,#ID_RUBRIQUE})]" title="#TITRE" data-target="rubrique-#ID_RUBRIQUE-#COMPOSITION-[(#ID_TRAD|=={0}|?{#ID_RUBRIQUE,#ID_TRAD})]" data-meta_title="[(#TITRE|supprimer_numero) - ]#NOM_SITE_SPIP" data-meta_description="[(#INTRODUCTION|supprimer_tags|texte_script)]">[(#TITRE|couper{50})]</a>       
+         </li>
+    </BOUCLE_rubriques>
+    </ul>
+</B_rubriques>
+
+<script type="text/javascript">
+$(function() { 
+    $(".mouseover").click(function() {
+        var attr=$(this).attr('data-target').split('-');   
+        var objet=attr[0];
+        var id_objet=attr[1];
+        var composition=attr[2];
+        var id_trad=attr[3];
+        var id=objet+'_'+id_objet;
+        var title=$(this).attr('data-meta_title');
+        var description=$(this).attr('data-meta_description'); 
+        var canonical=$(this).attr('href');                
+        ajaxReload(
+            'content', 
+                {callback:function(){
+                    $('title').html(title);
+                    $('meta[name=description]').replaceWith('<meta name="description" content="'+description+'">'); 
+                    $('link[rel=canonical]').replaceWith('<link href="#URL_SITE_SPIP/'+canonical+'" rel="canonical">');
+                    ajaxReload('langues',{
+                        args:{id_rubrique:id_objet,id_article:''}
+                    })                                        
+                },
+                 args:{
+                       'type-page':objet,
+                       id_rubrique:id_objet,
+                       composition:composition,
+                       reload:'oui',
+                       id_trad:id_trad
+                        }
+                 }
+            );
+         return false;   
+        });     
+ });
+</script>

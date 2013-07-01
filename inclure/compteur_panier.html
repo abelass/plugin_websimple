@@ -1,0 +1,6 @@
+#CACHE{0}
+#SET{quantites,#ARRAY}
+<BOUCLE_panier_items(PANIERS_LIENS){id_panier=#SESSION{id_panier}}>
+    #SET{quantites,#GET{quantites}|push{#QUANTITE}}
+</BOUCLE_panier_items>
+[(#GET{quantites}|array_sum)]

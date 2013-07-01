@@ -1,0 +1,36 @@
+<article class="content-principal">
+    <header class="cartouche">
+        <h1><:websimple:envoi_commande:>*</h1>
+    </header>
+<BOUCLE_contact(CONTACTS){id_auteur=#SESSION{id_auteur}}{id_auteur>0}{0,1}>
+ [(#ENV{message}|=={ok}|non)
+    [<div id="abonne_coord" class="ajax">  
+       
+        <h2><:shop:verifiez_vos_coordonnees:></h2>
+        (#FORMULAIRE_EDITER_CLIENT{#SESSION{id_auteur}})
+    </div>]
+    ]
+[(#ENV{message}|=={ok}|oui)  
+<p class="reponse_formulaire reponse_formulaire_ok"><:websimple:commande_enregistre:></p>
+]  
+</BOUCLE_contact>
+<div id="abonne_coord" [class="(#ENV{mail}|=={oui}|oui)mailhide"]> 
+        <div class="ajax">
+            <h2><:shop:vos_coordonnees:></h2>
+            [<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+            [<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+            [(#FORMULAIRE_INSCRIPTION_CLIENT)]
+         </div>
+        
+        
+    [(#SESSION{id_auteur}|oui)
+        [<div class="ajax">
+            <h2><:shop:verifiez_vos_coordonnees:></h2>
+            (#FORMULAIRE_EDITER_CLIENT{#SESSION{id_auteur}})
+        </div>
+        ]
+    ]   
+    </div>
+<//B_contact>
+<p class="explication">*<:websimple:explication_commande_court:></p>
+</article>

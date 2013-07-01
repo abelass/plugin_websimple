@@ -1,0 +1,25 @@
+<BOUCLE_content(SITES){id_syndic}{si #ENV{reload}|non}>
+<article class="content-principal">
+     [(#REM)Le panier]
+     #INCLURE{fond=inclure/mon_panier,env,objet=article,id_objet=#GET{id_article},env,ajax=mon_panier}
+    <header class="cartouche">
+        <h1 class="h1 #EDIT{nom_site}">#NOM_SITE</h1>
+    </header>
+  <section class="body_content">   
+    [<aside class="right">
+        [(#REM)Les Contenus liés]
+        (#INCLURE{fond=inclure/contenu_lie_a,objet=site,id_objet=#ID_SYNDIC,type_lien=utilise_par_site,env})
+    </aside> ] 
+      [<section class="#EDIT{descriptif} chapo">(#DESCRIPTIF)</section>]
+      [<section class="#EDIT{url_site} hyperlien site"><a href="#URL_SITE" class="spip_out h2">(#URL_SITE|couper{80})</a></section>]
+  </section>
+</article>
+<INCLURE{fond=liste/syndicarticles,id_syndic,env,ajax} />
+
+
+[<section class="notes"><hr />(#NOTES)</section>]
+</BOUCLE_content>
+[(#ENV{reload}|oui)
+ <INCLURE{fond=content/#ENV{type-page},env} /> 
+]
+<//B_content>

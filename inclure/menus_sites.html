@@ -1,0 +1,41 @@
+<ul class="menu-items submenu">
+    <li class="item sub_item[(#ENV{id_groupe}|=={1}|oui|ou{#ENV{id_groupe}|non}) on] first">
+        <a class="mouseover ajax" href="[(#URL_RUBRIQUE{#ENV{id_rubrique}}|parametre_url{id_groupe,1})]" title="<:websimple:realisations_sites:>" data-target="rubrique-#ID_RUBRIQUE-realisations" data-meta_title="<:websimple:realisations_sites:> - #NOM_SITE_SPIP" data-meta_description="<:websimple:realisations_sites_descriptif:>"><:websimple:realisations_sites:></a>       
+     </li>
+    <li class="item sub_item[(#ENV{id_groupe}|=={9}|oui) on] last">
+        <a class="mouseover ajax" href="[(#URL_RUBRIQUE{#ENV{id_rubrique}}|parametre_url{id_groupe,9})]" title="<:websimple:realisations_developpements:>" data-target="rubrique-#ID_RUBRIQUE-realisations-9" data-meta_title="<:websimple:realisations_developpements:> - #NOM_SITE_SPIP" data-meta_description="<:websimple:realisations_developpements_descriptif:>"><:websimple:realisations_developpements:></a>       
+     </li>
+
+</ul>
+
+<script type="text/javascript">
+$(function() { 
+    $(".mouseover").click(function() {
+        var attr=$(this).attr('data-target').split('-');   
+        var objet=attr[0];
+        var id_objet=attr[1];
+        var composition=attr[2];
+        var id_groupe=attr[3];      
+        var id=objet+'_'+id_objet;
+        var title=$(this).attr('data-meta_title');
+        var description=$(this).attr('data-meta_description'); 
+        ajaxReload(
+            'content', 
+                {
+                    callback:function(){
+                        $('title').html(title);
+                        $('meta[name=description]').replaceWith('<meta name="description" content="'+description+'">');                                        
+                    },                    
+                    args:{
+                       'type-page':objet,
+                       id_rubrique:id_objet,
+                       composition:composition,
+                       reload:'oui',
+                       id_groupe:id_groupe
+                        }
+                 }
+            );
+         return false;   
+        });     
+ });
+</script>

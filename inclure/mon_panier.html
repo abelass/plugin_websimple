@@ -1,0 +1,32 @@
+#CACHE{0}
+#SET{compteur_panier,#INCLURE{fond=inclure/compteur_panier,session}}
+<aside id="mon_panier" class="fenetre_container[ (#GET{compteur_panier}|>{0}|oui)panier_remplis]">
+     <h2 class="#ENV{objet}_#ID_OBJET"><a class="panier" href="[(#SELF|parametre_url{voir,#ENV{voir}|?{'',oui}})]"><:paniers:titre_panier:></a>
+         <span class="down"><img src="#CHEMIN{images/down_16.png}" alt="down"/></span>
+         <span class="up"><img src="#CHEMIN{images/up_16.png}" alt="up"/></span>         
+         <span class="compteur">[(#GET{compteur_panier}|>{0}|oui)#GET{compteur_panier}]</span></h2>
+       <INCLURE{fond=inclure/panier_details,env,ajax=mon_panier_details}/>
+</aside> 
+
+[(#REM) ouvrir et fermer le panier]
+<script type="text/javascript">
+    $(function(){
+
+    $("#mon_panier h2.#ENV{objet}_#ID_OBJET").click(function(e) {
+            e.preventDefault(); 
+            if($("#mon_panier .details").length!=0){
+              $("#mon_panier .details").toggle(1000);
+            } 
+            else ajaxReload('mon_panier_details', {
+                args:{
+                    voir:'oui',objet:'#ENV{objet}',id_objet:'#ENV{id_objet}'
+                    },
+                history:false
+                  }
+                );
+       $('#mon_panier').toggleClass('panier_open');  
+       return false;
+  });
+});    
+</script>
+

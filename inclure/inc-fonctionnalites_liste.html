@@ -1,0 +1,9 @@
+<BOUCLE_art(ARTICLES){id_article}>
+    <BOUCLE_trad(ARTICLES){traduction}{lang}>
+     <a href="#URL_ARTICLE">#TITRE</a>
+    </BOUCLE_trad>
+        <BOUCLE_or(ARTICLES){id_article=#ENV{id_article_origine}}>
+            <a href="#URL_ARTICLE">#TITRE [#LANG]</a>
+        </BOUCLE_or>
+    <//B_trad>
+</BOUCLE_art>

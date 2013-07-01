@@ -1,0 +1,11 @@
+<div class="accueil clearfix">
+	<div id="nom_site_spip" class="h1"><a rel="start home" href="#URL_SITE_SPIP/" title="<:accueil_site:>">[(#CHEMIN{images/websimple[_(#LANG)].png}|image_reduire{725,*}|inserer_attribut{alt,#NOM_SITE_SPIP})]</a></div>
+	[(#COMPOSITION|=={home}|oui)
+	[<div id='slogan_site_spip'>(#SLOGAN_SITE_SPIP|PtoBR)</div>]
+	]
+</div>
+[(#COMPOSITION|!={home}|oui)
+<nav class="hornav clearfix" id="nav">
+    <INCLURE{fond=inclure/menu_deroulant_ml,env} />
+</nav>
+]

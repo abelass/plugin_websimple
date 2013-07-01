@@ -1,0 +1,37 @@
+#CACHE{0}
+#SET{cookie_move,#EVAL{$_COOKIE['move']}}
+[(#GET{cookie_move}|=={off}|oui|ou{#GET{cookie_move}|non})#SET{faq,faq}]
+#SET{faq,#ENV{faq,#GET{faq}}}
+[(#GET{faq}|=={undefined}|oui)#SET{faq,faq}]
+<B_objets>
+<h2><:websimple:pack_compose_par:></h2>
+<dl class="[(#GET{faq,flottable}) options]">  
+<BOUCLE_objets(SELECTION_OBJETS){id_objet_dest}{objet=article}{objet_dest}{type_lien !IN utilise_pack,hebergement,pack_base}{par ordre}>
+    <INCLURE{fond=inclure/inc-options_details,id_article=#ID_OBJET,faq=#GET{faq},titre,env,compris=oui}/>
+</BOUCLE_objets>
+</dl>
+</B_objets>
+
+<B_pack_base>
+<h2><:websimple:plus_fonctionnalites_pack_base:></h2>
+<dl class="[(#GET{faq,flottable}) options]">  
+<BOUCLE_pack_base(SELECTION_OBJETS){id_objet_dest}{objet_dest}{type_lien=pack_base}{par ordre}>
+#SET{compteur,#COMPTEUR_BOUCLE}
+    #SET{articles,#ARRAY}
+    <B_article_pack_base>
+    <ul> 
+    <BOUCLE_article_pack_base(ARTICLES){id_article=#ID_OBJET}{si #OBJET|=={article}|oui}>
+        <BOUCLE_trad(ARTICLES){traduction}{lang}>
+            <li><a href="#URL_ARTICLE">#TITRE</a></li> 
+        </BOUCLE_trad> 
+            <BOUCLE_or(ARTICLES){traduction}{origine_traduction}>
+                <li><a href="#URL_ARTICLE">#TITRE</a></li> 
+            </BOUCLE_or>           
+        <//B_trad>      
+    </BOUCLE_article_pack_base>
+    </ul>   
+    </Barticle_pack_base>    
+</BOUCLE_pack_base>
+</dl>
+<br class="nettoyeur"/>
+</B_pack_base>

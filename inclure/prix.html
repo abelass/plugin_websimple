@@ -1,0 +1,59 @@
+#CACHE{0}
+
+#SET{exclus,#ARRAY}
+[(#REM)Les produits dans le panier]
+    <BOUCLE_panier(PANIERS_LIENS){id_panier=#SESSION{id_panier}}{objet=prix_objet}>
+        <BOUCLE_article(PRIX_OBJETS){id_prix_objet=#ID_OBJET}{objet=article}>
+        #SET{exclus,#GET{exclus}|push{#ID_OBJET}}
+        </BOUCLE_article>
+    </BOUCLE_panier>
+
+#SET{id_objet_dest,#LISTE{#ENV{id_article_base}}}
+#SET{id_objet_dest,#GET{id_objet_dest}|array_merge{#GET{exclus}}}
+#SET{utilises,#ARRAY}
+[(#REM)Les produits compris dans le pack présent ou contenu dans le panier ou compris dans un pack sélectionné]
+<BOUCLE_objets(SELECTION_OBJETS){id_objet_dest IN #GET{id_objet_dest}}
+{objet_dest=#ENV{objet}}{type_lien IN compris_pack,pack_base}{par ordre}>
+#SET{utilises,#GET{utilises}|push{#ID_OBJET}}
+    <BOUCLE_objets_deps(SELECTION_OBJETS)
+    {id_objet_dest=#ID_OBJET}{objet_dest=#OBJET_DEST}{type_lien IN compris_pack,pack_base}{par ordre}>
+    #SET{utilises,#GET{utilises}|push{#ID_OBJET}}
+        <BOUCLE_re(BOUCLE_objets_deps)> </BOUCLE_re>
+    </BOUCLE_objets_deps>
+</BOUCLE_objets>
+
+
+<B_objets_precieux>
+<section class="prix">
+    <h2><:shopprix:info_prix:></h2>
+    <div class="vente liste_objets_precieux">
+        <BOUCLE_objets_precieux(PRIX_OBJETS){id_objet}{objet}>
+        [(#ID_OBJET|in_array{#GET{utilises}}|oui)#SET{utilise,oui}]
+        #SET{prix_ht,#PRIX_HT*{prix_objet,#ID_PRIX_OBJET}}
+        [(#SET{taxe,[(#PRIX*{prix_objet,#ID_PRIX_OBJET}|moins{#GET{prix_ht}})]})]  
+        [(#PRIX|>{0}|?{#SET{ttc,oui},#SET{ttc,''})}]   
+        [<span[(#GET{utilise}|oui) class="utilise"]>(#GET{prix_ht}|filtres_prix_formater) </span> ]([(#GET{taxe}|=={0}|?{<:shopprix:ttc:>,<:shopprix:htva:>})])
+                #SET{retour,#SELF|parametre_url{retour,ok}}
+        [(#GET{utilise}|ou{#ID_OBJET|in_array{#GET{exclus}}}|oui|?{
+            <img src="[(#CHEMIN{images/tick_16.png})]" alt="ok"/> ,
+            <a class="ajax nohistory" href="[(#URL_ACTION_AUTEUR{remplir_panier,prix_objet-#ID_PRIX_OBJET,#GET{retour}})]" title="<:paniers:action_ajouter:>">[(#CHEMIN{images/plus.png}|image_reduire{15})]
+            </a>
+        })]
+            
+        </BOUCLE_objets_precieux>
+     
+    </div>
+</section>
+</B_objets_precieux>
+ [(#ENV{retour}|=={ok}|oui)
+<script type="text/javascript">
+    $(function(){
+
+        ajaxReload('mon_panier', {
+            args:{voir:'',retour:''},
+            history:false
+        });
+        return false;
+        });      
+</script>
+]  
