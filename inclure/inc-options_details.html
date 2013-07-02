@@ -1,6 +1,6 @@
 <BOUCLE_article(ARTICLES){id_article}>
     <BOUCLE_trad(ARTICLES){traduction}{lang}>
-        <dt class="row">
+        <dt class="row_faq">
                 #SET{id_article,''}
                  [(#ENV{faq}|=={faq}|?{
                      #SET{id_article,#ID_ARTICLE}
@@ -21,7 +21,7 @@
         </dd>]
     </BOUCLE_trad>
         <BOUCLE_or(ARTICLES){traduction}{origine_traduction}>
-            <dt class="row">
+            <dt class="row_faq">
                     #SET{id_article,''}
                      [(#ENV{faq}|=={faq}|?{
                          #SET{id_article,#ID_ARTICLE}

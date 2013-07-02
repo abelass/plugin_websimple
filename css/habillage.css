@@ -177,10 +177,9 @@
 /* Titraille / Intertitres */
 body,h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 { font-family: 'GoodDogRegular', Arial, sans-serif;}
 
-extra2 h3{font-size:1em}
+#aside h3{font-size:1em}
 
 h1, .h1{
-	font-size: 3.5em ;
 	color:#eec831; 
 	text-align:left;
 	line-height:1.2em;
@@ -189,7 +188,20 @@ h1, .h1{
 	font-weight:bold;	
 	}
 
-h2, .h2{font-size:2em}
+
+
+
+
+   h1, .h1,#slogan_site_spip {
+      font-size: 3.5em;
+   }
+
+   h2, .h2 {
+      font-size: 2em;
+   }
+
+	#header{top:-6em}
+	#slogan_site_spip {margin-top:0.2em}
 
 
 /*Layout*/
@@ -198,13 +210,9 @@ body {
 	border:none;
 	background:none;
 	behavior: url(/PIE.htc);
-	/*max-width:1100px;
-	min-width:945px;
-	width: auto;
-	margin: 0 	0 0 17.5em;
-	margin : 0 auto;*/
 	position:relative;
 	z-index:50;
+	font-size:0.81em;
 	}
  	
 .page {
@@ -214,8 +222,8 @@ body {
 	behavior: url(/PIE.htc);
     box-shadow: none;
     margin: 8em auto;
-    /*width: 756px;*/
-    /*padding: 0 2em;*/
+    width: 965px;
+    padding: 0 2em;
     position: relative;
     text-align: left;
 	}
@@ -233,6 +241,8 @@ body {
 	background-color:#ffffff;
 	border-radius: 0.8em;
 	behavior: url(/PIE.htc);
+	width:81%;
+	margin-left:9%;
 	
 	/*position:relative;
     margin: 0em 0 6em 0;
@@ -242,12 +252,16 @@ body {
 	min-height: 38em;*/
 }
 
-.home .container {
+.rubrique_home .container {
 	background-color:#FFFFFF;
 	border: 0px none;
 	padding-left:0;
 
 }
+
+.row{margin:0; padding-bottom:2em}
+
+.rubrique_home .row{position:relative;}
 
 
 .cartouche{
@@ -272,7 +286,7 @@ body {
 
 .content p, .content dl, .content ul{	font-size:1.2em;}
 
-.home .content ul{font-size:1em;}
+.rubrique_home .content ul{font-size:1em;}
  
 .content dl p {
 	font-size: 0.9em;
@@ -297,14 +311,13 @@ body {
 	behavior: url(/PIE.htc);	
 }
 
-.home .content {
+.rubrique_home .content {
 	background-color:transparent;
     width: 100%;
-    min-height: 39em;
     margin: 0;
 }
 
-.home .content-principal{text-align:center; font-size:1.2em;font-weight: bold}
+.rubrique_home .content-principal{text-align:center; font-size:1.2em;font-weight: bold}
 
 #aside{
 	float: left;
@@ -318,26 +331,27 @@ body {
 #aside h3{margin:0.5em}
 
 
-.home #aside{
+.rubrique_home #aside{
 	display:none
 }
 
 
 #footer{
-	text-align:center;
-	 margin: 0 6em 1em;
-	 position: absolute;
-	 bottom: 7em;
-    z-index: 200;
-    width:80%;
+margin:0;
+padding:0;
+border:none;
     }
 
 #header {
 	position:relative;
-    /*top :-6em;*/}
+    /*top :-100px;*/}
+
+.header{border:none;}
+
+
 
 #nom_site_spip{
-	line-height:0px;
+	line-height:12px;
     text-align: center;
     width:100%;
     background:#63B362;
@@ -345,21 +359,22 @@ body {
    	border-radius: 0.15em;
     behavior: url(/PIE.htc);
     padding: 0.1em 0;
+
 }
 
+.rubrique_home #nom_site_spip{    bottom:0.1em;}
 .accueil .h1{
 	padding:0;
 }
 #nom_site_spip a{    color: #ffffff;}
 
 #slogan_site_spip{
-	font-size:3.5em;
 	letter-spacing: 0.1em;
 	line-height: normal;
 	color:#63B362;
 	position:relative;
-}
 
+}
 
 
 /*Menus*/
@@ -380,17 +395,21 @@ body {
 
 /*Home*/
 
-.home .menu{
-	position:absolute;
-	z-index:200
+.rubrique_home .menu{
+	z-index:200;
+	overflow: hidden;
 }
 
 ul.home {
+	width:100%;
 	overflow: hidden;
 	padding:0;
+
 }
 
-.home .menu-items{margin-left:0.19em}
+.rubrique_home .menu-items{margin-left:0.19em}
+
+ul.box_menu ul{padding:0}
 
 ul.box_menu li.item{
 	font-family: 'GoodDogRegular', Arial, sans-serif;
@@ -399,16 +418,17 @@ ul.box_menu li.item{
     border-radius: 0.4em;
     behavior: url(/PIE.htc);
     float: left;
-    margin: 0 0.12em 0.3em 0.12em;
+    margin: 0 0.1em 0.3em 0.2em;
     padding: 0;
     text-align: center;
-    height:244px;
-    width: 244px;
+    height:7.2em;
     font-size:2.5em;
     overflow:hidden;
-
+	width:100%;
     }
-    
+
+.rubrique_home ul.box_menu li.item{width:31%}
+
 ul.box_menu li.item:hover ul, ul.box_menu li.item:hover .text,ul.box_menu li.item:hover dt, ul.box_menu li.item:hover dd, ul.box_menu li.item:hover dl{
 	opacity:1;
 	background-color:#63B362;
@@ -453,9 +473,7 @@ ul.box_menu li .text p{
 }
     	
 /*Home Packs*/
- ul.box_menu li.item ul{
-	height:164px;
- }
+
  
 ul.box_menu li.item:hover ul{
  	border-bottom-left-radius: 0.4em;
@@ -541,6 +559,8 @@ ul.box_menu li.site_slider .slider{
 }
 
 ul.box_menu li.site_slider .sjcycle_sites{
+	height:157px;
+	width:220px;
 	background-color:transparent;
 	background-image: url("images/screen.png");
 	background-repeat:no-repeat;
@@ -630,10 +650,7 @@ ul.box_menu li.logo_auteurs:hover img{
 	border-bottom-left-radius: 0.4em;
 }
 
-
-ul.box_menu .image_1{padding-right:17px;}
-
-ul.box_menu .image_2{padding-left:17px;}
+ul.box_menu .image_2{float:right}
 	
 ul.box_menu li.end{
 	margin-right:0
@@ -688,35 +705,39 @@ ul.box_menu li.citation .text p{
 
 /*Menu horizontal*/
 
-.hornav {
+.navbar {
     background-color: transparent;
     border-left: 0px;
     border-right:0px;
     font-size:2em
 }
 
-#header .hornav {
+#header .navbar {
     margin: 1em 0 0 0;
 
 }
 
-.hornav .menu-items {
+.navbar .menu-items {
 	margin-top:0;
 	background-color:#63b262;
     border-radius:0.4em;
     behavior: url(/PIE.htc);
 }
 
-.hornav .menu-items .item{
+.navbar .menu-items .item{
 	border-radius:0.4em;
   	behavior: url(/PIE.htc);
 	background-color:#63b262;
 }
 
+#nav{
+	position: relative;
+    top: -2em;}
+
 #nav li{
 	display:inline;
 	margin:0;
-	padding:0.1em 1em 0 1em;
+	padding:0.1em 1em 0 0.5em;
 }
 
 
@@ -724,66 +745,85 @@ ul.box_menu li.citation .text p{
     border-bottom: 0px ;
 }
 
-.hornav .menu-items  .on {
+.navbar .menu-items  .on {
   background-color:#99CC66;
 
 }
 
-.hornav .item a:focus,.hornav .item a:hover,.hornav .item a:active{
+.navbar{margin:0}
+
+.navbar-inner {
+    border:none;
+    border-radius: 0;
+    background-image:none;
+    box-shadow: none;
+    }
+    
+.navbar-inverse .navbar-inner {
+	    background:transparent;
+}
+.navbar .item a:focus,.navbar .item a:hover,.navbar .item a:active{
   background-color:transparent;
 }
 
 
-.hornav .item:focus,.hornav .item:hover,.hornav .item:active{
+.navbar .item:focus,.navbar .item:hover,.navbar .item:active{
   background-color:#99CC66;
 }
 
-.menuder li { 
+.navbar li { 
 	float: left;
 	padding: 0px;
 	width: auto;
 }
 
-.menuder a { width: auto;}
+.navbar a { width: auto;}
 
-.hornav .item a { 
+.navbar .item a { 
 	font-weight:bold;
 	padding: 0.2em 0.1em;	
-	color: #FFFFFF;
+	
 }
 
 
-.menuder li:hover { background:white;}
-
-.menuder, .menuder ul {
-    border-color: none;
-    border-image: none;
-    border-style: solid;
-    border-width: 1px 0;
-
+.navbar-inverse .brand, .navbar-inverse .nav > li > a {
+    color: #FFFFFF;
+    text-shadow: 0;
 }
 
-.menuder li ul{
+
+.navbar li:hover { background:white;}
+
+.navbar, .navbar ul {
+    border:none 0;
+    width:100%;
+}
+
+.navbar li ul{
     z-index:600;	
 }
 
 /*aside menu vertical*/
 
-#aside  .box_menu{
-	margin: 0 0 2em 0;
-	}
+.offset1{margin:0}
+
+ul{padding:0;margin: 0}
+
+ul.spip{margin-left:1em}
+
+#aside .box_menu, #aside .submenu{margin: 0 5% 5% 0;}
 
 
 #aside  ul.box_menu li.item ul {padding-bottom:0}   
  
 #aside  ul.box_menu li.item{
 	background-color:#99CC66;
-	height:auto;
+	height:7.5em;
 	float: none;
 	margin:0;
     	}
     	
-#aside ul{padding:0}
+
     	
 #aside  ul.box_menu li.item ul{opacity:1;filter: alpha(opacity =100);padding:0}
 
@@ -809,7 +849,7 @@ ul.box_menu li.citation .text p{
 	behavior: url(/PIE.htc);
 	}   
 
- ul.submenu li.on{background:#99cc66}
+ul.submenu li.on,  ul.submenu li:focus, ul.submenu li:hover, ul.submenu li:active{background:#99cc66}
 ul.submenu li.first{
 	 	border-top-right-radius:0.4em;
 	 	border-top-left-radius:0.4em;	 	
@@ -824,6 +864,19 @@ ul.submenu li.last{
 	border-top: 0px none;
 }
 
+ul.submenu  a:focus,ul.submenu a:hover,ul.submenu a:active { 
+	color: #FFFFFF ;
+	opacity:1;
+   filter: alpha(opacity = 100);
+   text-decoration:none;
+   background:#99cc66
+
+}
+
+.menu-items .item { 
+margin: 0px;
+padding: 0.38em;
+}
 /*Menu Horizontal*/
 
 
@@ -877,10 +930,13 @@ ul.submenu li.last{
 .content .menu-items .meta-publi a{font-weight:bold}
 
 .content .menu-items .pagination{
-	padding-top:1em;
-	font-size:0.6em;
+	padding-top:0;
+	font-size:1em;
 }
+.pagination {
+    margin: 0 0 0 0.5em;
 
+}
 
 .content .liste_articles_syndic{
 	font-size:1.2em;
@@ -903,7 +959,8 @@ ul.submenu li.last{
 	border-bottom-right-radius:0em;
 	border-bottom-left-radius:0em;	
 	height:auto;	
-	behavior: url(/PIE.htc);	
+	behavior: url(/PIE.htc);
+	font-size:1.8em;	
 }
 
 .content .menu_sites .introduction{
@@ -927,6 +984,7 @@ ul.submenu li.last{
 	border-radius:0.4em;	
 	}
 
+.introduction .thumbnails{clear:none;margin-left:0;float:left}
 /*Colonne droite*/
 
 aside.right,.options section.prix{
@@ -996,6 +1054,13 @@ aside.contenu_lie{float:right;}
 
 /*Divers*/
 
+.spip_logos { 
+border: medium none currentColor;
+float: left;
+margin: 0px 1.5em 1.5em 0px;
+padding: 0px;
+}
+
 .spip_documents_center {
     clear: none;
 }
@@ -1015,7 +1080,7 @@ section.hyperlien {
 
 	background:#ffffff;
 	behavior: url(/PIE.htc);
-	font-size:1.2em;
+	font-size:1em;
 	font-weight:bold;
 	}
 section.hyperlien.site a{color:#F9EE72}	
@@ -1031,10 +1096,14 @@ aside.more .h2, section.hyperlien.news .h2{
 	border-radius:0.4em;
 	behavior: url(/PIE.htc);
 	}
-.extra2 .logo_site{text-align:center;}
+#aside .logo_site{text-align:center;}
 
-.extra2 .logo_site .spip_logos{float:none;}
+#aside .logo_site .spip_logos{float:none;}
 
+
+blockquote{border:none}
+
+.invisible{display:none}
 /*Listes*/
 
 ul {list-style: none;}
@@ -1057,14 +1126,18 @@ ul {list-style: none;}
 .tools{
     color: #000000;
     font-size: 1.2em;
-    padding: 0.2em;
-    /*position: absolute;
-    right: 0.5em;*/
+    padding: 0;
+    position: absolute;
+    right: -7.5em;
     text-align: right;
-    float:right;
-    width: 5em}
+    width:15%;
+    top:5.4em;
+    line-height:normal;
+}
 
-.login{margin-top:1em}
+.formulaire_menu_lang{position:relative;top:0;width:100%}
+
+.login{margin-top:0.3em}
 
 /*options*/
 .options dt, .aide{cursor: pointer;}
@@ -1074,6 +1147,10 @@ ul {list-style: none;}
 
 .options dt.close span.closed, .faq dt.close span.close{display:inline;}
 .options dt.close span.open,.faq dt.close span.open{display:none;}
+
+dl dt, dl dd {
+    padding-left: 0;
+}
 
 .options dd.introduction{
 	padding:0.5em 0 0.5em 0.5em;
@@ -1095,8 +1172,10 @@ div.close{
 	position:absolute;
 	top:0;
 	right:0;
-	width:10px}
+	width:10px
 	
+	}
+.close{float:none;opacity:1;font-size:1.2em}	
 .action_close{cursor: pointer}
 
 .fenetre_container{position:relative;}
@@ -1253,8 +1332,9 @@ aside.prix {
 	border:none;
 }
 
-#panier_wrap .continuer, .annuler, .submit {
+#panier_wrap .continuer, .annuler, input.submit, .submit {
     background-color: #f9ed72;
+    background-image: none;    
 	border : #e5e5e5 2px solid;
 	margin:0.1em;
     padding : 0.1em;
@@ -1292,6 +1372,13 @@ aside.prix {
 	padding:0.2em 0.5em;
 }
 
+.formulaire_spip .boutons {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
 /*panneau move*/	
 .panneau{height:1.5em; background:#e5e5e5;clear:both;text-align:center}
 .panneau div {float:right;width:auto;margin-left:0.1em;background:#f3f3f3;padding:0.2em}
@@ -1315,6 +1402,7 @@ a:focus, a:hover, a:active {
 	opacity:0.4;
    filter: alpha(opacity = 40);
    text-decoration:none;
+   background:none;
 }
 
 .logo_site a:focus,.logo_site a:hover,.logo_site a:active { 
@@ -1326,6 +1414,133 @@ a:focus, a:hover, a:active {
 a[hreflang]:after {
     content: none;
 }
-ul.home a, .extra2 a, #footer a {
+ul.home a, #aside a, #footer a {
 	color:#FFFFFF;
 }
+@media only screen and (max-width: 767px) {
+	body{margin:0;padding:0;font-size:0.65m}
+
+   	#nom_site_spip{  
+   		position:relative;
+    	bottom:0.1em;
+    	border:none
+    	}
+   
+   #header{top:0.1em}
+	#slogan_site_spip {position:relative;top:0}
+	
+	
+	.page{padding:0;margin:0;border-radius: 0;width:100%}
+	
+	.container{margin-left:0;width:100%}
+	.rubrique_home .container{width:100%}
+	
+	#nav{
+		position: absolute;
+		top:0em;
+		right:0;
+		z-index:500;
+		}
+	.tools{
+		position:relative;
+		top:0;
+		right:0;
+		width:99%;
+		}
+	
+	.tools div.traductions div{display:inline;}
+	
+	.formulaire_menu_lang{text-align:left}
+
+	.formulaire_menu_lang,.login,.header .formulaire_menu_lang{width:50%;float:left}
+	
+
+	.nav-collapse{position:absolute;}
+
+	
+	.navbar .menu-items{background:none}
+	
+	.navbar, .navbar ul {width:auto;}
+	
+	.navbar .menu-items .item {background:none}
+	
+	
+	.navbar .menu-items  .on {
+	  background-color:none;
+	
+	}
+	
+	.navbar{margin:0}
+	
+	.navbar-inner {
+	    border:none;
+	    border-radius: 0;
+	    background-image:none;
+	    box-shadow: none;
+	    }
+	    
+	.navbar-inverse .navbar-inner {
+		    background:none;
+	}
+	.navbar .item a:focus,.navbar .item a:hover,.navbar .item a:active{
+	  background-color:none;
+	}
+	
+	.navbar .item:focus,.navbar .item:hover,.navbar .item:active{
+	  background-color:none;
+	}
+
+	.navbar-responsive.navbar-inverse .navbar-inner .nav-collapse {
+	    top: 1.2em;
+	    right:0.2em
+	}
+}
+
+
+@media only screen and (max-width: 640px) {
+body {
+	font-size:0.6em;
+	}
+
+	.rubrique_home .row{margin:0em;top:0;padding:0}
+	
+	.rubrique_home ul.box_menu li.item{width:48%;margin:1%  1%;}
+	
+	.descriptif .titre{display:none}
+	
+	ul.box_menu li.site_slider .sjcycle_sites {
+	text-align:center;
+    width: 80%;
+    height:80%;
+    background-image:none;
+	}
+	
+	ul.box_menu li.site_slider .sjcycle_sites img{max-width:80% !important;left:-8%}ul.box_menu li .text p {
+    padding-top: 1%;
+
+}
+
+}
+
+@media only screen and (max-width: 450px) {
+body {
+	font-size:0.55em;
+	}
+   
+		ul.box_menu li.site_slider .sjcycle_sites img{max-width:100% !important;left:0}
+		.rubrique_home ul.box_menu li.item{width:100%;margin:1%  0;}
+	.content {
+	    width: 100%;
+	
+	}
+	#aside{width:100%;margin-top:1em}	
+	#aside .box_menu, #aside .submenu {
+    margin:0;
+	}
+	
+	#aside ul.box_menu li.item {height: 165px;}
+}
+
+
+
+

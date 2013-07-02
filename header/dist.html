@@ -9,11 +9,10 @@
 <aside class="tools">
     <INCLURE{fond=inclure/menu_langues,env,ajax=langues}/>
     <div class="login">
-        [<span class="sep">
-        (#SESSION{id_auteur}|oui)</span><a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a>][<span class="sep">
-        (#SESSION{id_auteur}|non)</span><a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]"
+        [(#SESSION{id_auteur}|oui)<div><a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a></div>][<div>
+        (#SESSION{id_auteur}|non)</div><a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]"
     rel="nofollow" target="_blank"
-    onclick="if (jQuery.modalbox) {jQuery.modalbox('[(#URL_PAGE{login}|parametre_url{url,#SELF}|parametre_url{var_zajax,content})]');return false;}" ><:lien_connecter:></a>][<span class="sep">
-        (#AUTORISER{ecrire})</span><a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>]
+    onclick="if (jQuery.modalbox) {jQuery.modalbox('[(#URL_PAGE{login}|parametre_url{url,#SELF}|parametre_url{var_zajax,content})]');return false;}" ><:lien_connecter:></a>][<div>
+        (#AUTORISER{ecrire})</div><a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>]
     </div>    
 </aside>   
