@@ -1177,7 +1177,7 @@ div.close{
 	width:10px
 	
 	}
-.close{float:none;opacity:1;font-size:1.2em}	
+.close{float:none;opacity:1;font-size:1em}	
 .action_close{cursor: pointer}
 
 .fenetre_container{position:relative;}
