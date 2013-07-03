@@ -1470,10 +1470,10 @@ ul.home a, #aside a, #footer a {
 	.login{width:40%;float:left}
 	
 
-	.nav-collapse{position:absolute;}
+	.nav-collapse{position:absolute;border-radius: 0.2em}
 
 	
-	.navbar .menu-items{background:none}
+	.navbar .menu-items{background:none;border-radius: 4px;margin-top:0.2em}
 	
 	.navbar, .navbar ul {width:auto;}
 	
@@ -1506,9 +1506,11 @@ ul.home a, #aside a, #footer a {
 	}
 
 	.navbar-responsive.navbar-inverse .navbar-inner .nav-collapse {
-	    top: 1.2em;
-	    right:0.2em
+    right: 0.28em;
+    top: 1.6em;
 	}
+	
+	#nav li{padding:0;line-height:0.1em }
 }
 
 
