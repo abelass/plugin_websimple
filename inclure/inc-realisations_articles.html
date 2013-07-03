@@ -25,15 +25,15 @@
 				<li class="item hentry">
 				    <article>
 					<h3><a href="#URL_ARTICLE">#TITRE[(#LANG|!={#ENV{lang}}|oui) ([(#LANG)])]</a></h3>
-					<div class="thumbnails">
-						<a href="#URL_ARTICLE">[(#LOGO_ARTICLE|=={''}|?
-							{
-							[(#CHEMIN{styles/images/Portfolio.png}|image_reduire{120,90}|inserer_attribut{class,spip_logos}|inserer_attribut{alt,#TITRE})]
-							,
-							[(#LOGO_ARTICLE|image_reduire{120,90}|inserer_attribut{alt,#TITRE})]
-							})]</a>
-					</div>
-					<div class="introduction entry-content">									
+					<div class="introduction entry-content">
+                    <div class="thumbnails">
+                        <a href="#URL_ARTICLE">[(#LOGO_ARTICLE|=={''}|?
+                            {
+                            [(#CHEMIN{styles/images/Portfolio.png}|image_reduire{120,90}|inserer_attribut{class,spip_logos}|inserer_attribut{alt,#TITRE})]
+                            ,
+                            [(#LOGO_ARTICLE|image_reduire{120,90}|inserer_attribut{alt,#TITRE})]
+                            })]</a>
+                    </div>					    									
 						[<div class="#EDIT{introduction} descriptif">(#INTRODUCTION|couper{150})</div>]
 					</div>
 					</article>
