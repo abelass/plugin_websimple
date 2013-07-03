@@ -1124,9 +1124,9 @@ div.close{
 	/* RGBa with 0.6 opacity */
 	background: rgba(255,255,255, 0.6);
 	/* For IE 5.5 - 7*/
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99255255255, endColorstr=#99255255255);
 	/* For IE 8*/
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99255255255, endColorstr=#99255255255)";
 	
 	border-radius: 0.4em; height:80%;padding: 0 0.2em;
     height: 0.7em;
