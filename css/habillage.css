@@ -1317,7 +1317,7 @@ aside.prix {
 	}
 	
 .vente img{top:0.1em ;right:0.1em}	
-.vente a.plus, .vente img{float:right}
+.vente a.plus, .vente img{float:right;width:14%}
 .vente .utilise{text-decoration: line-through}
 #panier_wrap{
 
