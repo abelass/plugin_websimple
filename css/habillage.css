@@ -1246,15 +1246,35 @@ div.close{
     animation: none;	
 	}
 #mon_panier h2 .compteur{
-	width:26px;	background: url(images/panier.png) 0 0.2em no-repeat;
+	width:1.8em;
+	background: url(images/panier.png) 0 0.2em no-repeat;
+	background-size: 100% auto;
 	display:block;
 	float:right; 
-	text-align:center;
 	line-height:2.1em;
-	font-size:0.6em;
-    height:26px;	
+
+    height:1.8em;	
+    	font-size:0.6em;
+    		text-align:center;
 	}	
 
+#mon_panier h2 .compteur span{
+	display:block;
+	/* Fallback for web browsers that doesn't support RGBa */
+	background: rgb(255,255,255);
+	/* RGBa with 0.6 opacity */
+	background: rgba(255,255,255, 0.6);
+	/* For IE 5.5 - 7*/
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+	/* For IE 8*/
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+	
+	border-radius: 0.4em; height:80%;padding: 0 0.2em;
+    height: 0.7em;
+    line-height: 0.6em;
+	width:auto;
+ 	margin-top: 0.8em;
+	}
 #mon_panier h2 a{padding:0 1em 0 0.1em;    color: #FFFFFF}
 
 

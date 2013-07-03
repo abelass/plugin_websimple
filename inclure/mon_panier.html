@@ -4,7 +4,7 @@
      <h2 class="#ENV{objet}_#ID_OBJET"><a class="panier" href="[(#SELF|parametre_url{voir,#ENV{voir}|?{'',oui}})]"><:paniers:titre_panier:></a>
          <span class="down"><img src="#CHEMIN{images/down_16.png}" alt="down"/></span>
          <span class="up"><img src="#CHEMIN{images/up_16.png}" alt="up"/></span>         
-         <span class="compteur">[(#GET{compteur_panier}|>{0}|oui)#GET{compteur_panier}]</span></h2>
+         <span class="compteur">[<span>(#GET{compteur_panier}|>{0}|oui)[(#GET{compteur_panier}|trim)]</span>]</span></h2>
        <INCLURE{fond=inclure/panier_details,env,ajax=mon_panier_details}/>
 </aside> 
 
