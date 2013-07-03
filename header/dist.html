@@ -12,7 +12,7 @@
         [(#SESSION{id_auteur}|oui)<div><a href="#URL_LOGOUT" rel="nofollow"><:icone_deconnecter:></a></div>][<div>
         (#SESSION{id_auteur}|non)</div><a href="[(#URL_PAGE{login}|parametre_url{url,#SELF})]"
     rel="nofollow" target="_blank"
-    onclick="if (jQuery.modalbox) {jQuery.modalbox('[(#URL_PAGE{login}|parametre_url{url,#SELF}|parametre_url{var_zajax,content})]');return false;}" ><:lien_connecter:></a>][<div>
-        (#AUTORISER{ecrire})</div><a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a>]
+    onclick="if (jQuery.modalbox) {jQuery.modalbox('[(#URL_PAGE{login}|parametre_url{url,#SELF}|parametre_url{var_zajax,content})]');return false;}" ><:lien_connecter:></a>][<span class="sep">|</span><div>
+        (#AUTORISER{ecrire})<a href="#EVAL{_DIR_RESTREINT_ABS}"><:espace_prive:></a></div>]
     </div>    
 </aside>   

@@ -1139,6 +1139,8 @@ ul {list-style: none;}
 
 .formulaire_menu_lang{position:relative;top:0;width:100%}
 
+.tools span.sep{display:none}
+
 .login{margin-top:0.3em}
 
 /*options*/
@@ -1443,18 +1445,29 @@ ul.home a, #aside a, #footer a {
 		right:0;
 		z-index:500;
 		}
+		
 	.tools{
 		position:relative;
 		top:0;
 		right:0;
-		width:99%;
+		width:97%;
+		padding:1em 0em;
+		margin:0.5em 0.5em;
 		}
-	
+		
+
+		
+	.tools span.sep{display:inline;padding:0 0.2em}
+		
+	.login{margin:0}
+	.login div{display:inline}
 	.tools div.traductions div{display:inline;}
 	
 	.formulaire_menu_lang{text-align:left}
+	
+	.formulaire_menu_lang,.header .formulaire_menu_lang {float:left;width:60%;}
 
-	.formulaire_menu_lang,.login,.header .formulaire_menu_lang{width:50%;float:left}
+	.login{width:40%;float:left}
 	
 
 	.nav-collapse{position:absolute;}
@@ -1503,7 +1516,7 @@ ul.home a, #aside a, #footer a {
 body {
 	font-size:0.6em;
 	}
-
+	#slogan_site_spip{font-size:3em}
 	.rubrique_home .row{margin:0em;top:0;padding:0}
 	
 	.rubrique_home ul.box_menu li.item{width:48%;margin:1%  1%;}
@@ -1528,7 +1541,7 @@ body {
 body {
 	font-size:0.55em;
 	}
-   
+   	#slogan_site_spip{font-size:2em}
 		ul.box_menu li.site_slider .sjcycle_sites img{max-width:100% !important;left:0}
 		.rubrique_home ul.box_menu li.item{width:100%;margin:1%  0;}
 	.content {
