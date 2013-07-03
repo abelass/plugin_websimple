@@ -995,6 +995,8 @@ aside.right,.options section.prix{
 	margin:0 0 1% 1%;
 	behavior: url(/PIE.htc);
 	padding:0.5em 0.5em 0 0.5em;
+	position:relative;
+	z-index:500;
 }
 
 
