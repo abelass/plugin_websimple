@@ -1,17 +1,6 @@
-/*
-#extra1 {
-    position: absolute;
-    float:left;
-    z-index:10;
 
-}
-*/
 .page{position:relative;z-index:11}
 
 
-.home .menu{
-	position:absolute;
-	z-index:9;
-	left:0;
-}
+
 
