@@ -610,6 +610,9 @@ ul.box_menu li.citation .text p{
     behavior: url(/PIE.htc);
 }
 
+.navbar-inverse .navbar-inner{
+	filter:none;
+}
 .navbar .menu-items .item{
 	border-radius:0.4em;
   	behavior: url(/PIE.htc);
@@ -646,10 +649,10 @@ ul.box_menu li.citation .text p{
     }
     
 .navbar-inverse .navbar-inner {
-	    background:transparent;
+	    background:#ffffff;
 }
 .navbar .item a:focus,.navbar .item a:hover,.navbar .item a:active{
-  background-color:transparent;
+  background-color:#ffffff;
 }
 
 
@@ -1081,6 +1084,7 @@ div.close{
     right: 1em;
     top: 1em;
     z-index: 700;
+    width:33%;
 }
 
 #mon_panier h2,#mon_panier .h2{
@@ -1092,7 +1096,6 @@ div.close{
     behavior: url(/PIE.htc);
     position:relative;
     z-index:200;
-    width:6em
 	}
 	
 
@@ -1126,11 +1129,6 @@ div.close{
 	background: rgb(255,255,255);
 	/* RGBa with 0.6 opacity */
 	background: rgba(255,255,255, 0.6);
-	/* For IE 5.5 - 7*/
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99255255255, endColorstr=#99255255255);
-	/* For IE 8*/
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99255255255, endColorstr=#99255255255)";
-	
 	border-radius: 0.4em; height:80%;padding: 0 0.2em;
     height: 0.7em;
     line-height: 0.6em;
