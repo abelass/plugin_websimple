@@ -169,7 +169,7 @@ body {
 
 .content p, .content dl, .content ul{	font-size:1.2em;}
 
-.rubrique_home .content ul{font-size:1em;}
+.rubrique_home .content ul{font-size:1em;height:67%;}
  
 .content dl p {
 	font-size: 0.9em;
@@ -299,7 +299,6 @@ ul.box_menu li.item{
 	position:relative;
 	background: none repeat scroll 0 0 #63B362;
     border-radius: 0.4em;
-
     float: left;
     margin: 0 0.1em 0.3em 0.2em;
     padding: 0;
@@ -308,7 +307,6 @@ ul.box_menu li.item{
     font-size:2.5em;
     overflow:hidden;
 	width:100%;
-	z-index:200;
 	behavior: url(/PIE.htc);
     }
 
@@ -324,7 +322,8 @@ ul.box_menu li.item:hover ul, ul.box_menu li.item:hover .text,ul.box_menu li.ite
 	}
 	
 .box_menu .item .titre{
-	line-height:2.5em;
+	line-height:2.2em;
+	height:33.33%;
 }
 
  ul.box_menu li.item:hover .titre{
@@ -336,15 +335,17 @@ ul.box_menu li.item:hover ul, ul.box_menu li.item:hover .text,ul.box_menu li.ite
 
  ul.box_menu li.item li{
   	line-height:2.34em;
+  	height:50%
  } 
 
 ul.box_menu li .text{
 	background-color: #aaa99d;
  	opacity:1;
  	filter: alpha(opacity = 100);
- 	line-height: 0.6351em;
+ 	line-height: 0.64em;
  	border-bottom-left-radius: 0.4em;
  	border-bottom-right-radius: 0.4em; 	
+ 	height:67%;
 
 }
 
@@ -397,9 +398,9 @@ ul.box_menu li.item:hover .titre{
 ul.box_menu dl, ul.box_menu li.citation .text {
 	background:#e61cd4;
 	text-align:left;
-	padding:0.5em 0.3em 0.3em 0.3em;
+	padding:0 0.3em;
 	margin:0;
-	height:	3.17em;
+	height:	67.5%;
  	border-bottom-left-radius: 0.4em;
  	border-bottom-right-radius: 0.4em;}
 	
@@ -414,7 +415,7 @@ ul.box_menu li.citation .text{
 	filter: alpha(opacity = 50);
 }	
 
-ul.box_menu dl dt{font-weight:normal; font-size:0.8em;}
+ul.box_menu dl dt{font-weight:normal; font-size:0.8em;padding-top:0.5em}
 
 ul.box_menu dl .spip_logos{
 	margin: 0 0.2em 0.1em 0;
@@ -427,7 +428,7 @@ ul.box_menu dl p {
 }
 
 ul.box_menu dd {
-    padding-left: 0em;
+    padding: 0 0 0.3em 0;
     margin:0.3em 0 0 0;
 }
 
@@ -437,7 +438,6 @@ ul.box_menu li.site_slider .slider{
 	text-align: center;
 	background-color:#7ca2ed;
 	padding-left:0.4em;
-	height: 4.698em;
  	border-bottom-left-radius: 0.4em;
  	border-bottom-right-radius: 0.4em;
 }
@@ -491,7 +491,8 @@ ul.box_menu li.logo_auteurs .images{
 	
 .images .image, .portraits .image{
 		float:left;
-		height:	164px;
+		height:	100%;
+		width:50%;
 }
 
 .portraits .wrapper{min-height:164px;height:auto; width:430px;margin-bottom:2em}
@@ -533,8 +534,9 @@ ul.box_menu li.logo_auteurs:hover img{
 	border-bottom-right-radius: 0.4em;
 	border-bottom-left-radius: 0.4em;
 }
+ul.box_menu .image_1{text-align:left}
 
-ul.box_menu .image_2{float:right}
+ul.box_menu .image_2{text-align:right}
 	
 ul.box_menu li.end{
 	margin-right:0
@@ -709,7 +711,7 @@ ul.spip{margin-left:1em}
     	
 
     	
-#aside  ul.box_menu li.item ul{opacity:1;filter: alpha(opacity =100);padding:0}
+#aside  ul.box_menu li.item ul{opacity:1;filter: alpha(opacity =100);padding:0;height:67%}
 
 
 
