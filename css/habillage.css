@@ -71,10 +71,6 @@ h1, .h1{
 	font-weight:bold;	
 	}
 
-
-
-
-
    h1, .h1,#slogan_site_spip {
       font-size: 3.5em;
    }
@@ -105,7 +101,8 @@ body {
 	behavior: url(/PIE.htc);
     box-shadow: none;
     margin: 8em auto;
-    width: 965px;
+    max-width: 965px;
+    width:auto;
     padding: 0 2em;
     position: relative;
     text-align: left;
@@ -1019,7 +1016,7 @@ ul {list-style: none;}
     font-size: 1.2em;
     padding: 0;
     position: absolute;
-    right: -7.5em;
+    right: -14.5%;
     text-align: right;
     width:15%;
     top:5.4em;
