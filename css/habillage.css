@@ -1408,7 +1408,8 @@ ul.home a, #aside a, #footer a {
 	
 	ul.box_menu li.item ul li.row_1{background:#f9ed72;}
 	 
-	ul.box_menu li.item .titre{background:#99cc66;}
+	ul.box_menu li.item .titre{background:#99cc66;	border-top-left-radius: 0.4em;
+ 	border-top-right-radius: 0.4em;}
 	
 	ul.box_menu li.site_slider .sjcycle_sites,ul.box_menu dt, ul.box_menu dd,
 ul.box_menu li.logo_auteurs .images {opacity: 1;filter: alpha(opacity = 100);}
@@ -1440,6 +1441,8 @@ body {
 	}
 	
 	ul.box_menu li.site_slider .sjcycle_sites img{top:0;left:20%}
+	
+	ul.box_menu li.site_slider .sjcycle_sites{height:auto}
 	
 	.slider img{width:100%;height:auto}
 		
