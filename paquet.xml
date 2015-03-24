@@ -21,7 +21,7 @@
 	<necessite nom="edition_directe" compatibilite="[3.2.6;]" />	
 	<necessite nom="selection_objet" compatibilite="[1.5.7;]" />	
 	<necessite nom="sjcycle" compatibilite="[2.2.4;]" />	
-	<necessite nom="shop" compatibilite="[1.2.0;]" />
+	<necessite nom="shop" compatibilite="[1.8.1;]" />
 	<necessite nom="prix_objets" compatibilite="[1.6.7 ;]" />	
 	<necessite nom="facteur" compatibilite="[2.3.1;]" />		
 	<necessite nom="faq" compatibilite="[2.1.21;]" />
