@@ -1,9 +1,9 @@
 <paquet
 	prefix="theme_websimple"
 	categorie="edition"
-	version="1.1.2"
+	version="2.0.0"
 	etat="dev"
-	compatibilite="[3.0.5;3.0.*]"
+	compatibilite="[3.0.5;3.1.*]"
 	schema="0.0.2"
 	>
 	<nom>Web Simple</nom>
@@ -12,36 +12,35 @@
 
 	<licence>GNU/GPL</licence>
 
-	<necessite nom="spipr_dist" compatibilite="[0.4.3;]" /> 
-	<necessite nom="multilingue" compatibilite="[0.2.1;]" /> 	
-	<necessite nom="multilang" compatibilite="[	0.7.0;]" />
-	<necessite nom="corbeille" compatibilite="[3.0.1;]" />		
-	<necessite nom="crayons" compatibilite="[1.13.9;]" />		
-	<necessite nom="compositions" compatibilite="[3.3.1;]" />	
-	<necessite nom="edition_directe" compatibilite="[3.2.6;]" />	
-	<necessite nom="selection_objet" compatibilite="[1.5.7;]" />	
-	<necessite nom="sjcycle" compatibilite="[2.2.4;]" />	
-	<necessite nom="shop" compatibilite="[1.8.1;]" />
-	<necessite nom="prix_objets" compatibilite="[1.6.7 ;]" />	
-	<necessite nom="facteur" compatibilite="[2.3.1;]" />		
-	<necessite nom="faq" compatibilite="[2.1.21;]" />
-	<necessite nom="accesrestreint" compatibilite="[3.8.4;]" />		
-	<necessite nom="seo" compatibilite="[1.8.1;]" />
-	<necessite nom="mailcrypt" compatibilite="[2.4.0;]" />		
-	<necessite nom="emailtospip" compatibilite="[1.1.0;]" />
-	<necessite nom="cextras" compatibilite="[3.2.4;[" />
-	<necessite nom="nospam" compatibilite="[1.5.11;[" />		
-		
-	<utilise nom="clients" compatibilite="[0.5.5;]" />
-	<utilise nom="bootstrap" compatibilite="[1.5.3;]" />
-	
-	<pipeline nom="jqueryui_plugins" inclure="theme_websimple_pipelines.php" /> 
-	<pipeline nom="formulaire_charger" inclure="theme_websimple_pipelines.php" /> 	
-	<pipeline nom="formulaire_verifier" inclure="theme_websimple_pipelines.php" /> 		
-	<pipeline nom="formulaire_traiter" inclure="theme_websimple_pipelines.php" /> 
-	<pipeline nom="recuperer_fond" inclure="theme_websimple_pipelines.php" /> 	
-	<pipeline nom="pre_insertion" inclure="theme_websimple_pipelines.php" /> 
-	<pipeline nom="insert_head" inclure="theme_websimple_pipelines.php" />	
-	<pipeline nom="declarer_champs_extras" inclure="base/theme_websimple.php" /> 
+	<necessite nom="accesrestreint" compatibilite="[3.15.9;]" />
+	<necessite nom="cextras" compatibilite="[3.11.3;[" />
+	<necessite nom="compositions" compatibilite="[3.5.10;]" />
+	<necessite nom="crayons" compatibilite="[1.26.9;]" />
+	<necessite nom="emailtospip" compatibilite="[1.1.1;]" />
+	<necessite nom="edition_directe" compatibilite="[3.3.0;]" />
+	<necessite nom="facteur" compatibilite="[3.4.11;]" />
+	<necessite nom="faq" compatibilite="[3.0.10;]" />
+	<necessite nom="mailcrypt" compatibilite="[2.4.5;]" />
+	<necessite nom="multilang" compatibilite="[1.2.1 ;]" />
+	<necessite nom="multilingue" compatibilite="[1.0.7;]" />
+	<necessite nom="nospam" compatibilite="[1.5.17;[" />
+	<necessite nom="prix_objets" compatibilite="[1.7.3;]" />
+	<necessite nom="selection_objet" compatibilite="[1.11.1;]" />
+	<necessite nom="seo" compatibilite="[2.1.5;]" />
+	<necessite nom="shop" compatibilite="[1.8.2;]" />
+	<necessite nom="sjcycle" compatibilite="[3.4.19;]" />
+	<necessite nom="spipr_dist" compatibilite="[0.4.15;]" />
+
+	<utilise nom="clients" compatibilite="[0.6.5;]" />
+	<utilise nom="bootstrap" compatibilite="[2.1.9;]" />
+
+	<pipeline nom="jqueryui_plugins" inclure="theme_websimple_pipelines.php" />
+	<pipeline nom="formulaire_charger" inclure="theme_websimple_pipelines.php" />
+	<pipeline nom="formulaire_verifier" inclure="theme_websimple_pipelines.php" />
+	<pipeline nom="formulaire_traiter" inclure="theme_websimple_pipelines.php" />
+	<pipeline nom="recuperer_fond" inclure="theme_websimple_pipelines.php" />
+	<pipeline nom="pre_insertion" inclure="theme_websimple_pipelines.php" />
+	<pipeline nom="insert_head" inclure="theme_websimple_pipelines.php" />
+	<pipeline nom="declarer_champs_extras" inclure="base/theme_websimple.php" />
 
 </paquet>
