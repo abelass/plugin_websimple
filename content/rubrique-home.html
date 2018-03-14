@@ -1,23 +1,23 @@
 <BOUCLE_rub(RUBRIQUES){id_rubrique}{tout}>
 <article class="content-principal invisible">
-    <header class="cartouche ">
-        <h1 class="h1 #EDIT{titre}">#TITRE</h1>
-    </header>
+		<header class="cartouche ">
+				<h1 class="h1 #EDIT{titre}">#TITRE</h1>
+		</header>
 </article>
 <nav class="menu rubriques">
 	<ul class="menu-liste home box_menu">
-    <BOUCLE_content(SELECTION_OBJETS){objet_dest=rubrique}{id_objet_dest=#ID_TRAD}{par ordre}>
-        #SET{id_objet,#ID_OBJET}
-        <BOUCLE_trad(ARTICLES){id_trad=#ID_OBJET}{si #OBJET|=={article}}{lang}>
-            #SET{id_objet,#ID_ARTICLE}
-        </BOUCLE_trad>
-        <BOUCLE_rubrique(RUBRIQUES){id_trad=#ID_OBJET}{tout}{si #OBJET|=={rubrique}}{lang}>
-            #SET{id_objet,#ID_RUBRIQUE}
-        </BOUCLE_rubrique>
-        <//B_trad>        
-        [<li class="item[ (#TYPE_LIEN)] menu-entree">
-            (#GET{id_objet}|generer_modele{#OBJET,modeles_so/home[_(#TYPE_LIEN)],#ARRAY{url,#URL}})</li>]
-    </BOUCLE_content>
+		<BOUCLE_content(LIAISON_OBJETS){objet_dest=rubrique}{id_objet_dest=#ID_TRAD}{par ordre}>
+				#SET{id_objet,#ID_OBJET}
+				<BOUCLE_trad(ARTICLES){id_trad=#ID_OBJET}{si #OBJET|=={article}}{lang}>
+						#SET{id_objet,#ID_ARTICLE}
+				</BOUCLE_trad>
+				<BOUCLE_rubrique(RUBRIQUES){id_trad=#ID_OBJET}{tout}{si #OBJET|=={rubrique}}{lang}>
+						#SET{id_objet,#ID_RUBRIQUE}
+				</BOUCLE_rubrique>
+				<//B_trad>
+				[<li class="item[ (#TYPE_LIEN)] menu-entree">
+						(#GET{id_objet}|generer_modele{#OBJET,modeles_so/home[_(#TYPE_LIEN)],#ARRAY{url,#URL}})</li>]
+		</BOUCLE_content>
 	</ul>
 	<br class="nettoyeur"/>
 </nav>

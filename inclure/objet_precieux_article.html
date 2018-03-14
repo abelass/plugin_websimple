@@ -12,10 +12,10 @@
 #SET{utilises,#ARRAY}
 
 [(#REM)Les produits compris dans le pack présent ou contenu dans le panier ou compris dans un pack sélectionné]
-<BOUCLE_objets(SELECTION_OBJETS){id_objet_dest IN #GET{id_objet_dest}}
+<BOUCLE_objets(LIAISON_OBJETS){id_objet_dest IN #GET{id_objet_dest}}
 {objet_dest=#ENV{objet}}{type_lien IN compris_pack,pack_base}{par ordre}>
 #SET{utilises,#GET{utilises}|push{#ID_OBJET}}
-    <BOUCLE_objets_deps(SELECTION_OBJETS)
+    <BOUCLE_objets_deps(LIAISON_OBJETS)
     {id_objet_dest=#ID_OBJET}{objet_dest=#OBJET_DEST}{type_lien IN compris_pack,pack_base}{par ordre}>
     #SET{utilises,#GET{utilises}|push{#ID_OBJET}}
         <BOUCLE_re(BOUCLE_objets_deps)> </BOUCLE_re>

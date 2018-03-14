@@ -6,7 +6,7 @@
 <B_objets>
 <h2><:websimple:pack_compose_par:></h2>
 <dl class="[(#GET{faq,flottable}) options]">  
-<BOUCLE_objets(SELECTION_OBJETS){id_objet_dest}{objet=article}{objet_dest}{type_lien !IN utilise_pack,hebergement,pack_base}{par ordre}>
+<BOUCLE_objets(LIAISON_OBJETS){id_objet_dest}{objet=article}{objet_dest}{type_lien !IN utilise_pack,hebergement,pack_base}{par ordre}>
     <INCLURE{fond=inclure/inc-options_details,id_article=#ID_OBJET,faq=#GET{faq},titre,env,compris=oui}/>
 </BOUCLE_objets>
 </dl>
@@ -15,7 +15,7 @@
 <B_pack_base>
 <h2><:websimple:plus_fonctionnalites_pack_base:></h2>
 <dl class="[(#GET{faq,flottable}) options]">  
-<BOUCLE_pack_base(SELECTION_OBJETS){id_objet_dest}{objet_dest}{type_lien=pack_base}{par ordre}>
+<BOUCLE_pack_base(LIAISON_OBJETS){id_objet_dest}{objet_dest}{type_lien=pack_base}{par ordre}>
 #SET{compteur,#COMPTEUR_BOUCLE}
     #SET{articles,#ARRAY}
     <B_article_pack_base>

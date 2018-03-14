@@ -1,18 +1,18 @@
 <B_sites_lies>
 <section class="contenu_lie[ (#ENV{class})]">
-    <h2><:websimple:site_utilise:></h2>
-    <ul>
-    <BOUCLE_sites_lies(SELECTION_OBJETS){objet}{id_objet}{type_lien ?}{par ordre_objet,titre}>
-    #SET{id_objet_dest,#ID_OBJET_DEST}
-        <BOUCLE_trad(ARTICLES){id_trad=#ID_OBJET_DEST}{si #OBJET_DEST|=={article}}{lang=#ENV{lang}}>
-            #SET{id_objet_dest,#ID_ARTICLE}
-        </BOUCLE_trad>
-        <BOUCLE_rubrique(RUBRIQUES){id_trad=#ID_OBJET_DEST}{tout}{si #OBJET_DEST|=={rubrique}}{lang=#ENV{lang}}>
-            #SET{id_objet_dest,#ID_RUBRIQUE}
-        </BOUCLE_rubrique>
-        <//B_trad>    
-    [<li[(#COMPTEUR_BOUCLE|=={1}|oui) class="first"]>(#GET{id_objet_dest}|generer_modele{#OBJET_DEST,modeles_so/contenu_lie})</li>]
-    </BOUCLE_sites_lies>
-    </ul>
+		<h2><:websimple:site_utilise:></h2>
+		<ul>
+		<BOUCLE_sites_lies(LIAISON_OBJETS){objet}{id_objet}{type_lien ?}{par ordre_objet,titre}>
+		#SET{id_objet_dest,#ID_OBJET_DEST}
+				<BOUCLE_trad(ARTICLES){id_trad=#ID_OBJET_DEST}{si #OBJET_DEST|=={article}}{lang=#ENV{lang}}>
+						#SET{id_objet_dest,#ID_ARTICLE}
+				</BOUCLE_trad>
+				<BOUCLE_rubrique(RUBRIQUES){id_trad=#ID_OBJET_DEST}{tout}{si #OBJET_DEST|=={rubrique}}{lang=#ENV{lang}}>
+						#SET{id_objet_dest,#ID_RUBRIQUE}
+				</BOUCLE_rubrique>
+				<//B_trad>
+		[<li[(#COMPTEUR_BOUCLE|=={1}|oui) class="first"]>(#GET{id_objet_dest}|generer_modele{#OBJET_DEST,modeles_so/contenu_lie})</li>]
+		</BOUCLE_sites_lies>
+		</ul>
 </section>
 </B_sites_lies>
