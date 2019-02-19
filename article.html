@@ -2,6 +2,6 @@
 <INCLURE{fond=structure,env,id_rubrique=#ENV{id_rubrique,#ID_RUBRIQUE},id_secteur=#ID_SECTEUR,type-page=article,composition=#COMPOSITION,id_trad,id=#ID_ARTICLE}/>
 </BOUCLE_principale_article>
 [(#ID_ARTICLE|AccesRestreint_article_restreint|oui)
-    <INCLURE{fond=login,url=#SELF}/>
- ] 
+	<INCLURE{fond=login,url=#SELF}/>
+]
 <//B_principale_article>

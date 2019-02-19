@@ -3,6 +3,6 @@
 	<INCLURE{fond=structure,env,id_secteur=#ID_SECTEUR,type-page=rubrique,composition=#COMPOSITION,id_trad,class=#GET{class},id=#ID_RUBRIQUE}/>
 </BOUCLE_principale_rubrique>
 [(#ID_RUBRIQUE|AccesRestreint_rubrique_restreinte|oui)
-    <INCLURE{fond=login,url=#SELF}/>
- ] 
+		<INCLURE{fond=login,url=#SELF}/>
+]
 <//B_principale_rubrique>

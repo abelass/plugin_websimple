@@ -1,16 +1,16 @@
 <div class="titre">
-    <a href="[(#URL|sinon{#ID_OBJET|generer_url_entite{#OBJET}})]" title="[(#TITRE|textebrut)]">#TITRE</a>
+		<a href="[(#URL|sinon{#ID_OBJET|generer_url_entite{#OBJET}})]" title="[(#TITRE|textebrut)]">#TITRE</a>
 </div>
 <B_article>
 <dl>
 <BOUCLE_article(ARTICLES){id_rubrique}{lang}{!par date}{0,1}>
-    <dt class="row_#COMPTEUR_BOUCLE">
-        <a href="#URL_ARTICLE" title="[(#TITRE|textebrut)]">[(#TITRE|couper{20})]</a>
-        </dt>
-    <dd>
-        <a href="#URL_ARTICLE" title="[(#TITRE|textebrut)]">[(#LOGO_ARTICLE|image_reduire{50})]</a>
-        [<p>(#INTRODUCTION|couper{130})</p>]
-    </dd>
+		<dt class="row_#COMPTEUR_BOUCLE">
+				<a href="#URL_ARTICLE" title="[(#TITRE|textebrut)]">[(#TITRE|couper{20})]</a>
+				</dt>
+		<dd>
+				<a href="#URL_ARTICLE" title="[(#TITRE|textebrut)]">[(#LOGO_ARTICLE|image_reduire{50})]</a>
+				[<p>(#INTRODUCTION|couper{130})</p>]
+		</dd>
 </BOUCLE_article>
 </dl>
 </B_article>

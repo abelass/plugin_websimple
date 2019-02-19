@@ -1,39 +1,39 @@
 #CACHE{3600}
 <div class="titre">
-    <a href="[(#URL|sinon{#ID_OBJET|generer_url_entite{#OBJET}})]" title="[(#TITRE|textebrut)]">#TITRE</a>
+	<a href="[(#URL|sinon{#ID_OBJET|generer_url_entite{#OBJET}})]" title="[(#TITRE|textebrut)]">#TITRE</a>
 </div>
 #SET{largeur,105}
 #SET{hauteur,162}
 #SET{rotation,0}
 <B_auteur>
-    <div class="images">
+	<div class="images">
 <BOUCLE_auteur(AUTEURS){id_auteur IN 5,1}{tout}{par hasard}{0,2}>
-   #SET{compteur,#COMPTEUR_BOUCLE}
-   <B_portraits>
-    <div class="image image_#GET{compteur}">
-    <BOUCLE_portraits(DOCUMENTS documents_liens){id_auteur}{tout}{par hasard}{0,1}>
-        [(#GET{compteur}|=={2}|?{
-            [(#FICHIER
-            |image_flip_vertical
-            |image_passe_partout{#GET{largeur},#GET{hauteur}}
-            |image_recadre{#GET{largeur},#GET{hauteur}}
-            |inserer_attribut{alt,#NOM}
-            |inserer_attribut{title,#NOM}            
-            |inserer_attribut{class,desaturate}            
-            )],
-            [(#FICHIER
-            |image_passe_partout{#GET{largeur},#GET{hauteur}}
-            |image_recadre{#GET{largeur},#GET{hauteur}}
-            |inserer_attribut{alt,#NOM}
-            |inserer_attribut{title,#NOM}                
-            |inserer_attribut{class,desaturate}   
-            )]            
-            
-            
-        })]
-    </BOUCLE_portraits>
-    </div>
-    </B_portraits>
+  #SET{compteur,#COMPTEUR_BOUCLE}
+  <B_portraits>
+	<div class="image image_#GET{compteur}">
+	<BOUCLE_portraits(DOCUMENTS documents_liens){id_auteur}{tout}{par hasard}{0,1}>
+		[(#GET{compteur}|=={2}|?{
+			[(#FICHIER
+			|image_flip_vertical
+			|image_passe_partout{#GET{largeur},#GET{hauteur}}
+			|image_recadre{#GET{largeur},#GET{hauteur}}
+			|inserer_attribut{alt,#NOM}
+			|inserer_attribut{title,#NOM}
+			|inserer_attribut{class,desaturate}
+			)],
+			[(#FICHIER
+			|image_passe_partout{#GET{largeur},#GET{hauteur}}
+			|image_recadre{#GET{largeur},#GET{hauteur}}
+			|inserer_attribut{alt,#NOM}
+			|inserer_attribut{title,#NOM}
+			|inserer_attribut{class,desaturate}
+			)]
+
+
+		})]
+	</BOUCLE_portraits>
+	</div>
+	</B_portraits>
 </BOUCLE_auteur>
    </div>
 </B_auteur>

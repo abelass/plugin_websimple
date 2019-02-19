@@ -116,4 +116,3 @@ function theme_websimple_pre_insertion($flux) {
 	}
 	return $flux;
 }
-?>

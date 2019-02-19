@@ -1,12 +1,12 @@
 <div class="titre">
-   <a href="[(#URL|sinon{#ID_OBJET|generer_url_entite{#OBJET}})]" title="[(#TITRE|textebrut)]">#TITRE</a>
+	<a href="[(#URL|sinon{#ID_OBJET|generer_url_entite{#OBJET}})]" title="[(#TITRE|textebrut)]">#TITRE</a>
 </div>
 <B_article>
 <ul>
 <BOUCLE_article(ARTICLES){id_rubrique}{par num titre}>
-    <li class="row_#COMPTEUR_BOUCLE">
-        <a href="#URL_ARTICLE" title="[(#TITRE|textebrut)]">#TITRE</a>
-    </li>
+	<li class="row_#COMPTEUR_BOUCLE">
+		<a href="#URL_ARTICLE" title="[(#TITRE|textebrut)]">#TITRE</a>
+	</li>
 </BOUCLE_article>
 </ul>
 </B_article>

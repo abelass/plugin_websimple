@@ -1,67 +1,67 @@
 #SET{utilises,#ARRAY}
 <BOUCLE_cond(CONDITION){si #ENV{voir}|=={oui}|oui}>
-    <div class="details">    
-    <BOUCLE_objets(LIAISON_OBJETS){id_objet_dest=#ENV{id_article_base}}{objet_dest=#ENV{objet}}{type_lien IN compris_pack,pack_base}{par ordre}>
-    #SET{utilises,#GET{utilises}|push{#ID_OBJET}}
-    </BOUCLE_objets>
+	<div class="details">
+	<BOUCLE_objets(LIAISON_OBJETS){id_objet_dest=#ENV{id_article_base}}{objet_dest=#ENV{objet}}{type_lien IN compris_pack,pack_base}{par ordre}>
+	#SET{utilises,#GET{utilises}|push{#ID_OBJET}}
+	</BOUCLE_objets>
 
-    <B_objets_precieux>
-    <section class="prix">
-        <div class="vente liste_objets_precieux">
-            <BOUCLE_objets_precieux(PRIX_OBJETS){id_objet=#ENV{id_objet,113}}{objet=#ENV{objet,article}}>
-            #SET{prix_ht,#PRIX_HT*{prix_objet,#ID_PRIX_OBJET}}
-            [(#SET{taxe,[(#PRIX*{prix_objet,#ID_PRIX_OBJET}|moins{#GET{prix_ht}})]})]  
-            [(#PRIX|>{0}|?{#SET{ttc,oui},#SET{ttc,''})}]   
-                <INCLURE{fond=inclure/objet_precieux_#OBJET,id_objet,prix=#GET{prix_ht},taxe=#GET{taxe},id_prix_objet,id_declinaison,ttc=#GET{ttc},utilises=#GET{utilises},env}/>
-            </BOUCLE_objets_precieux>
-            <BOUCLE_objets_add(LIAISON_OBJETS){objet_dest=#ENV{objet,article}}{id_objet_dest=#ENV{id_objet,113}}{type_lien=hebergement}>
-            #SET{prix_ht,''}
-            #SET{taxe,''}
-            #SET{titre,#TITRE}
-            <BOUCLE_objets_precieux_add(PRIX_OBJETS){id_objet}{objet}>
-                #SET{prix_ht,#PRIX_HT*{prix_objet,#ID_PRIX_OBJET}}
-            [(#SET{taxe,[(#PRIX*{prix_objet,#ID_PRIX_OBJET}|moins{#GET{prix_ht}})]})]  
-                <INCLURE{fond=inclure/objet_precieux_#OBJET,id_objet,prix=#GET{prix_ht},taxe=#GET{taxe},id_prix_objet,id_declinaison,ttc=#GET{ttc},utilises=#GET{utilises},titre=#GET{titre},env}/>
-            </BOUCLE_objets_precieux_add>
-            </BOUCLE_objets_add>
-        </div>
-    </section>
-    #SET{contenu,ok}
-    </B_objets_precieux>
+	<B_objets_precieux>
+	<section class="prix">
+		<div class="vente liste_objets_precieux">
+			<BOUCLE_objets_precieux(PRIX_OBJETS){id_objet=#ENV{id_objet,113}}{objet=#ENV{objet,article}}>
+			#SET{prix_ht,#PRIX_HT*{prix_objet,#ID_PRIX_OBJET}}
+			[(#SET{taxe,[(#PRIX*{prix_objet,#ID_PRIX_OBJET}|moins{#GET{prix_ht}})]})]
+			[(#PRIX|>{0}|?{#SET{ttc,oui},#SET{ttc,''})}]
+				<INCLURE{fond=inclure/objet_precieux_#OBJET,id_objet,prix=#GET{prix_ht},taxe=#GET{taxe},id_prix_objet,id_declinaison,ttc=#GET{ttc},utilises=#GET{utilises},env}/>
+			</BOUCLE_objets_precieux>
+			<BOUCLE_objets_add(LIAISON_OBJETS){objet_dest=#ENV{objet,article}}{id_objet_dest=#ENV{id_objet,113}}{type_lien=hebergement}>
+			#SET{prix_ht,''}
+			#SET{taxe,''}
+			#SET{titre,#TITRE}
+			<BOUCLE_objets_precieux_add(PRIX_OBJETS){id_objet}{objet}>
+				#SET{prix_ht,#PRIX_HT*{prix_objet,#ID_PRIX_OBJET}}
+			[(#SET{taxe,[(#PRIX*{prix_objet,#ID_PRIX_OBJET}|moins{#GET{prix_ht}})]})]
+				<INCLURE{fond=inclure/objet_precieux_#OBJET,id_objet,prix=#GET{prix_ht},taxe=#GET{taxe},id_prix_objet,id_declinaison,ttc=#GET{ttc},utilises=#GET{utilises},titre=#GET{titre},env}/>
+			</BOUCLE_objets_precieux_add>
+			</BOUCLE_objets_add>
+		</div>
+	</section>
+	#SET{contenu,ok}
+	</B_objets_precieux>
 
-    <B_ispanier>
-    <div id="panier_wrap">
-        #SET{retour,#SELF|parametre_url{retour,ok}|parametre_url{action,''}}
-       <div class="ajax">#FORMULAIRE_PANIER</div>
-        <BOUCLE_ispanier(CONDITION){si #SESSION{id_panier}|oui}>
-            [(#BOUTON_ACTION{<:paniers:vider_le_panier:>,#URL_ACTION_AUTEUR{supprimer_panier_encours,'',#GET{retour}},ajax})]
-            <BOUCLE_article_suitepanier(ARTICLES){id_rubrique=-1}>
-               [(#PAGE|=={suitepanier}|oui)<div class="texte #EDIT{texte}">#TEXTE</div>]
-            </BOUCLE_article_suitepanier>
-            [(#VAL{#URL_PAGE{selection}#abonne_coord}|lien_ou_expose{<:shop:passer_la_commande:>*,'',continuer})]
-            <div class="explication">*<:websimple:explication_commande_court:></div>
-        </BOUCLE_ispanier>
-    </div>
-    #SET{contenu,ok}
-    </B_ispanier>
-    [(#GET{contenu}|non)<strong><:paniers:panier_vide:></strong>]
-    </div>
-    <br class="nettoyeur"/>
+	<B_ispanier>
+	<div id="panier_wrap">
+		#SET{retour,#SELF|parametre_url{retour,ok}|parametre_url{action,''}}
+	   <div class="ajax">#FORMULAIRE_PANIER</div>
+		<BOUCLE_ispanier(CONDITION){si #SESSION{id_panier}|oui}>
+			[(#BOUTON_ACTION{<:paniers:vider_le_panier:>,#URL_ACTION_AUTEUR{supprimer_panier_encours,'',#GET{retour}},ajax})]
+			<BOUCLE_article_suitepanier(ARTICLES){id_rubrique=-1}>
+			   [(#PAGE|=={suitepanier}|oui)<div class="texte #EDIT{texte}">#TEXTE</div>]
+			</BOUCLE_article_suitepanier>
+			[(#VAL{#URL_PAGE{selection}#abonne_coord}|lien_ou_expose{<:shop:passer_la_commande:>*,'',continuer})]
+			<div class="explication">*<:websimple:explication_commande_court:></div>
+		</BOUCLE_ispanier>
+	</div>
+	#SET{contenu,ok}
+	</B_ispanier>
+	[(#GET{contenu}|non)<strong><:paniers:panier_vide:></strong>]
+	</div>
+	<br class="nettoyeur"/>
 </BOUCLE_cond>
   <br class="invisible"/>
 <//B_cond>
 <script type="text/javascript">
-    $(function(){
-    $('#panier_wrap .bouton_action_post').submit(function(e) {
-      e.preventDefault(); // don't submit multiple times
+	$(function(){
+	$('#panier_wrap .bouton_action_post').submit(function(e) {
+	  e.preventDefault(); // don't submit multiple times
    this.submit(); // use the native submit method of the form element
-    setTimeout(function(){ // Delay for Chrome
-         ajaxReload('mon_panier', {
-             callback:function(){ajaxReload('prix', {args:{retour:'non',action:''},history:false});},
-             args:{voir:'',retour:'non'},
-             history:false
-             });
-    }, 500);
-    });
-    });    
+	setTimeout(function(){ // Delay for Chrome
+		 ajaxReload('mon_panier', {
+			 callback:function(){ajaxReload('prix', {args:{retour:'non',action:''},history:false});},
+			 args:{voir:'',retour:'non'},
+			 history:false
+			 });
+	}, 500);
+	});
+	});
 </script>
