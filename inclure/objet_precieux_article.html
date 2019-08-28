@@ -6,7 +6,7 @@
         #SET{exclus,#GET{exclus}|push{#ID_OBJET}}
         </BOUCLE_article>
     </BOUCLE_panier>
-    
+
 #SET{id_objet_dest,#LISTE{#ENV{id_article_base}}}
 #SET{id_objet_dest,#GET{id_objet_dest}|array_merge{#GET{exclus}}}
 #SET{utilises,#ARRAY}
@@ -29,20 +29,19 @@
     #SET{titre,#TITRE}
 </BOUCLE_trad>
 <div>
-
         [(#ID_ARTICLE|in_array{#ENV{utilises}}|ou{#ENV{panier}|=={non}}|?{
             <div class="compris_pack">
-            <:websimple:compris_pack:>
+            [(#VAL{websimple:compris_pack}|_T{#ARRAY{spip_lang,#ENV{lang}}})]
             ,
             <div class="ajouter_au_panier">
             [(#GET{utilise}|ou{#ID_OBJET|in_array{#GET{exclus}}}|oui|?{
-               [(#ENV{titre,#GET{titre}}|supprimer_numero|extraire_multi) ] <img src="[(#CHEMIN{images/tick_16.png})]" alt="ok"/> 
+               [(#ENV{titre,#GET{titre}}|supprimer_numero|extraire_multi) ] <img src="[(#CHEMIN{images/tick_16.png})]" alt="ok"/>
                 ,
 
             #SET{retour,#SELF|parametre_url{retour,ok}|parametre_url{action,''}}
-            [(#BOUTON_ACTION{<:websimple:action_ajouter:> [(#ENV{titre,#GET{titre}}|supprimer_numero|extraire_multi)] [(#ENV{prix}|filtres_prix_formater)]  ([(#TAXE|=={0}|?{<:shopprix:ttc:>,<:shopprix:htva:>})]),#URL_ACTION_AUTEUR{remplir_panier,prix_objet-#ID_PRIX_OBJET,#GET{retour}},ajax})]          
+            [(#BOUTON_ACTION{[(#VAL{websimple:action_ajouter}|_T{#ARRAY{spip_lang,#ENV{lang}}})] [(#ENV{titre,#GET{titre}}|supprimer_numero|extraire_multi)] [(#ENV{prix}|filtres_prix_formater)]  ([(#TAXE|=={0}|?{[(#VAL{shopprix:ttc}|_T{#ARRAY{spip_lang,#ENV{lang}}})],[(#VAL{shopprix:htva}|_T{#ARRAY{spip_lang,#ENV{lang}}})]>})]),#URL_ACTION_AUTEUR{remplir_panier,prix_objet-#ID_PRIX_OBJET,#GET{retour}},ajax})]
                 })]
- 
+
             })]
 
         </div>
@@ -54,6 +53,6 @@
 <script type="text/javascript">
     $(function(){
         ajaxReload('mon_panier', {args:{voir:'oui',action:''},history:false });
-        });      
+        });
 </script>
 ]

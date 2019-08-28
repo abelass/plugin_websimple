@@ -58,7 +58,7 @@
 	setTimeout(function(){ // Delay for Chrome
 		 ajaxReload('mon_panier', {
 			 callback:function(){ajaxReload('prix', {args:{retour:'non',action:''},history:false});},
-			 args:{voir:'',retour:'non'},
+			 args:{voir:'',retour:'non', lang:'#ENV{lang}'},
 			 history:false
 			 });
 	}, 500);
