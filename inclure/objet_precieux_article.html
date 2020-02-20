@@ -1,11 +1,11 @@
 #CACHE{0}
 #SET{exclus,#ARRAY}
 [(#REM)Les produits dans le panier]
-    <BOUCLE_panier(PANIERS_LIENS){id_panier=#SESSION{id_panier}}{objet=prix_objet}>
-        <BOUCLE_article(PRIX_OBJETS){id_prix_objet=#ID_OBJET}{objet=article}>
-        #SET{exclus,#GET{exclus}|push{#ID_OBJET}}
-        </BOUCLE_article>
-    </BOUCLE_panier>
+	<BOUCLE_panier(PANIERS_LIENS){id_panier=#SESSION{id_panier}}{objet=prix_objet}>
+		<BOUCLE_article(PRIX_OBJETS){id_prix_objet=#ID_OBJET}{objet=article}>
+		#SET{exclus,#GET{exclus}|push{#ID_OBJET}}
+		</BOUCLE_article>
+	</BOUCLE_panier>
 
 #SET{id_objet_dest,#LISTE{#ENV{id_article_base}}}
 #SET{id_objet_dest,#GET{id_objet_dest}|array_merge{#GET{exclus}}}
@@ -15,44 +15,44 @@
 <BOUCLE_objets(LIAISON_OBJETS){id_objet_dest IN #GET{id_objet_dest}}
 {objet_dest=#ENV{objet}}{type_lien IN compris_pack,pack_base}{par ordre}>
 #SET{utilises,#GET{utilises}|push{#ID_OBJET}}
-    <BOUCLE_objets_deps(LIAISON_OBJETS)
-    {id_objet_dest=#ID_OBJET}{objet_dest=#OBJET_DEST}{type_lien IN compris_pack,pack_base}{par ordre}>
-    #SET{utilises,#GET{utilises}|push{#ID_OBJET}}
-        <BOUCLE_re(BOUCLE_objets_deps)> </BOUCLE_re>
-    </BOUCLE_objets_deps>
+	<BOUCLE_objets_deps(LIAISON_OBJETS)
+	{id_objet_dest=#ID_OBJET}{objet_dest=#OBJET_DEST}{type_lien IN compris_pack,pack_base}{par ordre}>
+	#SET{utilises,#GET{utilises}|push{#ID_OBJET}}
+		<BOUCLE_re(BOUCLE_objets_deps)> </BOUCLE_re>
+	</BOUCLE_objets_deps>
 </BOUCLE_objets>
 
 <BOUCLE_art(ARTICLES){id_article=#ID_OBJET}>
 #SET{titre,#TITRE}
 [(#ID_OBJET|in_array{#GET{utilises}}|oui)#SET{utilise,oui}]
 <BOUCLE_trad(ARTICLES){traduction}{lang=#ENV{lang}}>
-    #SET{titre,#TITRE}
+	#SET{titre,#TITRE}
 </BOUCLE_trad>
 <div>
-        [(#ID_ARTICLE|in_array{#ENV{utilises}}|ou{#ENV{panier}|=={non}}|?{
-            <div class="compris_pack">
-            [(#VAL{websimple:compris_pack}|_T{#ARRAY{spip_lang,#ENV{lang}}})]
-            ,
-            <div class="ajouter_au_panier">
-            [(#GET{utilise}|ou{#ID_OBJET|in_array{#GET{exclus}}}|oui|?{
-               [(#ENV{titre,#GET{titre}}|supprimer_numero|extraire_multi) ] <img src="[(#CHEMIN{images/tick_16.png})]" alt="ok"/>
-                ,
+		[(#ID_ARTICLE|in_array{#ENV{utilises}}|ou{#ENV{panier}|=={non}}|?{
+			<div class="compris_pack">
+			[(#VAL{websimple:compris_pack}|_T{#ARRAY{spip_lang,#ENV{lang}}})]
+			,
+			<div class="ajouter_au_panier">
+			[(#GET{utilise}|ou{#ID_OBJET|in_array{#GET{exclus}}}|oui|?{
+			   [(#ENV{titre,#GET{titre}}|supprimer_numero|extraire_multi) ] <img src="[(#CHEMIN{images/tick_16.png})]" alt="ok"/>
+				,
 
-            #SET{retour,#SELF|parametre_url{retour,ok}|parametre_url{action,''}}
-            [(#BOUTON_ACTION{[(#VAL{websimple:action_ajouter}|_T{#ARRAY{spip_lang,#ENV{lang}}})] [(#ENV{titre,#GET{titre}}|supprimer_numero|extraire_multi)] [(#ENV{prix}|filtres_prix_formater)]  ([(#TAXE|=={0}|?{[(#VAL{shopprix:ttc}|_T{#ARRAY{spip_lang,#ENV{lang}}})],[(#VAL{shopprix:htva}|_T{#ARRAY{spip_lang,#ENV{lang}}})]>})]),#URL_ACTION_AUTEUR{remplir_panier,prix_objet-#ID_PRIX_OBJET,#GET{retour}},ajax})]
-                })]
+			#SET{retour,#SELF|parametre_url{retour,ok}|parametre_url{action,''}}
+			[(#BOUTON_ACTION{[(#VAL{websimple:action_ajouter}|_T{#ARRAY{spip_lang,#ENV{lang}}})] [(#ENV{titre,#GET{titre}}|supprimer_numero|extraire_multi)] [(#ENV{prix}|filtres_prix_formater)]  ([(#TAXE|=={0}|?{[(#VAL{shopprix:ttc}|_T{#ARRAY{spip_lang,#ENV{lang}}})],[(#VAL{shopprix:htva}|_T{#ARRAY{spip_lang,#ENV{lang}}})]>})]),#URL_ACTION_AUTEUR{remplir_panier,prix_objet-#ID_PRIX_OBJET,#GET{retour}},ajax})]
+				})]
 
-            })]
+			})]
 
-        </div>
+		</div>
    <br class="nettoyeur"/>
 </div>
 </BOUCLE_art>
 </B_art>
 [(#ENV{retour}|=={ok}|oui)
 <script type="text/javascript">
-    $(function(){
-        ajaxReload('mon_panier', {args:{voir:'oui',action:''},history:false });
-        });
+	$(function(){
+		ajaxReload('mon_panier', {args:{voir:'oui',action:''},history:false });
+		});
 </script>
 ]
