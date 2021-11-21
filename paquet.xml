@@ -1,14 +1,14 @@
 <paquet
 	prefix="theme_websimple"
 	categorie="edition"
-	version="3.0.6"
+	version="3.0.7"
 	etat="dev"
-	compatibilite="[3.0.5;3.2.*]"
+	compatibilite="[3.0.5;4.0.*]"
 	schema="0.0.2"
 	>
 	<nom>Web Simple</nom>
 
-	<auteur lien='http://websimple.be'>Web Simple</auteur>
+	<auteur lien='http://web-simple.eu'>Web Simple</auteur>
 
 	<licence>GNU/GPL</licence>
 
